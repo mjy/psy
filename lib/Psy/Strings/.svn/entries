@@ -1,0 +1,52 @@
+8
+
+dir
+76
+svn+ssh://matt@hymenoptera.tamu.edu/Volumes/data/svn/Psy/trunk/lib/Psy/Strings
+svn+ssh://matt@hymenoptera.tamu.edu/Volumes/data/svn/Psy
+
+
+
+2008-06-08T21:57:04.477938Z
+70
+matt
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+fc668c92-7104-0410-965a-99deaa3ec30d
+
+Strings.pm
+file
+
+
+
+
+2008-06-08T21:13:56.000000Z
+47d9e1472d5f86eeb8e24b7213edbcc4
+2008-06-08T21:57:04.477938Z
+70
+matt
+
+Composition.pm
+file
+
+
+
+
+2007-02-16T19:04:14.000000Z
+ada1a6de08f187b70ba2874b03e65120
+2007-02-19T02:21:27.737539Z
+56
+matt
+

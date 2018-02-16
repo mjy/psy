@@ -1,0 +1,52 @@
+8
+
+dir
+76
+svn+ssh://matt@hymenoptera.tamu.edu/Volumes/data/svn/Psy/trunk/lib/Psy/Dna
+svn+ssh://matt@hymenoptera.tamu.edu/Volumes/data/svn/Psy
+
+
+
+2007-02-19T02:21:27.737539Z
+56
+matt
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+fc668c92-7104-0410-965a-99deaa3ec30d
+
+Alphabet.pm
+file
+
+
+
+
+2007-02-16T18:39:50.000000Z
+92d3b46b86eba68fa1285af7d81b6b31
+2007-02-19T02:21:27.737539Z
+56
+matt
+
+Iupac.pm
+file
+
+
+
+
+2006-01-16T20:15:40.000000Z
+60b6bcc1bd0b122c8dc54b15e465dfc3
+2006-01-16T21:09:44.954264Z
+31
+matt
+

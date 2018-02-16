@@ -1,0 +1,289 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Psy::Output::Kword</title>
+<link rel="stylesheet" href="../../../..//Active.css" type="text/css" />
+<link rev="made" href="mailto:" />
+</head>
+
+<body>
+<table border="0" width="100%" cellspacing="0" cellpadding="3">
+<tr><td class="block" valign="middle">
+<big><strong><span class="block">&nbsp;Psy::Output::Kword</span></strong></big>
+</td></tr>
+</table>
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#psy__output__kword">Psy::Output::Kword</a></li>
+	<li><a href="#version">VERSION</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="psy__output__kword">Psy::Output::Kword</a></h1>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="version">VERSION</a></h1>
+<p>Version 0.01</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<p>Kword parsimony analysis.  Very likely been done before, but code is all original (and flexible!)</p>
+<p><table cellspacing="0" cellpadding="0"><tr><td>Required parameters
+<tr><td><td>-mx</table></p>
+<p><table cellspacing="0" cellpadding="0"><tr><td>Optional parameters:
+<tr><td><td>-data =&gt; %hash  # where keys are pointers to slices, blocks of each slice are concatonated together, if not passed then bracketed blocks only are converted
+</table></p>
+<pre>
+
+        -translation_mode =&gt; see Matrix::plan &lt; [basic] | all | all_fused &gt;</pre>
+<pre>
+        
+        -weight =&gt; &lt; both | wrd_len | wrd_freq &gt; ### NOT IMPLMENTED!! ###
+        
+        -out_format =&gt; &lt; [tnt] |  mesquite | bare &gt;
+        -tax_slice =&gt; $slice # a slice which defines the taxa to include
+        -kword_size \@ - the kwords sizes you want to explicitly include, all other sizes are discarded, if omitted all possible lengths (block length -1) are generated
+        -no_uninformatives =&gt; &lt; [1] | 0 &gt; strips parsimony uninformative characters or not
+        -write_word_list =&gt; 'filename' | undef  # if a filename is passed an additional file listing all words, one word per line is created, practical mostly for single partition dumps of bare kwords
+        
+=cut</pre>
+<p>our $OUT_DIR = ``analyses/kword'';
+our $LEGAL_CHARS =  Psy::Dna::Alphabet-&gt;new('-type' =&gt; 'custom', '-alphabet' =&gt; 'ACGTU', '-replace' =&gt; '?'); # REQUIRED FOR kword!!</p>
+<p><table cellspacing="0" cellpadding="0"><tr><td>sub process {
+<tr><td><td>my $self = shift;
+<tr><td><td>my %raw_params = @_;
+<tr><td><td>my %default_params = (
+<tr><td><td>'-weight' =&gt; 'word_len',
+<tr><td><td>'-out_format' =&gt; 'tnt',
+<tr><td><td>'-tax_slice' =&gt; $raw_params{'-mx'}-&gt;origSlice,
+<tr><td><td>'-gapchar' =&gt; '-',
+<tr><td> <td>'-no_uninformatives' =&gt; 1,
+<tr><td><td>'-out_format' =&gt; 'tnt',
+<tr><td><td>'-translation_mode' =&gt; 'basic',
+<tr><td><td>'-write_word_list' =&gt; undef,
+<tr><td><td>);</table></p>
+<pre>
+        # requires -mx
+        
+        my %params = (%default_params, %raw_params);</pre>
+<pre>
+        # hmm- revisit this, used in fusing slices      
+        if (not $params{'-data'}) {
+                my %all;
+                map {my $s = slice-&gt;new; $s-&gt;blocks($_); $all{$_} = $s} $params{'-mx'}-&gt;loopBlocks('-mode' =&gt; 'bracketed');     
+                $params{'-data'} = \%all;
+        }</pre>
+<pre>
+        $params{'-legal_alphabet'} ||= $LEGAL_CHARS;</pre>
+<pre>
+        $params{'-path'} ||= $OUT_DIR;
+        
+        $params{'-file_name'} = 'kword' if not defined $params{'-file_name'};
+        $params{'-slice'} ||= $params{'-mx'}-&gt;origSlice;
+        
+        print &quot;PATH: $params{'-path'}/$params{'-file_name'}\n&quot;;
+        
+        # simplify 
+        my $mx = $params{'-mx'};
+        
+        # gather needed data
+        my $data;                                          
+        $data = &amp;output::mxData(%params); # get a basic data object</pre>
+<pre>
+        # check for a plan passed, build the default if not
+        my $plan;
+        if (not $params{'-plan'}) {
+                $plan = $params{'-mx'}-&gt;plan('-mode' =&gt; $params{'-translation_mode'}, %params);
+        }
+        else {
+                $plan = $params{'-plan'};
+        }
+                        
+        # get the data</pre>
+<pre>
+        # fuse the data and OVERRIDE the Output-&gt;cell method
+        foreach my $t ( $params{'-slice'}-&gt;loop('Taxa')) {
+                foreach my $blk ( keys %{$plan} ) {
+                        my $s = slice-&gt;new;
+                        $s-&gt;blocks( @{$plan-&gt;{$blk}-&gt;{blks}});
+                        $s-&gt;taxa( $params{'-slice'}-&gt;loop('Taxa') );
+                        $data-&gt;{mx}-&gt;{$t}-&gt;{$blk} = $mx-&gt;rawRowData('-slice' =&gt; $s, '-ter' =&gt; $t);
+                        $data-&gt;{mx}-&gt;{$t}-&gt;{$blk} =~ s/-//g; # differs from Blockmeta here
+                }
+        }
+        
+        # loop through the kword blocks, doing foo on each cell
+        # find the min-max length for each block (speedups vs. search)
+        my $kw; 
+        foreach my $blk (keys %{$plan}) {
+                if ($plan-&gt;{$blk}-&gt;{kword} == 1) { 
+                        # my $min = 1; assume min is 1
+                        my $max = 0;
+                        foreach my $t ( $params{'-slice'}-&gt;loop('Taxa'))  {
+                                my $foo = length ($data-&gt;{mx}-&gt;{$t}-&gt;{$blk});
+                                $max = $foo if $foo &gt; $max;     
+                                # find the min-max length for each block
+                        }               
+                        $kw-&gt;{$blk}-&gt;{max} = $max;      
+                }
+        }
+        
+        # print Dumper($kw);
+        # set the kwords to find for each block (array)- if not passed {do all}
+        
+        my %kw_lengths; # keeps track of the actual lengths SEARCHED FOR, not necessarily found, this is however a set of possible ranges
+        foreach my $blk (keys %{$kw} ) {
+                if (not $params{'-kword_size'}) {
+                        $kw-&gt;{$blk}-&gt;{kw_size} = [ 1..$kw-&gt;{$blk}-&gt;{max}];
+                        map {   $kw_lengths{$_} = undef; } @{$kw-&gt;{$blk}-&gt;{kw_size}} 
+                }
+                else { # ... not proofed
+                        # only allow kwords that are possible for the block size
+                        foreach my $v (@{$params{'-kword_size'}}) {                             
+                                if ($v &lt;= $kw-&gt;{$blk}-&gt;{max}) {
+                                        push @{$kw-&gt;{$blk}-&gt;{kw_size}}, $v;
+                                        $kw_lengths{$v} = undef;
+                                }
+                        }
+                }  
+        }
+        
+        
+        
+        # now we know what kwords to find- go for it!
+        # add character references to our template data
+        $data-&gt;{'chars'} = sub {
+                my ($chr, $t, $blk) = @_;
+                $data-&gt;{mx}-&gt;{$t}-&gt;{$blk} =~ /($chr)/;
+                # print &quot;$t $blk ($chr) &quot; , $data-&gt;{mx}-&gt;{$t}-&gt;{$blk}, &quot; [$1]\n&quot;;
+                $1 ? 1 : 0;
+        };
+        
+        # create the kword character matrix- map it to the blocks, this is the master character variable now
+        foreach my $blk (keys %{$kw} ) { # loop the blocks
+                foreach my $l (@{$kw-&gt;{$blk}-&gt;{kw_size}}) { # loop the word size
+                        foreach my $t ( $params{'-slice'}-&gt;loop('Taxa'))  { # loop the taxa
+                                my %words = &amp;kword( $params{'-legal_alphabet'}-&gt;clean('-str' =&gt; $data-&gt;{mx}-&gt;{$t}-&gt;{$blk}, %params), $l      );  # get the words
+                                $kw-&gt;{$blk}-&gt;{chars}-&gt;{$_} += $words{$_} for keys %words; # add the words to the hash for that block
+                        }
+                }</pre>
+<pre>
+                # nuke words containing '?' ** note that '-' are previously removed!
+                foreach my $k (keys %{$kw-&gt;{$blk}-&gt;{chars}} ) {
+                        delete $kw-&gt;{$blk}-&gt;{chars}-&gt;{$k} if $k =~ /\?/g
+                }       
+                
+                # trim down the characters if we don't want uniformative characters
+                if ( $params{'-no_uninformatives'} == 1) { # nuke all the uninformatives (only method working at present) 
+                        foreach my $k (keys %{$kw-&gt;{$blk}-&gt;{chars}} ) { # single instances can be eliminated right away 
+                                delete $kw-&gt;{$blk}-&gt;{chars}-&gt;{$k} if $kw-&gt;{$blk}-&gt;{chars}-&gt;{$k} == 1;
+                        }               
+                        
+                        # multiple hits in same block need to be eliminated as autapomorphies as well
+                        foreach my $k (keys %{$kw-&gt;{$blk}-&gt;{chars}} ) { # loop through words
+                                my $tot = 0;
+                                foreach my $t ( $params{'-slice'}-&gt;loop('Taxa'))  { # loop through taxa
+                                        $tot++ if $data-&gt;{'chars'}($k, $t, $blk) == 1;  
+                                }
+                                
+                                delete $kw-&gt;{$blk}-&gt;{chars}-&gt;{$k} if $tot == $params{'-slice'}-&gt;total('Taxa'); # everyone has it
+                                delete $kw-&gt;{$blk}-&gt;{chars}-&gt;{$k} if $tot == 1; #  1 is an autapomorphy
+                                delete $kw-&gt;{$blk}-&gt;{chars}-&gt;{$k} if $tot == ($params{'-slice'}-&gt;total('Taxa') - 1); # 0 is an autapomorphy     
+                        }
+                }
+        }
+        
+        # calculate the total characters
+        $data-&gt;{total_chars} = 0;
+        foreach my $k ( keys %{$kw} ) {
+                $data-&gt;{total_chars} += $#{ [keys %{$kw-&gt;{$k}-&gt;{chars}}] } + 1 &gt; 0 ? ($#{ [keys %{$kw-&gt;{$k}-&gt;{chars}}] } + 1) : 0; # ($#{ [keys %{$kw-&gt;{$k}-&gt;{chars}}] } + 1) if ($#{ [keys %{$kw-&gt;{$k}-&gt;{chars}}] } &gt; 0);
+        }</pre>
+<pre>
+        $data-&gt;{trans_blk_loop} = [sort {$a eq $b} keys %{$kw}] ;
+        
+        # alphabetize the k-words
+        $data-&gt;{blk_chrs} = sub {my $blk = shift; return [ sort {length $a &lt;=&gt; length $b || $a cmp $b } keys %{$kw-&gt;{$blk}-&gt;{chars}}  ] };
+                
+        # add a refence to the k-word sizes
+        $data-&gt;{kword_size} = [sort {$a &lt;=&gt; $b} keys %kw_lengths] ; 
+        
+        my %formats = ( 
+                'tnt' =&gt; 'kword_tnt.tt',
+                'mrbayes' =&gt; 'kword_mrbayes.tt',
+                'mesquite' =&gt; 'kword_mesquite.tt',
+                'bare' =&gt; 'kword_bare.tt',
+        );</pre>
+<pre>
+        $params{'-file_name'} = &quot;$params{'-file_name'}.tnt&quot; if $params{'-out_format'} eq 'tnt';
+        $params{'-file_name'} = &quot;$params{'-file_name'}.nex&quot; if $params{'-out_format'} eq 'mesquite';
+        $params{'-file_name'} = &quot;$params{'-file_name'}.nex&quot; if $params{'-out_format'} eq 'mrbayes';
+        
+        my $tt = Template-&gt;new($self-&gt;ttConfig) || die  $Template::ERROR , &quot;\n&quot;; 
+        $tt-&gt;process($formats{$params{'-out_format'}}, $data, &quot;$params{'-path'}/$params{'-file_name'}&quot;) || die $tt-&gt;error(), &quot; died trying to process Kword template\n&quot;;</pre>
+<pre>
+        if ($params{'-write_word_list'}) {
+                print &quot;generating the kword list\n&quot;;
+                open (WORDS, &quot;&gt;$OUT_DIR/$params{'-write_word_list'}&quot;) || die (&quot;couldn't open the wordlist file $params{'-write_word_list'}&quot;); # ERROR HANDLING
+                        foreach my $blk (@{$data-&gt;{trans_blk_loop}}) {
+                                foreach my $w (@{$data-&gt;{blk_chrs}($blk)}) {
+                                        print WORDS &quot;$w\n&quot;;
+                                }
+                        }
+                close (WORDS);
+                
+        }
+        1;
+}</pre>
+<p># weighting schemes
+# 1- inversely proportional to length
+# 1- inversely proportional to frequency (remember 2 is the least common)
+# 1- (1- (max_length -  length / max_length))</p>
+<p># DATA used in testing only, see templates</p>
+<p>__DATA__
+#Nexus</p>
+<p>BEGIN TAXA;
+	TITLE foo;
+	DIMENSIONS NTAX=[% total_ters %];
+	TAXLABELS
+	[% FOREACH ter = terminals %] [% <code>rowlabel(ter)</code> %] [% END %]
+;</p>
+<p>END;</p>
+<p>BEGIN CHARACTERS;
+	TITLE  Blockmeta_[% c %];
+	DIMENSIONS NCHAR=[% total_chars %];
+	FORMAT DATATYPE = STANDARD GAP = - MISSING = ? SYMBOLS = ``  0 1'';
+CHARSTATELABELS [% SET i = 1 %][% FOREACH blk = trans_blk_loop %][% FOREACH c = <code>blk_chrs(blk)</code> %] 
+	[% i %] blk[% blk %]_[% c %][% SET i = (i+1) %],[% END %][% END %]
+	;
+</p>
+<pre>
+
+        MATRIX
+[% FOREACH ter = terminals %]
+[% justifiedrowlabel(ter) %][% FOREACH blk = trans_blk_loop %][% FOREACH c = blk_chrs(blk) %][% chars(c, ter, blk) %][% END %]  [% END %][% END %]
+;</pre>
+<p>END;
+
+</p>
+<p><a href="#__index__"><small>__top</small></a></p>
+<table border="0" width="100%" cellspacing="0" cellpadding="3">
+<tr><td class="block" valign="middle">
+<big><strong><span class="block">&nbsp;Psy::Output::Kword</span></strong></big>
+</td></tr>
+</table>
+
+</body>
+
+</html>

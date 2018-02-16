@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Psy::Dna::Iupac</title>
+<link rel="stylesheet" href="../../../..//Active.css" type="text/css" />
+<link rev="made" href="mailto:" />
+</head>
+
+<body>
+<table border="0" width="100%" cellspacing="0" cellpadding="3">
+<tr><td class="block" valign="middle">
+<big><strong><span class="block">&nbsp;Psy::Dna::Iupac</span></strong></big>
+</td></tr>
+</table>
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#version">VERSION</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<li><a href="#export">EXPORT</a></li>
+	<ul>
+
+		<ul>
+
+			<li><a href="#notes">notes</a></li>
+		</ul>
+
+		<li><a href="#new">new</a></li>
+		<li><a href="#nuc">nuc</a></li>
+		<li><a href="#iupac">iupac</a></li>
+		<li><a href="#tstv">tstv</a></li>
+		<li><a href="#legalnuc">legalnuc</a></li>
+		<li><a href="#legaliupac">legaliupac</a></li>
+		<li><a href="#loopiupac">loopIupac</a></li>
+	</ul>
+
+	<li><a href="#author">AUTHOR</a></li>
+	<li><a href="#bugs">BUGS</a></li>
+	<li><a href="#acknowledgements">ACKNOWLEDGEMENTS</a></li>
+	<li><a href="#copyright___license">COPYRIGHT &amp; LICENSE</a></li>
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>Psy::Dna::Iupac</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="version">VERSION</a></h1>
+<p>Version 0.01</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<p>A static meta data construct that facilitates too/from iupac translations</p>
+<p>Case is not checked! lowercase input will not return true</p>
+<pre>
+    use Psy::Dna::Iupac;</pre>
+<pre>
+    my $foo = Psy::Dna::Iupac-&gt;new();
+    ...</pre>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="export">EXPORT</a></h1>
+<p>
+</p>
+<h3><a name="notes">notes</a></h3>
+<p><a href="http://www.cellbiol.com/cgi-bin/oligo/html/iupac.txt">http://www.cellbiol.com/cgi-bin/oligo/html/iupac.txt</a></p>
+<p>ambiguous_dna_values = {
+    ``A'': ``A'',
+    ``C'': ``C'',
+    ``G'': ``G'',
+    ``T'': ``T'',
+    ``M'': ``AC'',
+    ``R'': ``AG'',
+    ``W'': ``AT'',
+    ``S'': ``CG'',
+    ``Y'': ``CT'',
+    ``K'': ``GT'',
+    ``V'': ``ACG'',
+    ``H'': ``ACT'',
+    ``D'': ``AGT'',
+    ``B'': ``CGT'',
+    ``X'': ``GATC'',
+    ``N'': ``GATC'',
+    }
+ambiguous_rna_values = {
+    ``A'': ``A'',
+    ``C'': ``C'',
+    ``G'': ``G'',
+    ``U'': ``U'',
+    ``M'': ``AC'',
+    ``R'': ``AG'',
+    ``W'': ``AU'',
+    ``S'': ``CG'',
+    ``Y'': ``CU'',
+    ``K'': ``GU'',
+    ``V'': ``ACG'',
+    ``H'': ``ACU'',
+    ``D'': ``AGU'',
+    ``B'': ``CGU'',
+    ``X'': ``GAUC'',
+    ``N'': ``GAUC'',
+    }</p>
+<p>ambiguous_dna_complement = {
+    ``A'': ``T'',
+    ``C'': ``G'',
+    ``G'': ``C'',
+    ``T'': ``A'',
+    ``M'': ``K'',
+    ``R'': ``Y'',
+    ``W'': ``W'',
+    ``S'': ``S'',
+    ``Y'': ``R'',
+    ``K'': ``M'',
+    ``V'': ``B'',
+    ``H'': ``D'',
+    ``D'': ``H'',
+    ``B'': ``V'',
+    ``X'': ``X'',
+    ``N'': ``N'',
+    }</p>
+<p>
+</p>
+<h2><a name="new">new</a></h2>
+<p>Return a new object.</p>
+<p>
+</p>
+<h2><a name="nuc">nuc</a></h2>
+<p>Returns the <code>nuc(s)</code> corresponding to the Iupac code, should be integrated into the dataobject for speed</p>
+<p>
+</p>
+<h2><a name="iupac">iupac</a></h2>
+<p>Returns the corresponding IUPAC code, input must be alphabeticall!!!</p>
+<p>
+</p>
+<h2><a name="tstv">tstv</a></h2>
+<p>A table/report test</p>
+<p>
+</p>
+<h2><a name="legalnuc">legalnuc</a></h2>
+<p>Returns 0/1 depending on  whether $_ contains a legal nucleotide character.</p>
+<p>
+</p>
+<h2><a name="legaliupac">legaliupac</a></h2>
+<p>Checks that $in is a legal iupac code</p>
+<p>
+</p>
+<h2><a name="loopiupac">loopIupac</a></h2>
+<p>Returns an array of the legal IUPAC characters</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="author">AUTHOR</a></h1>
+<p>'Matt, <code>&lt;m{j}yoder@{tee}[aye](em)(you).domain4unis&gt;</code></p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="bugs">BUGS</a></h1>
+<p>Please report any bugs or feature requests to
+<code>bug-psy-dna-iupac@rt.cpan.org</code>, or through the web interface at
+<a href="http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Psy">http://rt.cpan.org/NoAuth/ReportBug.html</a>.
+I will be notified, and then you'll automatically be notified of progress on
+your bug as I make changes.</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="acknowledgements">ACKNOWLEDGEMENTS</a></h1>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="copyright___license">COPYRIGHT &amp; LICENSE</a></h1>
+<p>Copyright 2005 'Matt, all rights reserved.</p>
+<p>This program is free software; you can redistribute it and/or modify it
+under the same terms as Perl itself.
+
+</p>
+<p><a href="#__index__"><small>__top</small></a></p>
+<table border="0" width="100%" cellspacing="0" cellpadding="3">
+<tr><td class="block" valign="middle">
+<big><strong><span class="block">&nbsp;Psy::Dna::Iupac</span></strong></big>
+</td></tr>
+</table>
+
+</body>
+
+</html>

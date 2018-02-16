@@ -1,0 +1,253 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Psy::Helpers::Fastmatrix</title>
+<link rel="stylesheet" href="../../../..//Active.css" type="text/css" />
+<link rev="made" href="mailto:" />
+</head>
+
+<body>
+<table border="0" width="100%" cellspacing="0" cellpadding="3">
+<tr><td class="block" valign="middle">
+<big><strong><span class="block">&nbsp;Psy::Helpers::Fastmatrix</span></strong></big>
+</td></tr>
+</table>
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#version">VERSION</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<ul>
+
+		<li><a href="#new">new</a></li>
+		<li><a href="#seq">seq</a></li>
+		<li><a href="#seqlen">seqLen</a></li>
+		<li><a href="#numcols">numCols</a></li>
+		<li><a href="#allseqs">allSeqs</a></li>
+		<li><a href="#aterminal">aTerminal</a></li>
+		<li><a href="#loopter">loopTer</a></li>
+		<li><a href="#loopbyseqlength">loopBySeqLength</a></li>
+		<li><a href="#loopgbnamehigher">loopGBnameHigher</a></li>
+		<li><a href="#loopbygbnamethenseqlen">loopByGBnameThenSeqLen</a></li>
+		<li><a href="#seqobj">seqObj</a></li>
+		<li><a href="#longestter">longestTer</a></li>
+		<li><a href="#deletefixedgappositions">deleteFixedGapPositions</a></li>
+		<li><a href="#findone">findOne</a></li>
+		<li><a href="#findmany">findMany</a></li>
+		<li><a href="#findmanyor">findManyOr</a></li>
+		<li><a href="#boundoligo">boundOligo</a></li>
+		<li><a href="#trimoligo">trimOligo</a></li>
+		<li><a href="#out_boundmx">out_boundMx</a></li>
+		<li><a href="#out_fasta">out_Fasta</a></li>
+		<li><a href="#out_splitregex">out_splitRegex</a></li>
+		<li><a href="#out_splitregexaligned">out_splitRegexAligned</a></li>
+		<li><a href="#out_oneline">out_oneLine</a></li>
+		<li><a href="#out_onelineregexcentered">out_oneLineRegexCentered</a></li>
+		<li><a href="#unfound">unfound</a></li>
+		<li><a href="#clustalalign">clustalAlign</a></li>
+		<li><a href="#musclealign">muscleAlign</a></li>
+		<li><a href="#merge">merge</a></li>
+	</ul>
+
+	<li><a href="#author">AUTHOR</a></li>
+	<li><a href="#bugs">BUGS</a></li>
+	<li><a href="#acknowledgements">ACKNOWLEDGEMENTS</a></li>
+	<li><a href="#copyright___license">COPYRIGHT &amp; LICENSE</a></li>
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>Psy::Helpers::Fastmatrix</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="version">VERSION</a></h1>
+<p>version 0.02 - Matt Yoder</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<p>Not used alone, but rather through its subclasses (e.g. fastfasta).
+A class for loading and performing operations on simple sequence files (aligned or not).  
+This is fast as in quickly derived code- definitely NOT fast as in speed.</p>
+<p>
+</p>
+<h2><a name="new">new</a></h2>
+<p>
+</p>
+<h2><a name="seq">seq</a></h2>
+<p>Accessor for seq given a terminal label.</p>
+<p>
+</p>
+<h2><a name="seqlen">seqLen</a></h2>
+<p>Return length of the seq.</p>
+<p>
+</p>
+<h2><a name="numcols">numCols</a></h2>
+<p>NOT fast</p>
+<p>
+</p>
+<h2><a name="allseqs">allSeqs</a></h2>
+<p>Return an array of all the sequences</p>
+<p>
+</p>
+<h2><a name="aterminal">aTerminal</a></h2>
+<p>Returns (at ``hash random'' NOT TRUE RANDOM) a legal terminal label.</p>
+<p>
+</p>
+<h2><a name="loopter">loopTer</a></h2>
+<p>Returns arrary of terminal labels</p>
+<p>
+</p>
+<h2><a name="loopbyseqlength">loopBySeqLength</a></h2>
+<p>Returns arrary of terminal labels in order of sequence length</p>
+<p>
+</p>
+<h2><a name="loopgbnamehigher">loopGBnameHigher</a></h2>
+<p>Returns arrary of terminal labels in order of sequence length</p>
+<p>
+</p>
+<h2><a name="loopbygbnamethenseqlen">loopByGBnameThenSeqLen</a></h2>
+<p>Returns arrary of terminal labels in order of GBname then sequence length</p>
+<p>
+</p>
+<h2><a name="seqobj">seqObj</a></h2>
+<p>Returns a pseudo-object for use in gbname (mimics the necessary bioperl seqobj structure), a cheat to use with gbname</p>
+<p>
+</p>
+<h2><a name="longestter">longestTer</a></h2>
+<p>Returns an integer length of the longest terminal label</p>
+<p>
+</p>
+<h2><a name="deletefixedgappositions">deleteFixedGapPositions</a></h2>
+<p>Deletes fixed positions of kind -char</p>
+<p>
+</p>
+<h2><a name="findone">findOne</a></h2>
+<p>Searches all seqs for the passed regex, returning to STDOUT whether or not it was found.</p>
+<p>
+</p>
+<h2><a name="findmany">findMany</a></h2>
+<p>Returns true if all members of -regexes are found in the seq for -terminal.</p>
+<p>
+</p>
+<h2><a name="findmanyor">findManyOr</a></h2>
+<p>Returns true if any memeber of -regexes is found in the seq for  -terminal.</p>
+<p>
+</p>
+<h2><a name="boundoligo">boundOligo</a></h2>
+<p>Returns largest sequence bound by left most r1 and rightmost r2</p>
+<p>
+</p>
+<h2><a name="trimoligo">trimOligo</a></h2>
+<p>As bound Oligo but trims left and right of r1,r2</p>
+<p>
+</p>
+<h2><a name="out_boundmx">out_boundMx</a></h2>
+<p>Outputs a matrix that has only those sequences that are bound by -left_bound and -right_bound.</p>
+<p>
+</p>
+<h2><a name="out_fasta">out_Fasta</a></h2>
+<p>Exports a fasta file.  Makes calls to genbank (but not by default)</p>
+<p>
+</p>
+<h2><a name="out_splitregex">out_splitRegex</a></h2>
+<p>Exports a oneLine formatted matrix with lines split and gapped to the found regexes.</p>
+<p>
+</p>
+<h2><a name="out_splitregexaligned">out_splitRegexAligned</a></h2>
+<p>As out_splitRegex, but places found blocks on top of each other.</p>
+<p>
+</p>
+<h2><a name="out_oneline">out_oneLine</a></h2>
+<p>Exports a oneLine formatted matrix</p>
+<p>
+</p>
+<h2><a name="out_onelineregexcentered">out_oneLineRegexCentered</a></h2>
+<p>Outputs a matrix that with sequence data centered (if found) over -regex.</p>
+<p>
+</p>
+<h2><a name="unfound">unfound</a></h2>
+<p>Compares a file containing a list of genbank Accessions to the current dataset, and writes a file of missing sequences</p>
+<p>
+</p>
+<h2><a name="clustalalign">clustalAlign</a></h2>
+<p>Aligns the matrix, then reloads it to memory.  Must have clustalw/x in your path as 'clustalw'</p>
+<p><table cellspacing="0" cellpadding="0"><tr><td>Usage:
+<tr><td><td>$foo-&gt;clustalAlign(
+<tr><td><td>'-clustal_params' =&gt; ''
+<tr><td><td>)
+</table></p>
+<pre>
+
+Tested on clustalW 1.81.</pre>
+<p>
+</p>
+<h2><a name="musclealign">muscleAlign</a></h2>
+<p>Aligns the matrix, then reloads it to memory.  Must have muscle in your path as 'muscle'</p>
+<p><table cellspacing="0" cellpadding="0"><tr><td>Usage:
+<tr><td><td>$foo-&gt;clustalAlign(
+<tr><td><td>'-clustal_params' =&gt; ''
+<tr><td><td>)</table></p>
+<p>
+</p>
+<h2><a name="merge">merge</a></h2>
+<p>Merges two 'Fast' based matrices.  Terminal data is OVERWRITTEN by matrix two's data if a terminal is present in both matrices.
+
+</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="author">AUTHOR</a></h1>
+<p>'Matt, <code>&lt;m{j}yoder@{tee}[aye](em)(you).domain4unis&gt;</code>
+
+</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="bugs">BUGS</a></h1>
+<p>Please report any bugs or feature requests to
+&lt;<a href="mailto:bug-psy-helpers-fastmatrix@rt.cpan.org">bug-psy-helpers-fastmatrix@rt.cpan.org</a>&gt;, or through the web interface at
+&lt;http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Psy&gt;.
+I will be notified, and then you'll automatically be notified of progress on
+your bug as I make changes.
+
+</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="acknowledgements">ACKNOWLEDGEMENTS</a></h1>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="copyright___license">COPYRIGHT &amp; LICENSE</a></h1>
+<p>Copyright 2005 'Matt, all rights reserved.
+
+</p>
+<p>This program is free software; you can redistribute it and/or modify it
+under the same terms as Perl itself.
+
+</p>
+<p><a href="#__index__"><small>__top</small></a></p>
+<table border="0" width="100%" cellspacing="0" cellpadding="3">
+<tr><td class="block" valign="middle">
+<big><strong><span class="block">&nbsp;Psy::Helpers::Fastmatrix</span></strong></big>
+</td></tr>
+</table>
+
+</body>
+
+</html>

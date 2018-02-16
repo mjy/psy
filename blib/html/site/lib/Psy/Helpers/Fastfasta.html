@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Psy::Helpers::Fastfasta - The great new Psy::Helpers::Fastfasta!</title>
+<link rel="stylesheet" href="../../../..//Active.css" type="text/css" />
+<link rev="made" href="mailto:" />
+</head>
+
+<body>
+<table border="0" width="100%" cellspacing="0" cellpadding="3">
+<tr><td class="block" valign="middle">
+<big><strong><span class="block">&nbsp;Psy::Helpers::Fastfasta - The great new Psy::Helpers::Fastfasta!</span></strong></big>
+</td></tr>
+</table>
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#version">VERSION</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<ul>
+
+		<li><a href="#new">new</a></li>
+	</ul>
+
+	<li><a href="#author">AUTHOR</a></li>
+	<li><a href="#bugs">BUGS</a></li>
+	<li><a href="#acknowledgements">ACKNOWLEDGEMENTS</a></li>
+	<li><a href="#copyright___license">COPYRIGHT &amp; LICENSE</a></li>
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>Psy::Helpers::Fastfasta - The great new Psy::Helpers::Fastfasta!</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="version">VERSION</a></h1>
+<p>Version 0.01</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<p>A fastmatrix subclass for fasta</p>
+<p>my $bar= fastfasta-&gt;new('-infile' =&gt; 'ichneumonoidea_28S_trimmed.fas');
+$bar-&gt;out_unBoundMx;</p>
+<p>$bar-&gt;unfound('-compare_file' =&gt; '18Shaves.txt', '-outfile' =&gt; '18Shavenots.txt');</p>
+<p>my $foo = fastfasta-&gt;new('-infile' =&gt; 'hymenoptera_18s.all');
+$foo-&gt;out_oneLineRegexCentered('-outfile' =&gt; 'hymenoptera_18s.aln');
+ $foo-&gt;findOne('');</p>
+<p># [C][CT][T][G][ACT][GT][AG][AG][A][CT][CT][CGT][ACG][AC][AG][A][AGT]?[AGT][ACT]?[C][G][AG][AGT][ACGT][AG][T]?[G]?[AG][ACG][AG][AG][AGT][A][ACT]?[ACT]?[AC][AC][AGT]?[CT][AGT][T]?[ACGT][ACT][AGT][AG]
+# 
+#$foo-&gt;out_unBoundMx('-outfile' =&gt; ``foo.txt'');
+#$foo-&gt;findOne('[AG][ACT][AG][AG][ACGT]?[AGT][ACGT][AG][G][CT][G][C][AC][AC][ACT]');
+#$foo-&gt;boundOligo('Ichneumonidae_EMA302909',
+#	'[C][CT][T][G][ACT][GT][AG][AG][A][CT][CT][CGT][ACG][AC][AG][A][AGT]?[AGT][ACT]?[C][G][AG][AGT][ACGT][AG][T]?[G]?[AG][ACG][AG][AG][AGT][A][ACT]?[ACT]?[AC][AC][AGT]?[CT][AGT][T]?[ACGT][ACT][AGT][AG]',
+#		'[G][C][AG][CT][A][C][A][CT][G][T][T][G][G]'</p>
+<p>#);</p>
+<p><table cellspacing="0" cellpadding="0"><tr><td>#<td> $foo-&gt;out_boundMx( # 28S D2-D3
+<tr><td>#<td>'-outfile' =&gt; 'ichs_28S_trimmed.fas',
+<tr><td>#<td>'-left_bound' =&gt; '[C][CT][T][G][ACT][GT][AG][AG][A][CT][CT][CGT][ACG][AC][AG][A][AGT]?[AGT][ACT]?[C][G][AG][AGT][ACGT][AG][T]?[G]?[AG][ACG][AG][AG][AGT][A][ACT]?[ACT]?[AC][AC][AGT]?[CT][AGT][T]?[ACGT][ACT][AGT][AG]', # finds 681
+<tr><td>#<td>'-right_bound' =&gt; '[A]?[AGT][AG][CT][C][CT][A][A][A][G][G][C][AG][ACT][A][A][GT][AG][A][A][A]' # finds 562
+<tr><td>#<td> );</table></p>
+<pre>
+ # $foo-&gt;out_boundMx( # 28S D1-D3
+ #      '-outfile' =&gt; 'arth_28S_D1-D3_trimmed.fas',
+ #      '-left_bound' =&gt; '[C][C][CT][CG][C][CT][AG][A][A][CT][T][T][A][A][G][C][A][T][A][T][ACT][AC][ACGT][T][ACT][A][G][CG][AG][G][AC][G][G][A][A][AG][A][G][AG][A][A]',
+ #      '-right_bound' =&gt; '[AG][ACT][AG][AG][ACGT]?[AGT][ACGT][AG][G][CT][G][C][AC][AC][ACT]'
+ # );</pre>
+<p>#$foo-&gt;out_boundMx( # 18S Large (these are good bounds)
+#	'-outfile' =&gt; 'arthropoda_18S_large_trimmed.fas',
+#	'-left_bound' =&gt; '[AG][ACGT][A][ACT][AG][G][C][T][C][AC][AGT][T][A][ACGT]?[AT]', #'[G]?[ACG][CT]?[T]?[C]?[A][A]?[AG]?[C]?[C]?[A]?[T][G][C][AG][ACT]?[AG][CT][CGT]?[CGT][ACGT][ACT]?[CG][T][ACGT][ACG][ACGT][ACGT]?[G]?[C]?[G]?[T]?[AGT][CG]?[ACGT]',
+#	'-right_bound' =&gt; 'GTTTCCGTAGGTGAACCTGCGGAAGGATCATTA' # '[G][A][CT][T][AG][ACG][G][T][C][C][C][T][G][CT][C][CT][T][T][GT][CG][CT]?[T]?[ACG]?[C]?[A]?' # good bound
+#);</p>
+<p>#$foo-&gt;out_boundMx( # 18S Mystery (based on small)
+#	'-outfile' =&gt; 'arthropoda_18S_small_trimmed_mystery.fas',
+#	'-left_bound' =&gt; '[ACT]?[AGT]?[GT]?[ACT]?[T]?[AG]?[A]?[AG]?[AG]?[AC]?[G]?[CT]?[CT]?[C]?[G]?[C]?[AGT]?[ACGT]?[GT]?[CT]?[CT]?[AGT]?',
+#	'-right_bound' =&gt; '[T]?[T]?[AC]?[AGT]?[AGT]?[AG]?[AG]?[A]?[CT]?[CGT]?[ACG]?[CGT]?[ACGT]?[ACGT]?[CGT]?[ACG]?[ACGT]?[G]?[AG]?[C]?[ACGT]?[A]?[ACGT]?[ACGT]?[CGT]?[ACGT]?[AGT]?[ACGT]?[AGT]?[G]?[C]?[T]?[ACG]?[A]?[A]?[ACGT]?[T]?[A]?[A]?[ACG]?[ACGT]?[AGT]?'
+#);</p>
+<p>#$foo-&gt;out_boundMx( # 18S small
+#	'-outfile' =&gt; 'arthropoda_18S_small_trimmed.fas',
+#	'-left_bound' =&gt; '[ACT][AGT][GT][ACT][T][AG][A][AG][AG][AC]?[G][CT][CT][C][G][C]?[AGT][ACGT][GT][CT][CT][AGT]',
+#	'-right_bound' =&gt; '[T][T][AC][AGT][AGT][AG][AG]?[A][CT][CGT][ACG][CGT][ACGT]?[ACGT]?[CGT][ACG][ACGT][G][AG][C]?[ACGT]?[A]?[ACGT]?[ACGT][CGT][ACGT][AGT][ACGT][AGT][G][C]?[T]?[ACG][A][A][ACGT][T]?[A]?[A]?[ACG]?[ACGT][AGT]?'
+#);</p>
+<p>#$foo-&gt;findMany('[G][C][AG][CT][A][C][A][CT][G][T][T][G][G]');</p>
+<p>#$foo-&gt;query( 
+#	'-query' =&gt; '(AB036200)' # (``Hymenoptera''[Organism] AND ``28S''[All Fields]) || (``Hymenoptera''[Organism] AND ``28S''[All Fields])
+#);</p>
+<p># $foo-&gt;writeFasta('-outfile' =&gt; 'arth_18S.fas');</p>
+<p>
+</p>
+<h2><a name="new">new</a></h2>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="author">AUTHOR</a></h1>
+<p>'Matt, <code>&lt;m{j}yoder@{tee}[aye](em)(you).domain4unis&gt;</code></p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="bugs">BUGS</a></h1>
+<p>Please report any bugs or feature requests to
+&lt;<a href="mailto:bug-psy-helpers-fastfasta@rt.cpan.org">bug-psy-helpers-fastfasta@rt.cpan.org</a>&gt;, or through the web interface at
+&lt;http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Psy&gt;.
+I will be notified, and then you'll automatically be notified of progress on
+your bug as I make changes.</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="acknowledgements">ACKNOWLEDGEMENTS</a></h1>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="copyright___license">COPYRIGHT &amp; LICENSE</a></h1>
+<p>Copyright 2005 'Matt, all rights reserved.
+
+</p>
+<p>This program is free software; you can redistribute it and/or modify it
+under the same terms as Perl itself.
+
+</p>
+<p><a href="#__index__"><small>__top</small></a></p>
+<table border="0" width="100%" cellspacing="0" cellpadding="3">
+<tr><td class="block" valign="middle">
+<big><strong><span class="block">&nbsp;Psy::Helpers::Fastfasta - The great new Psy::Helpers::Fastfasta!</span></strong></big>
+</td></tr>
+</table>
+
+</body>
+
+</html>

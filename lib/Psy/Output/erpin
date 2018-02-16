@@ -1,0 +1,45 @@
+
+sub out_erpin () { # outputs a .epn file # NOT FUNCTIONING
+	my (
+		$input,
+		$slice
+	) = @_;
+
+	# note: at present can only handle 999 blocks
+	
+	my $tmpstr;
+	
+	chdir($rootdir);
+	&io_confirmdir("analyses/erpin/$input->{Modelroot}");
+
+	open (ERPIN, ">$input->{Modelroot}.fas") || die "couldn't open nexus file output too in out_rna_translate - \n";
+	
+	my $legal_fasta_chars = join '', @iupac;
+	
+	local (*STDOUT) = *ERPIN;
+	
+	print ERPIN "\>structure\n";
+
+	# find the number of stems ( )
+	
+	# make a hash with the new numbering system
+	
+	foreach my $tax ($slice->loop("Taxa")) {
+		print FASTA "\>$ters{$tax}\n";
+
+		$tmpstr = '';	
+		
+		foreach my $blk ($slice->loop("Blocks")) {
+			$tmpstr .= $mx[$tax][$blk][0]; # use loop method to order blocks
+		}
+		
+		$tmpstr =~ s/(?)[-]//gi;
+		$tmpstr =~ s/(?)[^$legal_fasta_chars]//gi;
+	
+		print FASTA $tmpstr;
+		print "\n";
+	}
+	close ERPIN
+}
+
+

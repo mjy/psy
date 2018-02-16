@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Psy::Output::Phase</title>
+<link rel="stylesheet" href="../../../..//Active.css" type="text/css" />
+<link rev="made" href="mailto:" />
+</head>
+
+<body>
+<table border="0" width="100%" cellspacing="0" cellpadding="3">
+<tr><td class="block" valign="middle">
+<big><strong><span class="block">&nbsp;Psy::Output::Phase</span></strong></big>
+</td></tr>
+</table>
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#version">VERSION</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>Psy::Output::Phase</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="version">VERSION</a></h1>
+<p>Version 0.01</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<p>Output subclass for a Psy object.
+Referenced externally only.
+Inherited via AUTOLOAD through Psy::Output::Output, see therein for general usage.</p>
+<p>Outputs a PHASE2 legal file and a stub controlfile.
+</p>
+<pre>
+
+=cut</pre>
+<p>our $OUT_DIR = ``analyses/phase2'';
+our $LEGAL_CHARS =  Psy::Dna::Alphabet-&gt;new(); # defaults to the RNA alphabet</p>
+<p><table cellspacing="0" cellpadding="0"><tr><td>sub process {
+<tr><td><td>my $self = shift;
+<tr><td><td>my %raw_params = @_;
+<tr><td><td>my %default_params = (
+<tr><td><td>'-max_seq_length' =&gt; 100,
+<tr><td><td>'-include_mask' =&gt; 1, # doesn't make sense in all combinations
+<tr><td><td>'-strip_gaps' =&gt; 0,
+<tr><td><td>'-legal_alphabet' =&gt; $LEGAL_CHARS,
+<tr><td><td>'-u2t' =&gt; 1,<td># translate U to T?
+<tr><td><td>'-clean' =&gt; 1,<td># translate non legal_alphabet chars to N 
+<tr><td><td>'-replace' =&gt; 'N',<td>## should go with the alphabet object ultimately
+<tr><td><td>'-mask_type' =&gt; '2', <td># 1 - untouched characters, 2- 
+<tr><td><td>'-phase_pseudonot_mode' =&gt; 1,<td>## allows for pseudonots in PHASE 1 by reordering helices<td>
+<tr><td><td>'-outgroup_index' =&gt; 0,
+<tr><td><td>'-include_class' =&gt; 1
+<tr><td><td>);</table></p>
+<pre>
+        # requires -mx  
+        if (not defined $raw_params{'-slice'}) {
+                        print &quot;no slice passed for Phase, using default\n&quot;;
+                        $raw_params{'-slice'} = $raw_params{'-mx'}-&gt;origSlice};
+                
+        my %params = (%default_params, %raw_params);</pre>
+<pre>
+        # strip unbracketed blocks from slice
+        $params{'-slice'}-&gt;remove('Blocks', $params{'-mx'}-&gt;loopBlocks(%params, '-mode' =&gt; 'bracketed'));</pre>
+<pre>
+        my $path = $OUT_DIR;
+        if (defined $params{'-sub_path'}) {$path = $params{'-sub_path'}};</pre>
+<pre>
+        $params{'-file_name'} = &quot;data.rna&quot; if not defined $params{'-file_name'};</pre>
+<pre>
+        #&amp;io::confirmDir(&quot;analyses/phase2/results/&quot;);   # need to setup a results directory
+        #chdir('../../..');</pre>
+<pre>
+        print &quot;PATH: $path/$params{'-file_name'}\n&quot;;</pre>
+<pre>
+        # gather needed data
+        ## two modes - PHASE 1.1 / PHASE 2.0 (phancy mask)?
+        
+        my $data;                                          
+        $data = &amp;output::mxData(%params); # get a basic data object</pre>
+<pre>
+        $data-&gt;{datafile} = $params{'-file_name'};
+        $data-&gt;{randseed} = int(rand(999));
+        $data-&gt;{rnamodel} = 'RNA7A';</pre>
+<pre>
+        $data-&gt;{outgroup} = $params{'-mx'}-&gt;{'terminals'}-&gt;{$params{'-outgroup_index'}}-&gt;label;</pre>
+<pre>
+        # $data-&gt;{results_path} = '';
+        if ($params{'-include_mask'} == 1) { $data-&gt;{mask} .= $params{'-mx'}-&gt;{structures}-&gt;{'original'}-&gt;phase2Mask(%params)}; ## make structure variable not fixed?   
+        if ($params{'-include_class'} == 1) { $data-&gt;{class} .= $params{'-mx'}-&gt;{structures}-&gt;{'original'}-&gt;phase2Class(%params)}  ## make structure variable not fixed?
+        
+        my $tt = Template-&gt;new(); # don't use config, as it trims needed whitespace from end
+        $tt-&gt;process(\*DATA, $data, &quot;$path/$params{'-file_name'}&quot;) || die 'died trying to process PHASE template';</pre>
+<pre>
+        print &quot;output path: &quot;, $self-&gt;basePath , &quot;\n&quot;;
+        
+        # generate a MCMC control file
+        my $tc = Template-&gt;new($self-&gt;ttConfig, 'TRIM' =&gt; 0); # don't use config, as it trims needed whitespace from end
+        $tc-&gt;process(&quot;mcmcphase.control.tt&quot;, $data, &quot;$path/mcmc.control&quot; ) || die $tt-&gt;error(), &quot;\n&quot;, 'died trying to process mcmcphase_control template';</pre>
+<pre>
+        1;
+}</pre>
+<p>__DATA__
+[% total_ters %] [% total_chars %] STRUCT</p>
+<p>[% mask %]</p>
+<p>[% FOREACH ter = terminals %][% <code>rowlabel(ter)</code> %]
+[% multi_row_seq.$ter %]</p>
+<p>[% END %]</p>
+<p>[% class %]
+
+</p>
+<p><a href="#__index__"><small>__top</small></a></p>
+<table border="0" width="100%" cellspacing="0" cellpadding="3">
+<tr><td class="block" valign="middle">
+<big><strong><span class="block">&nbsp;Psy::Output::Phase</span></strong></big>
+</td></tr>
+</table>
+
+</body>
+
+</html>

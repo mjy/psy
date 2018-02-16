@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Psy::Helpers::Fastgenbank</title>
+<link rel="stylesheet" href="../../../..//Active.css" type="text/css" />
+<link rev="made" href="mailto:" />
+</head>
+
+<body>
+<table border="0" width="100%" cellspacing="0" cellpadding="3">
+<tr><td class="block" valign="middle">
+<big><strong><span class="block">&nbsp;Psy::Helpers::Fastgenbank</span></strong></big>
+</td></tr>
+</table>
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#version">VERSION</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<ul>
+
+		<li><a href="#new">new</a></li>
+	</ul>
+
+	<li><a href="#accessors">accessors</a></li>
+	<ul>
+
+		<li><a href="#seq">seq</a></li>
+		<li><a href="#classification">classification</a></li>
+		<li><a href="#commonname">commonName</a></li>
+		<li><a href="#locus">locus</a></li>
+	</ul>
+
+	<li><a href="#functions">functions</a></li>
+	<ul>
+
+		<li><a href="#found">found</a></li>
+		<li><a href="#seqobj">seqObj</a></li>
+		<li><a href="#loopter">loopTer</a></li>
+		<li><a href="#out_unboundmx">out_unBoundMx</a></li>
+		<li><a href="#out_namesviaaccfile">out_namesViaAccFile</a></li>
+	</ul>
+
+	<li><a href="#author">AUTHOR</a></li>
+	<li><a href="#bugs">BUGS</a></li>
+	<li><a href="#acknowledgements">ACKNOWLEDGEMENTS</a></li>
+	<li><a href="#copyright___license">COPYRIGHT &amp; LICENSE</a></li>
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>Psy::Helpers::Fastgenbank</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="version">VERSION</a></h1>
+<p>Version 0.01</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<p>Quick summary of what the module does.</p>
+<p>Perhaps a little code snippet.</p>
+<pre>
+    use Psy::Helpers::Fastgenbank;
+    my $foo = Psy::Helpers::Fastgenbank-&gt;new();</pre>
+<pre>
+        Translate genbank to Fasta: 
+        
+    $foo-&gt;out_unBoundMx('-outfile' =&gt; 't/out/out.fas');</pre>
+<p>
+</p>
+<h2><a name="new">new</a></h2>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="accessors">accessors</a></h1>
+<p>
+</p>
+<h2><a name="seq__cut">seq
+=cut</a></h2>
+<p>sub seq { 
+	my $self = shift;
+	my $t = shift;
+	if (@_) { $self-&gt;{$t}-&gt;{'seq'} = shift };
+	return $self-&gt;{$t}-&gt;{'seq'};
+}</p>
+<p>
+</p>
+<h2><a name="classification">classification</a></h2>
+<p>
+</p>
+<h2><a name="commonname">commonName</a></h2>
+<p>
+</p>
+<h2><a name="locus">locus</a></h2>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="functions">functions</a></h1>
+<p>
+</p>
+<h2><a name="found">found</a></h2>
+<p>Determines (by ACCESSION) wether a sequence is present in the fastgenbank object</p>
+<p>
+</p>
+<h2><a name="seqobj">seqObj</a></h2>
+<p>Returns a pseudo - object for use in gbname (mimics the necessary bioperl seqobj structure)</p>
+<p>
+</p>
+<h2><a name="loopter">loopTer</a></h2>
+<p>Returns an array of terminals</p>
+<p>
+</p>
+<h2><a name="out_unboundmx">out_unBoundMx</a></h2>
+<p>OVERRIDES fastmx</p>
+<p>
+</p>
+<h2><a name="out_namesviaaccfile">out_namesViaAccFile</a></h2>
+<p>Reads a single column textfile containing genbank accessors and returns a formated</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="author">AUTHOR</a></h1>
+<p>'Matt, <code>&lt;m{j}yoder@{tee}[aye](em)(you).domain4unis&gt;</code></p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="bugs">BUGS</a></h1>
+<p>Please report any bugs or feature requests to
+<code>bug-psy-helpers-fastgenbank@rt.cpan.org</code>, or through the web interface at
+<a href="http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Psy">http://rt.cpan.org/NoAuth/ReportBug.html</a>.
+I will be notified, and then you'll automatically be notified of progress on
+your bug as I make changes.
+
+</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="acknowledgements">ACKNOWLEDGEMENTS</a></h1>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="copyright___license">COPYRIGHT &amp; LICENSE</a></h1>
+<p>Copyright 2005 'Matt, all rights reserved.
+
+</p>
+<p>This program is free software; you can redistribute it and/or modify it
+under the same terms as Perl itself.
+
+</p>
+<p><a href="#__index__"><small>__top</small></a></p>
+<table border="0" width="100%" cellspacing="0" cellpadding="3">
+<tr><td class="block" valign="middle">
+<big><strong><span class="block">&nbsp;Psy::Helpers::Fastgenbank</span></strong></big>
+</td></tr>
+</table>
+
+</body>
+
+</html>

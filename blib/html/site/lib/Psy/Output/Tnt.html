@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Psy::Output::Tnt</title>
+<link rel="stylesheet" href="../../../..//Active.css" type="text/css" />
+<link rev="made" href="mailto:" />
+</head>
+
+<body>
+<table border="0" width="100%" cellspacing="0" cellpadding="3">
+<tr><td class="block" valign="middle">
+<big><strong><span class="block">&nbsp;Psy::Output::Tnt</span></strong></big>
+</td></tr>
+</table>
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#version">VERSION</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>Psy::Output::Tnt</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="version">VERSION</a></h1>
+<p>Version 0.01</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<p>Output subclass for a Psy object.
+Referenced externally only.
+Inherited via AUTOLOAD through Psy::Output::Output, see therein for general usage.</p>
+<p>This is hacked together relatively quickly, the block choice could be simplified likely.</p>
+<p><table cellspacing="0" cellpadding="0"><tr><td>Requires:
+<tr><td><td>-mx</table></p>
+<p><table cellspacing="0" cellpadding="0"><tr><td>Optional: 
+<tr><td><td>-file_name (output file name)
+<tr><td><td>-u2t
+<tr><td><td>-legal_alphabet
+<tr><td><td>-mode =&gt; &lt; bracketed | [unbracketed] | all &gt;
+<tr><td><td>-replace
+</table></p>
+<pre>
+
+=cut</pre>
+<p>our $OUT_DIR = ``analyses/tnt'';
+our $LEGAL_CHARS =  Psy::Dna::Alphabet-&gt;new; # defaults to the RNA alphabet</p>
+<p><table cellspacing="0" cellpadding="0"><tr><td>sub process {
+<tr><td><td>my $self = shift;
+<tr><td><td>my %raw_params = @_;
+<tr><td><td>my %default_params = (
+<tr><td><td>'-u2t' =&gt; 1, # translate U to T when == 1
+<tr><td><td>'-legal_alphabet' =&gt; $LEGAL_CHARS,<td>
+<tr><td><td>'-slicecharmode' =&gt; 'all', # used in mx-&gt;totalChars # required (jan31/07), at the point of using this param we always want all chars, i.e. data are removed before this
+<tr><td><td>'-mode' =&gt; 'unbracketed',
+<tr><td><td>'-replace' =&gt; '?' <td>   # used with alphabet, replace al non LEGAL_CHARS with ? for tnt
+<tr><td><td>);</table></p>
+<pre>
+        # requires -mx</pre>
+<pre>
+        $default_params{'-slice'} ||= $raw_params{'-mx'}-&gt;origSlice;    
+        my %params = (%default_params, %raw_params);
+        
+        my $path = $OUT_DIR;</pre>
+<pre>
+        $params{'-file_name'} ||= 'psy';
+        
+        print &quot;PATH: $path/$params{'-file_name'}\n&quot;;</pre>
+<pre>
+        my $mx = $params{'-mx'};</pre>
+<pre>
+        # remove blocks that aren't requested, via -mode, defaults to unbracketed only
+        if ($params{'-mode'} eq 'unbracketed') {
+                $params{'-slice'}-&gt;prune('-mode' =&gt; 'bracketed', '-mx' =&gt; $mx)
+        }
+        elsif ($params{'-mode'} eq 'bracketed') {
+                $params{'-slice'}-&gt;prune('-mode' =&gt; 'unbracketed', '-mx' =&gt; $mx); # remove unbracketed blocks (they are by default not aligned) for tnt;
+        }
+        
+        my $data;                                          
+        $data = &amp;output::mxData(%params); # get a basic data object</pre>
+<pre>
+        #print Dumper($data);
+        
+        my $tt = Template-&gt;new($self-&gt;ttConfig) || die $Template::ERROR, &quot;\n&quot;;          
+        $tt-&gt;process('tnt.tt', $data, &quot;$path/$params{'-file_name'}.tnt&quot;) || die 'died trying to process Tnt template', $tt-&gt;error(); 
+        1;
+}</pre>
+<p>## need to do safenames here</p>
+<p># ccode
+#  /1-[0       /1-[1       /1-[2       /1-[3      /1-[4       /1-[5   
+#  /1-[6       /1-[7       /1-[8       /1-[9      /1-[10      /1-[11   
+# ;</p>
+<p>1;</p>
+<p>__DATA__
+nstates dna;
+xread
+'some version bit here'
+[% total_chars %] [% total_ters %]
+[% FOREACH ter = terminals %][% <code>justifiedrowlabel(ter)</code> %][% <code>row(ter)</code> %]
+[% END %];
+</p>
+<p><a href="#__index__"><small>__top</small></a></p>
+<table border="0" width="100%" cellspacing="0" cellpadding="3">
+<tr><td class="block" valign="middle">
+<big><strong><span class="block">&nbsp;Psy::Output::Tnt</span></strong></big>
+</td></tr>
+</table>
+
+</body>
+
+</html>

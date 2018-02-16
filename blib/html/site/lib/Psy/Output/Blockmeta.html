@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Psy::Output::Blockmeta</title>
+<link rel="stylesheet" href="../../../..//Active.css" type="text/css" />
+<link rev="made" href="mailto:" />
+</head>
+
+<body>
+<table border="0" width="100%" cellspacing="0" cellpadding="3">
+<tr><td class="block" valign="middle">
+<big><strong><span class="block">&nbsp;Psy::Output::Blockmeta</span></strong></big>
+</td></tr>
+</table>
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#version">VERSION</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>Psy::Output::Blkmetanex</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="version">VERSION</a></h1>
+<p>Version 0.02</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<p>Output subclass for a Psy object.  
+Referenced externally only.
+Inherited via AUTOLOAD through Psy::Output::Output, see therein for general usage.
+</p>
+<pre>
+
+This output was originally concieved as a way to plot descriptive states for a given block on a tree (some nice phenetic stuff).
+After some though/development on the system I found that the Lutzoni lab ARC software does more or less what I wanted to do.</pre>
+<p>Miadlikowska, Lutzoni, Goward, Zoller, Posada (2003) ``New approach to an old problem: Gap-rich regions from ITS and rDNA large-subunit are incorporated into phylogenetic analyses to resolve the Peltigera canina species complex.'', Mycologia 95(6):1181-1203.</p>
+<p>Therefor, {Miadlikowska et al., 2003 should be given credit for much of the ideas coded herin, though with very few exceptions the implementation is mine (Matt).  I have retained the character order they present for ease of comparison.</p>
+<p>``F. Kauff, J. Miadlikowska &amp; F. Lutzoni (2003), ''ARC - a program for Ambiguous Regions Coding``,
+distributed by the authors (http://www.lutzonilab.net/pages/download.shtml), Dept. of Biology,
+Duke University, USA'' hmm- did he code this?</p>
+<p>Their ARC characters are:</p>
+<p><table cellspacing="0" cellpadding="0"><tr><td>(1) sequence length,
+<tr><td>(2)<td>A frequency<td>(no. of 'A' divided by sequence length)
+<tr><td>(3)<td>C frequency<td>(no. of 'C' divided by sequence length)
+<tr><td>(4)<td>G frequency<td>(no. of 'G' divided by sequence length)
+<tr><td>(5)<td>T frequency<td>(no. of 'T' divided by sequence length)
+<tr><td>(6)<td>AA frequency<td>(no. of 'AA' divided by sequence length-1)
+<tr><td>(7)<td>AC frequency<td>(no. of 'AC' divided by sequence length-1)
+<tr><td>(8)<td>AG frequency<td>(no. of 'AG' divided by sequence length-1)
+<tr><td>(9)<td>AT frequency<td>(no. of 'AT' divided by sequence length-1)
+<tr><td>(10)<td>CC frequency<td>(no. of 'CC' divided by sequence length-1)
+<tr><td>(11)<td>CG frequency<td>(no. of 'CG' divided by sequence length-1)
+<tr><td>(12)<td>CT frequency<td>(no. of 'CT' divided by sequence length-1)
+<tr><td>(13)<td>GG frequency<td>(no. of 'GG' divided by sequence length-1)
+<tr><td>(14)<td>GT frequency<td>(no. of 'GT' divided by sequence length-1)
+<tr><td>(15)<td>TT frequency<td>(no. of 'TT' divided by sequence length-1)
+<tr><td>(16)<td>A pairing<td>(no. of 'AA' divided by total no. of 'A')
+<tr><td>(17)<td>C pairing<td>(no. of 'CC' divided by total no. of 'C')
+<tr><td>(18)<td>G pairing<td>(no. of 'GG' divided by total no. of 'G')
+<tr><td>(19)<td>T pairing<td>(no. of 'TT' divided by total no. of 'T')
+<tr><td>(20)<td>A distribution<td>(no. of spaces between 'A' divided by total no. of 'A')
+<tr><td>(21)<td>C distribution<td>(no. of spaces between 'C' divided by total no. of 'C')
+<tr><td>(22)<td>G distribution<td>(no. of spaces between 'G' divided by total no. of 'G')
+<tr><td>(23)<td>T distribution<td>(no. of spaces between 'T' divided by total no. of 'T')
+<tr><td>(24+x)<td>motif presence [1] or absence [0] ### NOTE THAT THIS IS DEFINED a-priori ###</table></p>
+<p>Noteable differences from their methods are as follows:
+1) Psy has no amino acid functionality.
+2) Psy can not read ARC formated input (yet)
+3) The motif presence/absence (character 24+x) has been extended by allowing for automatic generation of motifs based on sampleing the data (kwords).
+4) Several addition characters have been added (length, counts rather than pct).
+5) Outputting is much more flexible, as it is integrated into overall slice/matrix functinos available to Psy.  Available output formats are now 2 types of nexus files formatted for use in Mesquite and at TNT readable format.
+</p>
+<pre>
+
+n) Pair counts are sliding in Psy, I need ot check if they are so in ARC.  e.g. 'AAAA' has 3 'AA' pairs, not 2.</pre>
+<p><table cellspacing="0" cellpadding="0"><tr><td>Required parameters
+<tr><td><td>-mx</table></p>
+<p><table cellspacing="0" cellpadding="0"><tr><td>Optional parameters
+<tr><td><td>'-out_format' =&gt; &lt; mesquite_chr_by_blk | mesquite_blk_by_chr | [tnt] | original_arc &gt;</table></p>
+<p>If a -slice is passed it will be used for taxa partition.  In absence of -plan it will also be used in place of origSlice (see below).</p>
+<p>If no -plan is given each block? in the origSlice will be individually translated to metachars.</p>
+<p>A -plan can be made as follows:</p>
+<pre>
+        my $p;
+        $p-&gt;{0}-&gt;{blks} = ([0 1 2 3 4]); # block 0 will be a fusion of blocks 0..4.  Required.  
+        $p-&gt;{0}-&gt;{name} = 'foo';  # block 0 label will be 'foo'.  Not necessary, defaults to the index if not set.
+        $p-&gt;{0}-&gt;{type} = 'trans'; # block 0 will be translated to meta characters or left as nucleotide &lt; 'trans' | 'orig' &gt;.  Not required, defaults to 'trans' if not set.
+        $p-&gt;{1} ...</pre>
+<pre>
+        '-plan' =&gt; $p
+        
+        And used like: 
+        
+        my $o = output-&gt;new();
+        $o-&gt;Blockmeta('-mx' =&gt; $mx, '-plan' =&gt; $p);</pre>
+<p><table cellspacing="0" cellpadding="0"><tr><td>If $mx is a matrix, a plan can also be generated like:
+<tr><td><td>my $p = $mx-&gt;plan;</table></p>
+<p><a href="#__index__"><small>__top</small></a></p>
+<table border="0" width="100%" cellspacing="0" cellpadding="3">
+<tr><td class="block" valign="middle">
+<big><strong><span class="block">&nbsp;Psy::Output::Blockmeta</span></strong></big>
+</td></tr>
+</table>
+
+</body>
+
+</html>

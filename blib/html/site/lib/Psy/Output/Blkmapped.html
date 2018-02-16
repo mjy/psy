@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Psy::Output::Blkmapped</title>
+<link rel="stylesheet" href="../../../..//Active.css" type="text/css" />
+<link rev="made" href="mailto:" />
+</head>
+
+<body>
+<table border="0" width="100%" cellspacing="0" cellpadding="3">
+<tr><td class="block" valign="middle">
+<big><strong><span class="block">&nbsp;Psy::Output::Blkmapped</span></strong></big>
+</td></tr>
+</table>
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#version">VERSION</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>Psy::Output::Blkmapped</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="version">VERSION</a></h1>
+<p>Version 0.01</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<p>*** under development ***</p>
+<p>Maps a block pattern from a matrix to another matrix, splitting the new matrix into whitespace delimited blocks.</p>
+<p>Used with hmmer or stockholm derived matrixes that have exquivalent masks.</p>
+<p>Output subclass for a Psy object.
+Referenced externally only.
+Inherited via AUTOLOAD through Psy::Output::Output, see therein for general usage.
+</p>
+<pre>
+
+=cut</pre>
+<p><table cellspacing="0" cellpadding="0"><tr><td>sub process {
+<tr><td><td>my $self = shift;
+<tr><td><td>my %raw_params = @_;
+<tr><td><td>my %default_params = (
+<tr><td><td>'-legal_alphabet' =&gt; $LEGAL_CHARS,
+<tr><td><td>'-u2t' =&gt; 1 <td># translate U to T?
+<tr><td><td># '-clean' =&gt; 1, <td># translate non legal_alphabet chars to N 
+<tr><td><td># '-replace' =&gt; 'N'  <td>## should go with the alphabet object ultimately
+<tr><td><td>);
+<tr><td><td># requires -mx AND a fastmatrix object
+</table></p>
+<pre>
+
+        $default_params{'-slice'} = $raw_params{'-mx'}-&gt;origSlice if not defined $default_params{'-slice'};     
+        my %params = (%default_params, %raw_params);</pre>
+<pre>
+        my $path = $OUT_DIR;
+    if (defined $params{'-sub_path'}) {$path = $params{'-sub_path'}};
+        $params{'-file_name'} = 'out_mapped_matrix.txt' if not defined $params{'-file_name'};</pre>
+<pre>
+        print &quot;OUTPUT PATH: $path/$params{'-file_name'}\n&quot;;
+        
+        my $mx = $params{'-mx'};
+         my $h = $params{'-fastmatrix'};        
+        
+        # get the hmmer file
+        $h-&gt;trimByRf;
+        $h-&gt;fixGaps;
+        my $lt = $h-&gt;longestTer;
+        # $h-&gt;deleteFixedGapPositions;</pre>
+<pre>
+        my @lengths = $mx-&gt;blkLengths('-mode' =&gt; 'all');</pre>
+<pre>
+        # gather needed data
+        my $data;                                          
+        # $data = &amp;output::mxData(%params); # get a basic data object</pre>
+<pre>
+        # handle the hmmer or incoming data
+        
+        # split the incoming
+        $data-&gt;{terminals} = [$h-&gt;loopBySeqLength] ;
+        $data-&gt;{rowlabel} = sub { my $t = shift; &amp;strings::padright($t, &quot; &quot;, $lt + 1) };
+        $data-&gt;{row} = sub {my $t = shift; join &quot; &quot;, &amp;strings::string2Blocks('-str' =&gt; $h-&gt;seq($t), '-lengths' =&gt; \@lengths)};
+        
+        # format the mask       
+        $data-&gt;{'mask'} = &amp;strings::padright(&quot;&quot;, &quot; &quot;, $lt + 1).$mx-&gt;{structures}-&gt;{'original'}-&gt;sliceMask(%params, '-gap' =&gt; ' ');  
+                
+        # print Dumper($data);</pre>
+<pre>
+        # attach the model data 
+        
+        # get each taxon split one at a time from $h and map to $data
+        # foreach my $t ($params{'-slice'}-&gt;loop(&quot;Taxa&quot;)) {
+        
+        my $tt = Template-&gt;new($params{'-config'}); 
+        $tt-&gt;process(\*DATA, $data, &quot;$path/$params{'-file_name'}&quot;) || die 'died trying to process blkmapped template'; 
+        1;
+}
+
+</pre>
+<p>__DATA__
+[% mask %]
+[% FOREACH ter = terminals %][% <code>rowlabel(ter)</code> %][% <code>row(ter)</code> %]
+[% END %]
+
+</p>
+<p><a href="#__index__"><small>__top</small></a></p>
+<table border="0" width="100%" cellspacing="0" cellpadding="3">
+<tr><td class="block" valign="middle">
+<big><strong><span class="block">&nbsp;Psy::Output::Blkmapped</span></strong></big>
+</td></tr>
+</table>
+
+</body>
+
+</html>

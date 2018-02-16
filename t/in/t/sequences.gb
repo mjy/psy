@@ -1,0 +1,257 @@
+
+LOCUS       DQ022281                 495 bp    DNA     linear   INV 21-SEP-2005
+DEFINITION  Bassus sp. CXX-2005 28S ribosomal RNA gene, partial sequence.
+ACCESSION   DQ022281
+VERSION     DQ022281.1  GI:68137791
+KEYWORDS    .
+SOURCE      Bassus sp. CXX-2005
+  ORGANISM  Bassus sp. CXX-2005
+            Eukaryota; Metazoa; Arthropoda; Hexapoda; Insecta; Pterygota;
+            Neoptera; Endopterygota; Hymenoptera; Apocrita; Ichneumonoidea;
+            Braconidae; Agathidinae; Bassus.
+REFERENCE   1  (bases 1 to 495)
+  AUTHORS   Shi,M., Chen,X. and van Achterberg,C.
+  TITLE     Phylogenetic relationships among genus Chelonus (Braconidae:
+            Cheloninae) based on molecular data of 16S and 18S genes and
+            morphological data
+  JOURNAL   Unpublished
+REFERENCE   2  (bases 1 to 495)
+  AUTHORS   Shi,M., Chen,X. and van Achterberg,C.
+  TITLE     Direct Submission
+  JOURNAL   Submitted (30-APR-2005) Institute of Applied Entomology, Zhejiang
+            University, 268 Kaixuan Road, Hangzhou, Zhejiang 310029, China
+FEATURES             Location/Qualifiers
+     source          1..495
+                     /organism="Bassus sp. CXX-2005"
+                     /mol_type="genomic DNA"
+                     /db_xref="taxon:332362"
+     rRNA            <1..>495
+                     /product="28S ribosomal RNA"
+                     /note="D2 variable region"
+ORIGIN      
+        1 ggggggtaac ctgagaacct aaaagttcga aaagagagat tcaacgtcag catgtgcaat
+       61 attcacgtgg gtagtgatgt gagtttttgg tagaagggtc aaactttttg ccaaatctta
+      121 tacatttcca tgttatttta ttgttgtact attgtcggcg tgcacttctc tcttagtagg
+      181 acgtcccgac ccgttgggtc ttggcctacg gcccggaagg tagccttgag taattaattt
+      241 tactcaagac ctctggtgtt ctggctgagt gctcgacggt agttaatgat ttggtattaa
+      301 gccgcattta attatgcgtc tggcctttcg caagtttttt gacagtttct gtattatcat
+      361 agactttgtg ctatgtgtat ggttctgttt gctgtttgca tgattgtgct cttagacagt
+      421 gcttaaatat atacctgtcg gggacgctta ggctttgggt actctcagga cccgtcttga
+      481 aacaccgggc acaaa
+//
+
+LOCUS       DQ022280                 487 bp    DNA     linear   INV 21-SEP-2005
+DEFINITION  Isoptronotum sp. CXX-2005 28S ribosomal RNA gene, partial sequence.
+ACCESSION   DQ022280
+VERSION     DQ022280.1  GI:68137790
+KEYWORDS    .
+SOURCE      Isoptronotum sp. CXX-2005
+  ORGANISM  Isoptronotum sp. CXX-2005
+            Eukaryota; Metazoa; Arthropoda; Hexapoda; Insecta; Pterygota;
+            Neoptera; Endopterygota; Hymenoptera; Apocrita; Ichneumonoidea;
+            Braconidae; Agathidinae; Isoptronotum.
+REFERENCE   1  (bases 1 to 487)
+  AUTHORS   Shi,M., Chen,X. and van Achterberg,C.
+  TITLE     Phylogenetic relationships among genus Chelonus (Braconidae:
+            Cheloninae) based on molecular data of 16S and 18S genes and
+            morphological data
+  JOURNAL   Unpublished
+REFERENCE   2  (bases 1 to 487)
+  AUTHORS   Shi,M., Chen,X. and van Achterberg,C.
+  TITLE     Direct Submission
+  JOURNAL   Submitted (30-APR-2005) Institute of Applied Entomology, Zhejiang
+            University, 268 Kaixuan Road, Hangzhou, Zhejiang 310029, China
+FEATURES             Location/Qualifiers
+     source          1..487
+                     /organism="Isoptronotum sp. CXX-2005"
+                     /mol_type="genomic DNA"
+                     /db_xref="taxon:332357"
+     rRNA            <1..>487
+                     /product="28S ribosomal RNA"
+                     /note="D2 variable region"
+ORIGIN      
+        1 gggtaacctg agaacctaaa agttcgaaaa gagagattca atgttgacat atgcagtatt
+       61 cacatgagta gtgatgttgg ttttgctggt tgggttaaat cttccattca attctagcac
+      121 attttcatgt tattctattg ctgtacttgt cggcgtgcac ttctctctta gtaggacgtc
+      181 ccgacccgtt aagtcttagc ctacgacctg gatggtagcc tttaatattt ttatattgaa
+      241 gacctccagt gtttgtctgg cctaagtgct tgacggtaag tatgacatgg tattgagccg
+      301 caattttttt tgcgtccggc cttccgcaag tttattgaca aattctgtat tatcatagac
+      361 tttgtgctat gtatatggtt ttgttggctg tttgcctgga tgtgctttag gactggttta
+      421 tttgcctgtc agggacgctt aggctttggg tactctcagg acccgtcttg aaacaccggg
+      481 cacaaaa
+//
+
+LOCUS       DQ022279                 469 bp    DNA     linear   INV 21-SEP-2005
+DEFINITION  Macrocentrus cnapholocrocis 28S ribosomal RNA gene, partial
+            sequence.
+ACCESSION   DQ022279
+VERSION     DQ022279.1  GI:68137789
+KEYWORDS    .
+SOURCE      Macrocentrus cnapholocrocis
+  ORGANISM  Macrocentrus cnapholocrocis
+            Eukaryota; Metazoa; Arthropoda; Hexapoda; Insecta; Pterygota;
+            Neoptera; Endopterygota; Hymenoptera; Apocrita; Ichneumonoidea;
+            Braconidae; Macrocentrinae; Macrocentrus.
+REFERENCE   1  (bases 1 to 469)
+  AUTHORS   Shi,M., Chen,X. and van Achterberg,C.
+  TITLE     Phylogenetic relationships among genus Chelonus (Braconidae:
+            Cheloninae) based on molecular data of 16S and 18S genes and
+            morphological data
+  JOURNAL   Unpublished
+REFERENCE   2  (bases 1 to 469)
+  AUTHORS   Shi,M., Chen,X. and van Achterberg,C.
+  TITLE     Direct Submission
+  JOURNAL   Submitted (30-APR-2005) Institute of Applied Entomology, Zhejiang
+            University, 268 Kaixuan Road, Hangzhou, Zhejiang 310029, China
+FEATURES             Location/Qualifiers
+     source          1..469
+                     /organism="Macrocentrus cnapholocrocis"
+                     /mol_type="genomic DNA"
+                     /db_xref="taxon:332361"
+     rRNA            <1..>469
+                     /product="28S ribosomal RNA"
+                     /note="D2 variable region"
+ORIGIN      
+        1 ctgagaaccc aaaagatcga atggggagat tcatcgtcag cttatccggt atatgtacaa
+       61 gttgtgatat aagtttttcg gaatttttac acgcttgtgt catttaattg ctggatattt
+      121 gtcggcgtgc acttctcccc tagtaggaca tcgcgacccg ttaaatgtca atctatgtcc
+      181 caattggtag cctttagttg tatttttatt aatataattg aagaccattg gtgtattact
+      241 gattgactgt ttgacggtat tcgtatggta ttgagccgca aataatatgt gcgtcgagct
+      301 tgtgacaagt gtaatcagtg tctaaccttg cagtgtggac tttgttccat cgtgaggcct
+      361 gattcgctgt tggtttgcaa tgttcttcga ctggctcaaa attataatac cggtcggcga
+      421 tgctactgct ttgggtactt tcaggacccg tcttgaaaca cgggaccaa
+//
+
+LOCUS       DQ022114                 470 bp    DNA     linear   INV 21-SEP-2005
+DEFINITION  Macrocentrus choui 28S ribosomal RNA gene, partial sequence.
+ACCESSION   DQ022114
+VERSION     DQ022114.1  GI:68137788
+KEYWORDS    .
+SOURCE      Macrocentrus choui
+  ORGANISM  Macrocentrus choui
+            Eukaryota; Metazoa; Arthropoda; Hexapoda; Insecta; Pterygota;
+            Neoptera; Endopterygota; Hymenoptera; Apocrita; Ichneumonoidea;
+            Braconidae; Macrocentrinae; Macrocentrus.
+REFERENCE   1  (bases 1 to 470)
+  AUTHORS   Shi,M., Chen,X. and van Achterberg,C.
+  TITLE     Phylogenetic relationships among genus Chelonus (Braconidae:
+            Cheloninae) based on molecular data of 16S and 18S genes and
+            morphological data
+  JOURNAL   Unpublished
+REFERENCE   2  (bases 1 to 470)
+  AUTHORS   Shi,M., Chen,X. and van Achterberg,C.
+  TITLE     Direct Submission
+  JOURNAL   Submitted (29-APR-2005) Institute of Applied Entomology, Zhejiang
+            University, 268 Kaixuan Road, Hangzhou, Zhejiang 310029, China
+FEATURES             Location/Qualifiers
+     source          1..470
+                     /organism="Macrocentrus choui"
+                     /mol_type="genomic DNA"
+                     /db_xref="taxon:332353"
+     rRNA            <1..>470
+                     /product="28S ribosomal RNA"
+                     /note="D2 variable region"
+ORIGIN      
+        1 tgagaaccca aaagatcgaa tggggagatt catcgtcagc ttattcggta tatgtgcagg
+       61 ttgtgatatg aattcttcgg gatttttaca cgcttgtttc atttaattgc cggatatttg
+      121 tcggcgtgca cttctcccct agtaggacgt cgcgacccgt tagatgtcaa tctatgtccc
+      181 gaatggtagc ctttagtagt gtttttatta atactattga agacctttgg tgtattaact
+      241 gattgactgt ttgacggtat tcgcatggta ttgagccgca tgttataata tttgcgtcgg
+      301 gcttgtgaca agtgtaatca gtgtctaacc ttgcagtatg gacttagttc cgtcgtgagg
+      361 cctgattcac tgttagtttc acaatgttct tcgactggct cgaataaaat accggtcggc
+      421 gacgctactg ctttgggtac tttcaggacc cgtcttgaaa cacggcacaa
+//
+
+LOCUS       DQ022113                 475 bp    DNA     linear   INV 21-SEP-2005
+DEFINITION  Ichneutes sp. CXX-2005 28S ribosomal RNA gene, partial sequence.
+ACCESSION   DQ022113
+VERSION     DQ022113.1  GI:68137787
+KEYWORDS    .
+SOURCE      Ichneutes sp. CXX-2005
+  ORGANISM  Ichneutes sp. CXX-2005
+            Eukaryota; Metazoa; Arthropoda; Hexapoda; Insecta; Pterygota;
+            Neoptera; Endopterygota; Hymenoptera; Apocrita; Ichneumonoidea;
+            Braconidae; Ichneutinae; Ichneutes.
+REFERENCE   1  (bases 1 to 475)
+  AUTHORS   Shi,M., Chen,X. and van Achterberg,C.
+  TITLE     Phylogenetic relationships among genus Chelonus (Braconidae:
+            Cheloninae) based on molecular data of 16S and 18S genes and
+            morphological data
+  JOURNAL   Unpublished
+REFERENCE   2  (bases 1 to 475)
+  AUTHORS   Shi,M., Chen,X. and van Achterberg,C.
+  TITLE     Direct Submission
+  JOURNAL   Submitted (29-APR-2005) Institute of Applied Entomology, Zhejiang
+            University, 268 Kaixuan Road, Hangzhou, Zhejiang 310029, China
+FEATURES             Location/Qualifiers
+     source          1..475
+                     /organism="Ichneutes sp. CXX-2005"
+                     /mol_type="genomic DNA"
+                     /db_xref="taxon:332352"
+     rRNA            <1..>475
+                     /product="28S ribosomal RNA"
+                     /note="D2 variable region"
+ORIGIN      
+        1 tagagagagt tcaagagtac gtgaaaccgt tcaggggtaa acctgtgaaa cccaaaagat
+       61 cgaatgagga gattcatcgt cagcgtattt ggtattaatg caagttatga tgtaaattat
+      121 ttgctctttc gggaacaata tttatacata tttgtattat tttattgcta aatatcgtcg
+      181 gcgtgcactt ctcctctagt agaacgtcgt gacccgttgg gtgttgatct acggcccaat
+      241 tgatagcttt tgataacgct ttaatcggcg attattatta aaaatcattg gtgtattctg
+      301 atcatctgcc cgacggtatt cgtacgatat tgagtcgcaa ttaattatat aatttgcgtt
+      361 aaacccgtca caagcccgga taattttatg gtagtatgga tctaatgcca tcgctgtaat
+      421 tgtctagctg ttggttgttg cggtgttctt taactggctc aaataaatta tcggt
+//
+
+LOCUS       AY920277                1253 bp    DNA     linear   INV 22-SEP-2005
+DEFINITION  Aleiodes sp. near gastritor CXX-2004 18S ribosomal RNA gene,
+            partial sequence.
+ACCESSION   AY920277
+VERSION     AY920277.1  GI:61652871
+KEYWORDS    .
+SOURCE      Aleiodes sp. near gastritor CXX-2004
+  ORGANISM  Aleiodes sp. near gastritor CXX-2004
+            Eukaryota; Metazoa; Arthropoda; Hexapoda; Insecta; Pterygota;
+            Neoptera; Endopterygota; Hymenoptera; Apocrita; Ichneumonoidea;
+            Braconidae; Rogadinae; Aleiodes.
+REFERENCE   1  (bases 1 to 1253)
+  AUTHORS   Shi,M., Chen,X.X. and van Achterberg,C.
+  TITLE     Phylogenetic relationships among the Braconidae (Hymenoptera:
+            Ichneumonoidea) inferred from partial 16S rDNA, 28S rDNA D2, 18S
+            rDNA gene sequences and morphological characters
+  JOURNAL   Mol. Phylogenet. Evol. 37 (1), 104-116 (2005)
+REFERENCE   2  (bases 1 to 1253)
+  AUTHORS   Shi,M., Chen,X. and van Achterberg,C.
+  TITLE     Direct Submission
+  JOURNAL   Submitted (01-FEB-2005) Institute of Applied Entomology, Zhejiang
+            University, 268 Kaixuan Road, Hangzhou, Zhejiang 310029, China
+FEATURES             Location/Qualifiers
+     source          1..1253
+                     /organism="Aleiodes sp. near gastritor CXX-2004"
+                     /mol_type="genomic DNA"
+                     /db_xref="taxon:314217"
+     rRNA            <1..>1253
+                     /product="18S ribosomal RNA"
+ORIGIN      
+        1 tatggttcct tagatcgtac tcacatttac ttggataact gtggtaattc tagagctaat
+       61 acatgcaaac cagagttccg accagagatg gaaggaacgc ttttattaga tcaaaaccaa
+      121 tcggtggtgg gtttcgcccc gtcccatcgt taacyttggt gaactytgaa taactttgtg
+      181 ctgatcgcat ggtctcgtac cggcgacgaa tctttcaaat gtctgcctta tcaactgtcg
+      241 atggtaggtt ctgcgcctac catgrttgta acgggtaacg gggaatcagg gttcgattcc
+      301 ggagagggag cctgagaaac ggctaccaca tccaaggaag gcagcaggcg cgcaaattac
+      361 ccactcccgg cacggggagg tagtgacgaa aaataacgat acgggactca tccgaggccc
+      421 cgtaatcgga atgagtacac tttaaatcct ttaacgagga tccattggag ggcaagtctg
+      481 gtgccagcag ccgcggtaat tccagctcca atagcgtata ttaaagttgt tgcggttaaa
+      541 aagctcgtag ttgaatctgt gtgccacgct gtcggttcac cgctcgcggt gtttaactgg
+      601 catgattgtg ggacgtccta ccggtgggct tagctctgtg taaaagcggg gcggtccaac
+      661 taatatccca tcgcggtgct cttcatcgag tgtcgaggtg ggccggtacg tttactttga
+      721 acaaattaga gtgcttaaag caggctattt tcgcctgaat actgtgtgca tggaataatg
+      781 gaataggacc tcggttctat tttgttggtt ttcggaaccc cgaggtaatg attaataggg
+      841 acagatgggg gcattcgtat tgcgacgtta gaggtgaaat tcttggatcg tcgcaagacg
+      901 aacagaagcg aaagcatttg ccaaaaatgt tttcattaat caagaacgaa agttagagrt
+      961 tcgawggcga tcarataccg ccctagttct aaccataaac gatgccagct agcgatccgc
+     1021 cgaagtatcc tccgatgact cggcgggcag cttccgggaa accaaagctt ttgggttccg
+     1081 ggggaagtat ggttgcaaag ctgaaactta aaggaattga cggaagggca ccaccaggag
+     1141 tggagcctgc ggcttaattt gactcaacac gggaaacctc accaggcccg gacaccggaa
+     1201 ggattgacag attgatagct ctttcttgat tcggtgggtg gtggtgcatg gcc
+//
+

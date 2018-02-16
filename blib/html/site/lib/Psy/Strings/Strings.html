@@ -1,0 +1,275 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Psy::Strings::Strings</title>
+<link rel="stylesheet" href="../../../..//Active.css" type="text/css" />
+<link rev="made" href="mailto:" />
+</head>
+
+<body>
+<table border="0" width="100%" cellspacing="0" cellpadding="3">
+<tr><td class="block" valign="middle">
+<big><strong><span class="block">&nbsp;Psy::Strings::Strings</span></strong></big>
+</td></tr>
+</table>
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#version">VERSION</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<li><a href="#export">EXPORT</a></li>
+	<ul>
+
+		<li><a href="#maxbound">maxBound</a></li>
+		<li><a href="#regexsplit">regexSplit</a></li>
+		<li><a href="#reversecomp">reverseComp</a></li>
+		<li><a href="#gappedre">gappedRe</a></li>
+		<li><a href="#delfixedpositions">delFixedPositions</a></li>
+		<li><a href="#string2blocks">string2Blocks</a></li>
+		<li><a href="#pieces">pieces</a></li>
+		<li><a href="#linewordmeta">lineWordMeta</a></li>
+		<li><a href="#wordsfromlinemeta">wordsFromLineMeta</a></li>
+		<li><a href="#arrayasrange">arrayAsRange</a></li>
+		<li><a href="#alphabetize">alphabetize</a></li>
+		<li><a href="#posoffsets">posOffsets</a></li>
+		<li><a href="#totaluniquechars">totalUniqueChars</a></li>
+		<li><a href="#uniquechars">uniqueChars</a></li>
+		<li><a href="#uniquecharsc">uniqueCharsC</a></li>
+		<li><a href="#padleft">padleft</a></li>
+		<li><a href="#padright">padright</a></li>
+		<li><a href="#lengthlongeststring">lengthLongestString</a></li>
+		<li><a href="#nummax">numMax</a></li>
+		<li><a href="#kword">kword</a></li>
+		<li><a href="#f2d">f2d</a></li>
+	</ul>
+
+	<li><a href="#author">AUTHOR</a></li>
+	<li><a href="#bugs">BUGS</a></li>
+	<li><a href="#acknowledgements">ACKNOWLEDGEMENTS</a></li>
+	<li><a href="#copyright___license">COPYRIGHT &amp; LICENSE</a></li>
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>Psy::Strings::Strings</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="version">VERSION</a></h1>
+<p>Version 0.01</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<p>Quick summary of what the module does.</p>
+<p>Functions for use on strings.</p>
+<pre>
+    use Psy::Strings::Strings;</pre>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="export">EXPORT</a></h1>
+<p>
+</p>
+<h2><a name="maxbound">maxBound</a></h2>
+<p>returns the maximum length of a string (first match)</p>
+<p>
+</p>
+<h2><a name="regexsplit">regexSplit</a></h2>
+<p>Splits a string on -regexes, inserting '-insert' between them.</p>
+<p>Starts at begining of string, each successive regex must be found after the first.
+</p>
+<pre>
+
+        &amp;regexSplit('-str' =&gt; $s, '-regexes' =&gt; \@r, '-insert' =&gt; '  ')</pre>
+<pre>
+
+I'm sure this could be done much more efficiently with look-ahead/behind.</pre>
+<pre>
+
+=cut</pre>
+<p><table cellspacing="0" cellpadding="0"><tr><td>sub regexSplit {
+<tr><td><td>my %raw_params = @_;
+<tr><td><td>my %default_params = (
+<tr><td><td>'-insert' =&gt; '  '
+<tr><td><td>);
+<tr><td><td>my %params = (%default_params, %raw_params);
+<tr><td><td>$params{'-str'} || return;
+</table></p>
+<pre>
+
+        my $s = $params{'-str'};
+        my $n=0;</pre>
+<pre>
+
+        for my $r ( @{$params{'-regexes'}} ) {
+                print &quot;$r - &quot;;
+                if ( $s =~ /(.{$n})(.*)($r)(.*)/i ) {
+                        print &quot; [$1] [$2] [$3] [$4] $n&quot;;</pre>
+<pre>
+                        $s = $1.$2.$params{'-insert'}.$3.$params{'-insert'}.$4;
+                        $n = length ($1) + length ($3) + 2;
+                }
+                print &quot;\n&quot;;
+        }
+        
+        # cheat - collapse &gt;2 spaces to nothing 
+        $s =~ s/\s{3,}/  /g;
+        
+        return $s;
+}</pre>
+<p>
+</p>
+<h2><a name="reversecomp">reverseComp</a></h2>
+<p>A simple reverse compliment a string (DNA).  Only handles 'ACGTU' and '[]' and '\?' for regexes.  Mayhaps move to DNA?</p>
+<p>
+</p>
+<h2><a name="gappedre">gappedRe</a></h2>
+<p>Returns a single regex that should search against an set of  input patterns</p>
+<p>
+</p>
+<h2><a name="delfixedpositions">delFixedPositions</a></h2>
+<p>Given an array -strings and a character -char, deletes all fixed positions within that string for that character</p>
+<p>
+</p>
+<h2><a name="string2blocks">string2Blocks</a></h2>
+<p>Given an array of integers return a block of each length</p>
+<p>
+</p>
+<h2><a name="pieces">pieces</a></h2>
+<p>duplicates string2Blocks in a cleaner way...doh</p>
+<p>
+</p>
+<h2><a name="linewordmeta">lineWordMeta</a></h2>
+<p>returns a hash of 'word index' =&gt; { 'word_end', 'word_start', 'char_sum_start', 'char_sum_end', 'word_length' }</p>
+<p><table cellspacing="0" cellpadding="0"><tr><td>parameters are '-line' , '-offset' (added to char_sum_start and char_sum_end), '-regex' (the word/pattern to search for)<td>
+<tr><td>with help from <a href="http://perlmonks.org/index.pl?node_id=299194">http://perlmonks.org/index.pl?node_id=299194</a></table></p>
+<p>
+</p>
+<h2><a name="wordsfromlinemeta">wordsFromLineMeta</a></h2>
+<p>see lineWordMeta
+returns a list of words (ordered) as demarked by a hash produced by &amp;lineWordMeta</p>
+<p>
+</p>
+<h2><a name="arrayasrange">arrayAsRange</a></h2>
+<p>
+</p>
+<h2><a name="alphabetize">alphabetize</a></h2>
+<p>Returns a string containing the alphabetized (read 'sort') letters of the input string.</p>
+<pre>
+        alphabetize('cba'); # returns abc</pre>
+<p>
+</p>
+<h2><a name="posoffsets">posOffsets</a></h2>
+<p>Returns an array containing the offset positions for each instance of $chars in $string 
+zero = 1</p>
+<p>
+</p>
+<h2><a name="totaluniquechars">totalUniqueChars</a></h2>
+<p>Pilfered from ``http://www.newts.org/~troc/perl/uniqchar.perl''
+returns the number of unique characters in a string	
+=cut</p>
+<p>sub totalUniqueChars () { 
+	my ($str) = shift;
+	use integer;
+	my %c;
+	for (split //, $str) {$c{$_}=undef} scalar keys %c 
+}</p>
+<p>
+</p>
+<h2><a name="uniquechars">uniqueChars</a></h2>
+<p>returns an array of the unique characters seen in a string</p>
+<p>
+</p>
+<h2><a name="uniquecharsc">uniqueCharsC</a></h2>
+<p>returns <code>ord()</code> instead of chars</p>
+<p>
+</p>
+<h2><a name="padleft">padleft</a></h2>
+<p>needs a list (text to pad, character to pad with (assuming single character!!), total length</p>
+<p>
+</p>
+<h2><a name="padright">padright</a></h2>
+<p><table cellspacing="0" cellpadding="0"><tr><td>Returns a right padded string of a certain length
+<tr><td><td>&amp;padright('foo', ' ', '24');</table></p>
+<p>
+</p>
+<h2><a name="lengthlongeststring">lengthLongestString</a></h2>
+<p>length of the longest string in an array</p>
+<p>
+</p>
+<h2><a name="nummax">numMax</a></h2>
+<p>the max number in an array</p>
+<p>
+</p>
+<h2><a name="kword">kword</a></h2>
+<p>Returns a hash count of all strings of length $len occuring in $str, stepping by +1</p>
+<p>This is equivalent to overlapping kwords?</p>
+<p>
+</p>
+<h2><a name="f2d">f2d</a></h2>
+<p>Short form.  Return a sprintf to 2 decimals.</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="author">AUTHOR</a></h1>
+<p>'Matt, <code>&lt;m{j}yoder@{tee}[aye](em)(you).domain4unis&gt;</code>
+
+</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="bugs">BUGS</a></h1>
+<p>Please report any bugs or feature requests to
+<code>bug-psy-strings-strings@rt.cpan.org</code>, or through the web interface at
+
+</p>
+<p>&lt;http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Psy&gt;.
+
+</p>
+<p>I will be notified, and then you'll automatically be notified of progress on
+your bug as I make changes.
+
+</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="acknowledgements">ACKNOWLEDGEMENTS</a></h1>
+<p>Some here.
+
+</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="copyright___license">COPYRIGHT &amp; LICENSE</a></h1>
+<p>Copyright 2005 'Matt, all rights reserved.
+
+</p>
+<p>This program is free software; you can redistribute it and/or modify it
+under the same terms as Perl itself.
+
+</p>
+<p><a href="#__index__"><small>__top</small></a></p>
+<table border="0" width="100%" cellspacing="0" cellpadding="3">
+<tr><td class="block" valign="middle">
+<big><strong><span class="block">&nbsp;Psy::Strings::Strings</span></strong></big>
+</td></tr>
+</table>
+
+</body>
+
+</html>

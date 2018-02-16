@@ -1,0 +1,191 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Psy::Analysis::Seqpair</title>
+<link rel="stylesheet" href="../../../..//Active.css" type="text/css" />
+<link rev="made" href="mailto:" />
+</head>
+
+<body>
+<table border="0" width="100%" cellspacing="0" cellpadding="3">
+<tr><td class="block" valign="middle">
+<big><strong><span class="block">&nbsp;Psy::Analysis::Seqpair</span></strong></big>
+</td></tr>
+</table>
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#version">VERSION</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<li><a href="#methods">METHODS</a></li>
+	<ul>
+
+		<li><a href="#new">new</a></li>
+		<li><a href="#seqlen">seqLen</a></li>
+		<li><a href="#obsalpha">obsAlpha</a></li>
+		<li><a href="#bp">bp</a></li>
+		<li><a href="#up">up</a></li>
+		<li><a href="#np">np</a></li>
+		<li><a href="#nt">nt</a></li>
+		<li><a href="#pp">pp</a></li>
+		<li><a href="#pt">pt</a></li>
+		<li><a href="#mi">mi</a></li>
+		<li><a href="#chi2vectot">chi2VecTot</a></li>
+		<li><a href="#chi2">chi2</a></li>
+		<li><a href="#cramersv">cramersV</a></li>
+		<li><a href="#contigencytable">contigencyTable</a></li>
+		<li><a href="#chi2sig">chi2Sig</a></li>
+	</ul>
+
+	<li><a href="#author">AUTHOR</a></li>
+	<li><a href="#bugs">BUGS</a></li>
+	<li><a href="#acknowledgements">ACKNOWLEDGEMENTS</a></li>
+	<li><a href="#copyright___license">COPYRIGHT &amp; LICENSE</a></li>
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>Psy::Analysis::Seqpair -</p>
+<p>functions for 2 sequences (strings really) of same length</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="version">VERSION</a></h1>
+<p>Version 0.01</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<p>An object and and methods for use on two strings of equal length (generally RNA sequences).</p>
+<p>This object does not reference terminals.</p>
+<p>Alphabet is passed throughout as \@</p>
+<pre>
+    use Psy::Analysis::Seqpair;
+        @seqs = ('ACGT', 'ACGT');
+    my $sp = Psy::Analysis::Seqpair-&gt;new(\@seqs);
+        $sp-&gt;mi; 
+        ...</pre>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="methods">METHODS</a></h1>
+<p>
+</p>
+<h2><a name="new">new</a></h2>
+<p>
+</p>
+<h2><a name="seqlen">seqLen</a></h2>
+<p>length of sequences</p>
+<p>
+</p>
+<h2><a name="obsalpha">obsAlpha</a></h2>
+<p>Returns the array of observed letters in the two strings. ## T is converted to U??</p>
+<p>
+</p>
+<h2><a name="bp">bp</a></h2>
+<p>Return the bp from a given position (starts at zero)</p>
+<p>
+</p>
+<h2><a name="up">up</a></h2>
+<p>Returns array of unique pairs observed in the two strings</p>
+<p>
+</p>
+<h2><a name="np">np</a></h2>
+<p>?? returns the probability of nucleotide n for sequence (0/1)</p>
+<pre>
+        $foo-&gt;np(1,'A');</pre>
+<p>
+</p>
+<h2><a name="nt">nt</a></h2>
+<p>Returns the total for a seq (0/1) for a given letter.</p>
+<pre>
+        $foo-&gt;nt(1,'A');</pre>
+<p>
+</p>
+<h2><a name="pp">pp</a></h2>
+<p>Returns probability of pair $p.</p>
+<p>
+</p>
+<h2><a name="pt">pt</a></h2>
+<p>returns count (total) of pair $p</p>
+<p>
+</p>
+<h2><a name="mi">mi</a></h2>
+<p>Returns the mutal information (ln) for the object. !!! The mi should range from 0 (perfectly independent) to (2).</p>
+<p>
+</p>
+<h2><a name="chi2vectot">chi2VecTot</a></h2>
+<p>Given an array of nuc pairs, returns the total pairs (usable for both rows and cols - see chi2)</p>
+<p>
+</p>
+<h2><a name="chi2">chi2</a></h2>
+<p>calculates the chi2 for basepairs</p>
+<p>
+</p>
+<h2><a name="cramersv">cramersV</a></h2>
+<p>Returns Cramers V, see planetmath.org for comments/code basis.
+V ranges from 0-1, the closer to 0 the smaller the association of categorical variables, if X==Y then V==1.</p>
+<p>
+</p>
+<h2><a name="contigencytable">contigencyTable</a></h2>
+<p>Print to stdout a contingency table and some other stats.</p>
+<p>
+</p>
+<h2><a name="chi2sig">chi2Sig</a></h2>
+<p>Returns 0 if the chi2 value is not significant (independance), 1 if there is dependance.</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="author">AUTHOR</a></h1>
+<p>'Matt, <code>&lt;m{j}yoder@{tee}[aye](em)(you).domain4unis&gt;</code></p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="bugs">BUGS</a></h1>
+<p>Please report any bugs or feature requests to
+<code>bug-psy-analysis-seqpair@rt.cpan.org</code>, or through the web interface at
+&lt;http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Psy&gt;.
+I will be notified, and then you'll automatically be notified of progress on
+your bug as I make changes.</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="acknowledgements">ACKNOWLEDGEMENTS</a></h1>
+<p>None yet.
+
+</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="copyright___license">COPYRIGHT &amp; LICENSE</a></h1>
+<p>Copyright 2005 'Matt, all rights reserved.
+
+</p>
+<p>This program is free software; you can redistribute it and/or modify it
+under the same terms as Perl itself.
+
+</p>
+<p><a href="#__index__"><small>__top</small></a></p>
+<table border="0" width="100%" cellspacing="0" cellpadding="3">
+<tr><td class="block" valign="middle">
+<big><strong><span class="block">&nbsp;Psy::Analysis::Seqpair</span></strong></big>
+</td></tr>
+</table>
+
+</body>
+
+</html>

@@ -1,0 +1,15 @@
+nstates 32;
+xread
+'generated with Psy'
+17 9
+aus                               KKNTTNJNINQNKSKKN
+bus                               HKPHSNENSNQNKKHKP
+long_name_taxon_1                 PKNHNNGNKNQNSSPKN
+AF379936_Basalys_not_really       PKNKNNKNKNQNSKPKN
+Diphoropria_not_really_AF379937   PQNKPNKNPNQNIKPQN
+taxon1                            PQNKNNKNKNQNSKPQN
+taxon2                            PSFKNQKNLNSNQBPSF
+taxon3                            PQPKNNKNKNQNSKPQP
+taxon4                            PQHKNNKNKNQNSKPQH
+
+;

@@ -1,0 +1,26 @@
+#Nexus
+
+Begin data;
+	Dimensions
+		ntax = [% total_ters %] 
+		nchar = [% total_chars %]
+	;
+	Format
+		DATATYPE = RNA
+		missing = ?
+		gap = -
+		[  symbols = "A C G U a c g u n N" ]
+   ;	
+
+[ stuff ]
+
+Matrix
+[[% data_head_aligner %][% FOREACH blk = blocks %][% blocklabel1(blk) %][% END %]]
+[[% data_head_aligner %][% FOREACH blk = blocks %][% blocklabel2(blk) %][% END %]]
+[% mask_head_aligner %][% rowmask %]]
+[% FOREACH ter = terminals %][% justifiedrowlabel(ter) %][% row(ter) %]
+[% END %];
+[% column_numbering %]
+[% block_numbering %]
+end;
+

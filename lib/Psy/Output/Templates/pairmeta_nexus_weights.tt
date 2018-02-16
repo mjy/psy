@@ -1,0 +1,10 @@
+[ Weighting schemes to be used in conjuntion with pairedparsimony characters ]
+[ to use a given set of weights 'assume wtset = <insert setname here>'       ]
+
+BEGIN ASSUMPTIONS;
+
+[% FOREACH c = char_loop %]
+wtset [% c %] (vector) = [% FOREACH blk = helices %][% FOREACH pair = pairs_in_block(blk) %][% chars(c, pair, blk) %] [% END %][% END %];
+[% END %]
+
+END;

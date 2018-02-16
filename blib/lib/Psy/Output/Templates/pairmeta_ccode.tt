@@ -1,0 +1,15 @@
+' Pairmeta data via Psy. '
+' a ccode weighting scheme to be used in conjuntion with pairedparsimony code '
+
+ccode /[+.; 'resets the characters to unweighted'
+
+
+'use only 1 of the following sets!!'
+[% FOREACH c = char_loop %][% i = 0 %]
+set: [% c %]
+[% FOREACH blk = helices %][% FOREACH pair = pairs_in_block(blk) %]
+ccode /[% chars(c, pair, blk) %] [% i %]; [% i = i + 1 %][% END %] [% END %]
+[% END %]
+
+	
+

@@ -1,0 +1,84 @@
+{DATAFILE}
+	Data file = [% datafile %]
+	Interleaved data file = no
+	Heterogeneous data models = auto
+{\DATAFILE}
+
+{MODEL}
+	Model = MIXED
+	Number of models = 2
+
+	{MODEL1}
+		Model = REV
+		Discrete gamma distribution of rates = yes
+		Number of gamma categories = 4
+		Invariant sites             = no
+	{\MODEL1}
+	{MODEL2}
+		Model = [% rnamodel %]
+		Discrete gamma distribution of rates = yes
+		Number of gamma categories = 4
+		Invariant sites             = no
+	{\MODEL2}
+{\MODEL}
+
+{TREE}
+	Tree = Unrooted MCMC tree
+	Outgroup = [% outgroup %]
+{\TREE}
+
+{PERTURBATION}
+	Tree, proposal priority = 8
+	Model, proposal priority = 1
+
+	{PERTURBATION_TREE}
+		####We use 10/40 for topology change vs branch lengths.
+		####it is not exactly equivalent to 1/4 because this is given relative to the
+		####proposal priority for hyperparameters (Hyperpriors, proposal priority)
+
+		Topology changes, proposal priority = 10
+		Branch lengths, proposal priority = 40
+		Hyperpriors, proposal priority = 1
+
+		####we use a vague prior on branch lengths, the shape of the exponential prior
+		####is determined during the analysis
+
+		Branch lengths, prior = exponential(uniform(0,100))
+
+		####there is just one hyperparameter so the value below does not have any effect
+		Branch lengths exponential hyperparameter, proposal priority = 1
+	{\PERTURBATION_TREE}
+
+	####perturbation for the substitution model
+	{PERTURBATION_MODEL}
+		####the DNA and the RNA substition models both have around 10 free parameters
+		Model 1, proposal priority = 10
+		Model 2, proposal priority = 10
+		Average rates, proposal priority = 1
+	{PERTURBATION_MODEL1}
+    	Frequencies, proposal priority = 2
+	    Rate ratios, proposal priority = 1
+    	Gamma parameter, proposal priority = 1
+	{\PERTURBATION_MODEL1}
+	{PERTURBATION_MODEL2}
+	    Frequencies, proposal priority = 2
+    	Rate ratios, proposal priority = 1
+	    Gamma parameter, proposal priority = 1
+	{\PERTURBATION_MODEL2}
+{\PERTURBATION_MODEL}
+
+{\PERTURBATION}
+
+Random seed = [% randseed %]
+
+Burnin iterations = 400000
+Sampling iterations = 2000000
+Sampling period = 1000
+
+Output file   = results/[% datafile %]_out.mcmc
+Output format = phylip
+
+## foo
+## bar
+
+

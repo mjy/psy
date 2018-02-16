@@ -1,0 +1,9 @@
+[% INCLUDE header %]
+<table>
+		<tr style="font-weight: bolder;"> <td> # </td> <td> label </td> <td> regex <br/> reverse compliment regex </td> </tr>
+[% FOREACH blk = blocks %]
+		<tr> <td>[% blk %]</td> <td>[% blocklabel1(blk) %]</td> <td> [% block_regex(blk) %] <br/> [% block_revcomp_regex(blk) %] </td></tr>
+[% END %]
+</table>
+
+[% INCLUDE footer %]

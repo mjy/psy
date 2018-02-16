@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Psy::Matrix::Block</title>
+<link rel="stylesheet" href="../../../..//Active.css" type="text/css" />
+<link rev="made" href="mailto:" />
+</head>
+
+<body>
+<table border="0" width="100%" cellspacing="0" cellpadding="3">
+<tr><td class="block" valign="middle">
+<big><strong><span class="block">&nbsp;Psy::Matrix::Block</span></strong></big>
+</td></tr>
+</table>
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#version">VERSION</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<ul>
+
+		<li><a href="#label">label</a></li>
+		<li><a href="#literalstart">literalStart</a></li>
+		<li><a href="#literalend">literalEnd</a></li>
+		<li><a href="#excludedstart">excludedStart</a></li>
+		<li><a href="#excludedend">excludedEnd</a></li>
+		<li><a href="#bracketed">bracketed</a></li>
+		<li><a href="#blklength">blkLength</a></li>
+		<li><a href="#debugdescribe">debugDescribe</a></li>
+	</ul>
+
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>Psy::Matrix::Block</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="version">VERSION</a></h1>
+<p>Version 0.01</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<p>Contains meta-data for blocks.  Internal use only for all intents and purposes.
+</p>
+<pre>
+
+    use Psy::Matrix::Block
+    my $foo = block-&gt;new; # see _init</pre>
+<p>
+</p>
+<h2><a name="label">label</a></h2>
+<p>Accessor for a -label of -blk.</p>
+<p>
+</p>
+<h2><a name="literalstart">literalStart</a></h2>
+<p>Accessor for the starting (nucleotide) position of this block, ** as originally read from the matrix **.
+All blocks are included.</p>
+<p>
+</p>
+<h2><a name="literalend">literalEnd</a></h2>
+<p>As literalStart.
+All blocks are included.</p>
+<p>
+</p>
+<h2><a name="excludedstart">excludedStart</a></h2>
+<p>Accessor for the starting position of this block, as originally read from the matrix.
+Bracketed blocks are _excluded_ in calculating this position.</p>
+<p>
+</p>
+<h2><a name="excludedend">excludedEnd</a></h2>
+<p>Ad excludedStart.
+Bracketed blocks are _excluded_ in calculating this position.</p>
+<p>
+</p>
+<h2><a name="bracketed">bracketed</a></h2>
+<p>Accessor for bracketed property.  1 == bracketed</p>
+<p>
+</p>
+<h2><a name="blklength">blkLength</a></h2>
+<p>Length including gaps.</p>
+<p>
+</p>
+<h2><a name="debugdescribe">debugDescribe</a></h2>
+<p>Prints a line containing the various metadata.</p>
+<p><a href="#__index__"><small>__top</small></a></p>
+<table border="0" width="100%" cellspacing="0" cellpadding="3">
+<tr><td class="block" valign="middle">
+<big><strong><span class="block">&nbsp;Psy::Matrix::Block</span></strong></big>
+</td></tr>
+</table>
+
+</body>
+
+</html>

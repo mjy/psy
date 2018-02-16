@@ -1,0 +1,239 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Psy::Output::Pairedparsimony</title>
+<link rel="stylesheet" href="../../../..//Active.css" type="text/css" />
+<link rev="made" href="mailto:" />
+</head>
+
+<body>
+<table border="0" width="100%" cellspacing="0" cellpadding="3">
+<tr><td class="block" valign="middle">
+<big><strong><span class="block">&nbsp;Psy::Output::Pairedparsimony</span></strong></big>
+</td></tr>
+</table>
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#version">VERSION</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>Psy::Output::Pairedparsimony</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="version">VERSION</a></h1>
+<p>Version 0.01</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<p>Translates the dataset following the 20 state model of Smith et. al 2003.</p>
+<p>Output subclass for a Psy object.  
+Referenced externally only.
+Inherited via AUTOLOAD through Psy::Output::Output, see therein for general usage.</p>
+<p><table cellspacing="0" cellpadding="0"><tr><td>Required parameters
+<tr><td><td>-mx</table></p>
+<p><table cellspacing="0" cellpadding="0"><tr><td>Optional parameters
+<tr><td><td>-out_format =&gt; [nexus | tnt]
+<tr><td><td>-mode =&gt; [paired_only | all_aligned ]
+<tr><td><td>-mi_char_weights (does nothing at present)
+</table></p>
+<pre>
+
+=cut</pre>
+<p><table cellspacing="0" cellpadding="0"><tr><td>sub process {
+<tr><td><td>my $self = shift;
+<tr><td><td>my %raw_params = @_;
+<tr><td><td>my %default_params = (
+<tr><td><td>'-out_format' =&gt; 'nexus',
+<tr><td><td>'-mode' =&gt; 'paired_only', # 'paired_only, all_aligned
+<tr><td><td>'-mi_char_weights' =&gt; 0 # include a mi character weighting
+<tr><td><td>);</table></p>
+<pre>
+        $default_params{'-slice'} ||= $raw_params{'-mx'}-&gt;origSlice;    
+        my %params = (%default_params, %raw_params);
+         
+        $params{'-path'} ||= $OUT_DIR;</pre>
+<pre>
+        $params{'-file_name'} ||= 'pairedp.nex';
+        
+        print &quot;output path: $params{'-path'}\n&quot;;</pre>
+<pre>
+        # gather needed data
+        my $data;                                          
+        $data = &amp;output::mxData(%params); # get a basic data object</pre>
+<pre>
+        my ($totalchars);</pre>
+<pre>
+        my %translate = qw(
+                        A A
+                        C R
+                        G N
+                        U D
+                        AA C
+                        AC Q
+                        AG E
+                        AU G
+                        CA H
+                        CC I
+                        CG L
+                        CU K
+                        GA M
+                        GC F
+                        GG P
+                        GU S
+                        UA T
+                        UC W
+                        UG Y
+                        UU V
+                        X- -
+                        XX -
+                        -X -
+                        -- -
+                        A- A
+                        -A A
+                        C- R
+                        -C R
+                        G- N
+                        -G N
+                        U- D
+                        -U D
+                        XA -
+                        AX -
+                        UX -
+                        XU - 
+                        XG -
+                        GX -
+                        XC -
+                        CX -
+                );</pre>
+<pre>
+        # TNT can only handle characters A-V?
+        my      %translate_tnt = qw(
+                        A A
+                        C B
+                        G C
+                        U D
+                        AA E
+                        AC F
+                        AG G
+                        AU H
+                        CA I
+                        CC J
+                        CG K
+                        CU L
+                        GA M
+                        GC N
+                        GG O
+                        GU P
+                        UA Q
+                        UC R
+                        UG S
+                        UU T
+                        X- -
+                        XX -
+                        -X -
+                        -- -
+                        A- A
+                        -A A
+                        C- B
+                        -C B
+                        G- C
+                        -G C
+                        U- D
+                        -U D
+                        XA -
+                        AX -
+                        UX -
+                        XU -
+                        XG -
+                        GX -
+                        XC -
+                        CX -
+                );
+ 
+                ## ask joe about translation of XA etc.
+                
+                my $mx;
+                $mx     = $params{'-mx'}; # shorten for ease of use
+                        
+                foreach my $t ($params{'-slice'}-&gt;loop(&quot;Taxa&quot;)) {
+                        foreach my $blk ($params{'-mx'}-&gt;{'structures'}-&gt;{'original'}-&gt;loopHelices(%params) ) { 
+                                my @bps;        
+                                my @clean;
+                                @bps = $mx-&gt;{structures}-&gt;{'original'}-&gt;loopBasePairs(%params, '-blk' =&gt; $blk, '-ter' =&gt; $t);
+                                foreach (@bps) {push @clean, $LEGAL_CHARS-&gt;clean('-replace' =&gt; 'X', '-str' =&gt; uc($_))}; 
+        
+                                foreach my $bp (@clean) {
+                                        #print $bp, &quot; &quot;, $translate{$bp}, &quot;\n&quot;;
+                                        if ($params{'-out_format'} eq 'tnt') {
+                                                $data-&gt;{rowdata}-&gt;{$t} .= $translate_tnt{$bp};  
+                                        }
+                                        elsif ($params{'-out_format'} eq 'nexus') {
+                                                $data-&gt;{rowdata}-&gt;{$t} .= $translate{$bp};      
+                                        }
+                                        else {
+                                         die 'not a legal out_format'
+                                        }
+                                }
+                        }
+                        $data-&gt;{rowdata}-&gt;{$t} =~ s/\-/\?/gi;
+                }
+        
+        $data-&gt;{total_chars} = length $data-&gt;{rowdata}-&gt;{0}; # override because we have fewer characters ## a kludge
+        
+        # print Dumper($self-&gt;ttConfig); #;params{'-config'});</pre>
+<pre>
+        my %formats = (  # maps params to templates
+                'tnt' =&gt; 'paired_tnt.tt',
+                'nexus' =&gt; 'paired_nexus.tt',
+        );</pre>
+<pre>
+        my $tt = Template-&gt;new($self-&gt;ttConfig)  || die  $Template::ERROR , &quot;\n&quot;;  # || die $tt-&gt;error(), &quot;\n&quot;;  #params{'-config'}); 
+        $tt-&gt;process($formats{$params{'-out_format'}}, $data, &quot;$params{'-path'}/$params{'-file_name'}&quot;) || croak $tt-&gt;error(), &quot; died trying to process Pairedparasimony template&quot;; 
+        1;
+}</pre>
+<p># The template below is for testing only, the true templates are in /templates</p>
+<p>__DATA__
+#Nexus</p>
+<p>Begin data;
+Dimensions
+	ntax = [% total_ters %] 
+	nchar = [% total_chars %]
+;
+Format
+	datatype = standard
+	missing = ?
+	gap = -
+	symbols = ``A R N D C Q E G H I L K M F P S T W Y V X''
+;</p>
+<p>Matrix
+[% FOREACH ter = terminals %][% <code>justifiedrowlabel(ter)</code> %]  [% rowdata.$ter %]
+[% END %]
+;
+end;
+
+</p>
+<p><a href="#__index__"><small>__top</small></a></p>
+<table border="0" width="100%" cellspacing="0" cellpadding="3">
+<tr><td class="block" valign="middle">
+<big><strong><span class="block">&nbsp;Psy::Output::Pairedparsimony</span></strong></big>
+</td></tr>
+</table>
+
+</body>
+
+</html>

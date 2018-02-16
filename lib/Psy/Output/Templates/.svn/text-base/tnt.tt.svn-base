@@ -1,0 +1,9 @@
+nstates dna;
+xread
+'
+	some version bit here
+	Generated for blocks: [% FOREACH blk = blocks %] [% blk %] [% END %]
+'
+[% total_chars %] [% total_ters %]
+[% FOREACH ter = terminals %][% justifiedrowlabel(ter) %][% row(ter) %]
+[% END %];

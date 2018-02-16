@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Psy::Helpers::Crawler</title>
+<link rel="stylesheet" href="../../../..//Active.css" type="text/css" />
+<link rev="made" href="mailto:" />
+</head>
+
+<body>
+<table border="0" width="100%" cellspacing="0" cellpadding="3">
+<tr><td class="block" valign="middle">
+<big><strong><span class="block">&nbsp;Psy::Helpers::Crawler</span></strong></big>
+</td></tr>
+</table>
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#psy__helpers__crawler">Psy::Helpers::Crawler</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<ul>
+
+		<li><a href="#_indexfiles">_indexFiles</a></li>
+		<li><a href="#datasets">datasets</a></li>
+		<li><a href="#datafile_index">datafile_index</a></li>
+		<li><a href="#datafiles">datafiles</a></li>
+		<li><a href="#treefiles">treefiles</a></li>
+	</ul>
+
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="psy__helpers__crawler">Psy::Helpers::Crawler</a></h1>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<p>Crawls through folders, finding data and trees, translates data, cues analyses, summarizes results (tree files).</p>
+<p>Tree files must end in .tre
+e,g, 
+	foo.tre
+	bar.tre</p>
+<p>Datafiles must be matrices (PAUP legal is safe, but others might work) in the format ``data''_&lt;type&gt;_&lt;misc&gt;*
+e,g,
+	data_rna18S.nex
+	data_rna28s.fas
+	data_rna28s_a.fas</p>
+<p>&lt;type&gt; acts as a group name whereby results from similar types are indicated as such in the output and results reporting
+&lt;misc&gt; is not required, allows multiple types in the same folder, which should be rare</p>
+<p>You need a file called meta.txt in the -rootfolder, it has two columns, folder_name/dataset_name &lt;tab&gt; number of taxa.</p>
+<p>At present doesn't do anything with structure, but could be implemented.</p>
+<p>Required parameters:</p>
+<p>Optional parameters:</p>
+<p>
+</p>
+<h2><a name="_indexfiles">_indexFiles</a></h2>
+<p>Indexes the -files array from a given -folder to either tree or data.</p>
+<p>
+</p>
+<h2><a name="datasets">datasets</a></h2>
+<p>List the datasets as an array</p>
+<p>
+</p>
+<h2><a name="datafile_index">datafile_index</a></h2>
+<p>Returns a unique index reference for the given -file in -folder.</p>
+<p>
+</p>
+<h2><a name="datafiles">datafiles</a></h2>
+<p>Return the datafiles for -folder</p>
+<p>
+</p>
+<h2><a name="treefiles">treefiles</a></h2>
+<p>Return the treefile names for -folder.  'trees' is an array, not has hash
+
+</p>
+<p><a href="#__index__"><small>__top</small></a></p>
+<table border="0" width="100%" cellspacing="0" cellpadding="3">
+<tr><td class="block" valign="middle">
+<big><strong><span class="block">&nbsp;Psy::Helpers::Crawler</span></strong></big>
+</td></tr>
+</table>
+
+</body>
+
+</html>

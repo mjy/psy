@@ -1,0 +1,8 @@
+--- #YAML:1.0
+name: Psy-Psy
+version: 0.01
+author:
+  - Matt <m{j}yoder@{tee}[aye](em)(you).domain4unis>
+abstract: 
+license: perl
+generated_by: Module::Build version 0.2611, without YAML.pm

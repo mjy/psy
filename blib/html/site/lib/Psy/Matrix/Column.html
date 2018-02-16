@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Psy::Matrix::Column</title>
+<link rel="stylesheet" href="../../../..//Active.css" type="text/css" />
+<link rev="made" href="mailto:" />
+</head>
+
+<body>
+<table border="0" width="100%" cellspacing="0" cellpadding="3">
+<tr><td class="block" valign="middle">
+<big><strong><span class="block">&nbsp;Psy::Matrix::Column</span></strong></big>
+</td></tr>
+</table>
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#version">VERSION</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<ul>
+
+		<li><a href="#returncolhash">returnColHash</a></li>
+		<li><a href="#returncolvec">returnColVec</a></li>
+		<li><a href="#totalseqs">totalSeqs</a></li>
+		<li><a href="#pluralconcensus">pluralConcensus</a></li>
+		<li><a href="#workingalphabetlength">workingAlphabetLength</a></li>
+		<li><a href="#primerregex">primerRegex</a></li>
+		<li><a href="#vimregex">vimRegex</a></li>
+		<li><a href="#regexchar">regexChar</a></li>
+		<li><a href="#table">table</a></li>
+	</ul>
+
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>Psy::Matrix::Column</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="version">VERSION</a></h1>
+<p>Version 0.01</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<p>-This object does not reference terminals.
+-alphabet is passed throughout as \@</p>
+<pre>
+        Builds a column object.</pre>
+<pre>
+    use Psy::Matrix:Column;     
+        my $col = column-&gt;new(@my_array);</pre>
+<p>
+</p>
+<h2><a name="returncolhash">returnColHash</a></h2>
+<p>Returns the hash count of the column</p>
+<pre>
+        $col-&gt;returnColHash(1);</pre>
+<p>
+</p>
+<h2><a name="returncolvec">returnColVec</a></h2>
+<p>Returns a string representing the column.</p>
+<pre>
+        $col-&gt;returnColVec(1);</pre>
+<p>
+</p>
+<h2><a name="totalseqs">totalSeqs</a></h2>
+<p>returns the total number of original sequences passed</p>
+<p>
+</p>
+<h2><a name="pluralconcensus">pluralConcensus</a></h2>
+<p>Returns the non-iupac plural concensus for a given column</p>
+<pre>
+        $col-&gt;pluralConcensus(
+                '-column' =&gt; 1
+        );</pre>
+<p>
+</p>
+<h2><a name="workingalphabetlength">workingAlphabetLength</a></h2>
+<p>returns the total number of unique characters in the input</p>
+<p>
+</p>
+<h2><a name="primerregex">primerRegex</a></h2>
+<p><table cellspacing="0" cellpadding="0"><tr><td>Returns the full primer regex (PERL) for a given columns object.
+<tr><td><td>-reverse_comp = 1 will return the reverse compliment</table></p>
+<p>
+</p>
+<h2><a name="vimregex">vimRegex</a></h2>
+<p>returns a Vim legal regex</p>
+<p>
+</p>
+<h2><a name="regexchar">regexChar</a></h2>
+<p>Returns a regex formated position for a given '-column', A MAJOR KLUDGE WITH LOTS OF REDUNDANCY
+!!! CUTOFFS NOT ENFORCED !!!</p>
+<p>
+</p>
+<h2><a name="table">table</a></h2>
+<p>Generate a text table with various reports.</p>
+<p><a href="#__index__"><small>__top</small></a></p>
+<table border="0" width="100%" cellspacing="0" cellpadding="3">
+<tr><td class="block" valign="middle">
+<big><strong><span class="block">&nbsp;Psy::Matrix::Column</span></strong></big>
+</td></tr>
+</table>
+
+</body>
+
+</html>

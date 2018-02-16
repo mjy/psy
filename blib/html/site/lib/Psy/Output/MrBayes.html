@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Psy::Output::MrBayes</title>
+<link rel="stylesheet" href="../../../..//Active.css" type="text/css" />
+<link rev="made" href="mailto:" />
+</head>
+
+<body>
+<table border="0" width="100%" cellspacing="0" cellpadding="3">
+<tr><td class="block" valign="middle">
+<big><strong><span class="block">&nbsp;Psy::Output::MrBayes</span></strong></big>
+</td></tr>
+</table>
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#psy__output__mrbayes">Psy::Output::MrBayes</a></li>
+	<li><a href="#version">VERSION</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="psy__output__mrbayes">Psy::Output::MrBayes</a></h1>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="version">VERSION</a></h1>
+<p>Version 0.01</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<p>Translation to MrBayes format.</p>
+<p><table cellspacing="0" cellpadding="0"><tr><td>Required parameters
+<tr><td><td>-mx</table></p>
+<p>Optional parameters:</p>
+<pre>
+        
+=cut</pre>
+<p>our $OUT_DIR = ``analyses/mrbayes'';
+our $LEGAL_CHARS =  Psy::Dna::Alphabet-&gt;new();</p>
+<p><table cellspacing="0" cellpadding="0"><tr><td>sub process {
+<tr><td><td>my $self = shift;
+<tr><td><td>my %raw_params = @_;
+<tr><td><td>my %default_params = (
+<tr><td><td># add parameters here;
+<tr><td><td>);</table></p>
+<pre>
+        # requires -mx
+        
+        my %params = (%default_params, %raw_params);</pre>
+<pre>
+        $params{'-legal_alphabet'} ||= $LEGAL_CHARS;</pre>
+<pre>
+        $params{'-path'} ||= $OUT_DIR;
+        
+        $params{'-file_name'} = 'mrbayes.nex' if not defined $params{'-file_name'};
+        $params{'-slice'} ||= $params{'-mx'}-&gt;origSlice;
+        
+        print &quot;PATH: $params{'-path'}/$params{'-file_name'}\n&quot;;
+        
+        # simplify 
+        my $mx = $params{'-mx'};
+        
+        # gather needed data
+        my $data;                                          
+        $data = &amp;output::mxData(%params); # get a basic data object
+                
+        # get the data</pre>
+<pre>
+        print Dumper($data-&gt;{'pairs_in_block'}(9));</pre>
+<pre>
+        
+#       my %formats = ( 
+#               'tnt' =&gt; 'kword_tnt.tt',
+#               'mrbayes' =&gt; 'kword_mrbayes.tt',
+#               'mesquite' =&gt; 'kword_mesquite.tt',
+#               'bare' =&gt; 'kword_bare.tt',
+#       );</pre>
+<pre>
+        
+        my $tt = Template-&gt;new($self-&gt;ttConfig) || die  $Template::ERROR , &quot;\n&quot;; 
+        $tt-&gt;process('mrbayes.tt', $data, &quot;$params{'-path'}/$params{'-file_name'}&quot;) || die $tt-&gt;error(), &quot; died trying to process Kword template\n&quot;; 
+1; # must return true
+}</pre>
+<p>__DATA__
+#Nexus</p>
+<p>BEGIN TAXA;
+	TITLE foo;
+	DIMENSIONS NTAX=[% total_ters %];
+	TAXLABELS
+	[% FOREACH ter = terminals %] [% <code>rowlabel(ter)</code> %] [% END %]
+;</p>
+<p>END;</p>
+<p>BEGIN CHARACTERS;
+	TITLE  Blockmeta_[% c %];
+	DIMENSIONS NCHAR=[% total_chars %];
+	FORMAT DATATYPE = STANDARD GAP = - MISSING = ? SYMBOLS = ``  0 1'';
+CHARSTATELABELS [% SET i = 1 %][% FOREACH blk = trans_blk_loop %][% FOREACH c = <code>blk_chrs(blk)</code> %] 
+	[% i %] blk[% blk %]_[% c %][% SET i = (i+1) %],[% END %][% END %]
+	;
+</p>
+<pre>
+
+        MATRIX
+[% FOREACH ter = terminals %]
+[% justifiedrowlabel(ter) %][% FOREACH blk = trans_blk_loop %][% FOREACH c = blk_chrs(blk) %][% chars(c, ter, blk) %][% END %]  [% END %][% END %]
+;</pre>
+<p>END;
+
+</p>
+<p><a href="#__index__"><small>__top</small></a></p>
+<table border="0" width="100%" cellspacing="0" cellpadding="3">
+<tr><td class="block" valign="middle">
+<big><strong><span class="block">&nbsp;Psy::Output::MrBayes</span></strong></big>
+</td></tr>
+</table>
+
+</body>
+
+</html>

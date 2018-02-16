@@ -1,0 +1,223 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Psy::Graphics::Plot</title>
+<link rel="stylesheet" href="../../../..//Active.css" type="text/css" />
+<link rev="made" href="mailto:" />
+</head>
+
+<body>
+<table border="0" width="100%" cellspacing="0" cellpadding="3">
+<tr><td class="block" valign="middle">
+<big><strong><span class="block">&nbsp;Psy::Graphics::Plot</span></strong></big>
+</td></tr>
+</table>
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#version">VERSION</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<ul>
+
+		<li><a href="#new">new</a></li>
+		<li><a href="#binarybitmap">binaryBitmap</a></li>
+	</ul>
+
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="version">VERSION</a></h1>
+<p>Version 0.01</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<p>Hacks using GD, not  yet integrated  as with other packages</p>
+<p>
+</p>
+<h2><a name="new">new</a></h2>
+<p>Create a new generic plot object.</p>
+<p>
+</p>
+<h2><a name="binarybitmap">binaryBitmap</a></h2>
+<p>Takes a text file matrix composed of 1s and 0s and plots it to a image.  Use with a bare kword output.</p>
+<pre>
+        -infile =&gt; &lt;foo&gt;        the input filename
+        -outfile =&gt; &lt;bar&gt;        the output filename
+        -wordfile =&gt; &lt;undef&gt; a list of the actual kwords, if passed pretty pixelation occurs, must have the same number of lines as columns
+        
+        # note there is now smart path handling yet, see the plot.t file for examples
+        
+        -max_plot_len =&gt; 6000 # the maximum length of the column
+        -y_offset =&gt; 10  # the number of blank pixel lines between horizontal plots
+        
+=cut</pre>
+<p><table cellspacing="0" cellpadding="0"><tr><td>sub binaryBitmap {
+<tr><td><td>my $self = shift;</table></p>
+<pre>
+        my %raw_params = @_;
+        my %default_params = (
+                '-max_plot_len' =&gt; 6000,
+                '-y_offset' =&gt; 10,
+                '-wordfile' =&gt; '',
+        );
+        
+        # open the file to count the lines
+        my $lines = 0;
+        my $cols = 0;
+        
+        open (IN, $raw_params{'-infile'}) || die (&quot;couldn't open the file $raw_params{'-infile'}&quot;); # ERROR HANDLING
+                $lines += tr/\n// while sysread(IN, $_, 2 ** 16);
+                $lines += 1;
+                seek (IN, 0,0); # &quot;rewind&quot; the file
+                $cols = length(&lt;IN&gt;) - 1 ; # length of the first line
+                print &quot;working with matrix of $cols X $lines\n&quot;;
+        close (IN);</pre>
+<pre>
+        my @words;
+        # some word properties fu
+        if ($raw_params{'-wordfile'}) {
+                print &quot;reading wordlist\n&quot;;
+                open (IN, $raw_params{'-wordfile'}) || die (&quot;couldn't open the file $raw_params{'-wordfile'}&quot;); # ERROR HANDLING
+                @words = &lt;IN&gt;;
+                close (IN);
+        }
+        
+        my %params = (%default_params, %raw_params);</pre>
+<pre>
+        my $l = $params{'-max_plot_len'} &gt; $cols ? $cols : $params{'-max_plot_len'} ;  # max length
+        my $h = $lines + $params{'-y_offset'}; # the offset for subsequent columns, should equal to # terminals + # pixels whitespace of gap, if smaller than number of</pre>
+<pre>
+        my $b;
+        
+        my $ly = 0;
+        my $lx = 0;
+        my $y = 0;
+                
+    # create a new image
+        my $im = new GD::Image($l, $lines);</pre>
+<pre>
+        # make the background transparent and interlaced
+        #  $im-&gt;transparent($white);
+    $im-&gt;interlaced('true');</pre>
+<pre>
+        
+    # allocate some colors
+        my $white = $im-&gt;colorAllocate(255,255,255);
+        my $black = $im-&gt;colorAllocate(0,0,0);       
+    my $red = $im-&gt;colorAllocate(160,0,0);      
+    my $blue = $im-&gt;colorAllocate(0,0,160);
+    my $green = $im-&gt;colorAllocate(255,255,255);
+    my $other = $im-&gt;colorAllocate(0,160,160);</pre>
+<pre>
+        my $dark = $im-&gt;colorAllocate(128, 128, 128);
+        my $light = $im-&gt;colorAllocate(255, 255, 255);
+        
+        my %dot_color = ( 'A' =&gt; $dark,
+                        'C' =&gt; $light,
+                        'G' =&gt; $dark,
+                        'U' =&gt; $light);
+        my $c = $white;</pre>
+<pre>
+        
+        open (IN, $params{'-infile'}) || die (&quot;couldn't open the file $params{'-infile'}&quot;); # ERROR HANDLING
+                while (&lt;IN&gt;) {
+                        chomp;
+                        my $line = $_;
+                        $line =~ s/\s//g;
+                        for (my $x = 0; $x &lt; length($line); $x++) {
+                                
+#                               print $x, substr($words[$x],0,1), &quot;\n&quot; if $params{'-wordfile'} ;
+#                               print  $dot_color{substr($words[$x],0,1)} if $params{'-wordfile'};</pre>
+<pre>
+                                my $color;
+                                if ( $params{'-wordfile'} ) {
+                                 #      $c = $dot_color{substr($words[$x],0,1) };
+                                        my $comp = Psy::Strings::Composition-&gt;new('-seqs' =&gt; [($words[$x])]);</pre>
+<pre>
+                                        
+                                        # print &quot;comp:&quot;, $comp-&gt;sumPct('C', 'G'), &quot; &quot;, $words[$x];z
+                                        
+                                        $color = $dot_color{substr($words[$x],0,1)} ;
+                                        
+                                        # $color = int(255 - (192 * ( $comp-&gt;sumPct('A', 'U'))));
+                                        # print &quot; color: $color\n\n&quot;;
+                                        #       print $color,&quot;\n&quot;;
+                                        #       print  $im-&gt;colorAllocate($color, $color, $color);
+                                        #print  &quot;\n&quot;;
+                                        $comp = undef;
+                                }
+                        
+                                $color ||= $white;</pre>
+<pre>
+                                substr($line, $x, 1) == 0 ? $im-&gt;setPixel($lx, ($ly * $h) + $y, $black) : $im-&gt;setPixel($lx, ($ly * $h) + $y ,  $im-&gt;colorAllocate($color, $color, $color)); 
+        
+                                $lx++;  
+        
+                                if ($lx &gt; $l) {
+                                        $lx = 0;
+                                        $ly++;
+                                }
+                        }
+                        
+                        # new line
+                        $y++;
+                        $lx = 0;
+                        $ly = 0;
+                }
+                        
+        close (IN);</pre>
+<pre>
+        
+        open (OUT, &quot;&gt;$params{'-outfile'}&quot;) || die ('blah'); # ERROR HANDLING
+        # make sure we are writing to a binary stream
+    binmode OUT;
+        local (*STDOUT) = *OUT;</pre>
+<pre>
+    # Convert the image to PNG and print it on standard output
+    print OUT $im-&gt;png;
+        close (OUT);
+        
+}</pre>
+<p>1;
+	
+__DATA__
+				if ($y &lt;13) {
+					$c = $green;
+				}
+				elsif ($y &gt; 12 and $y &lt; 52) {
+					$c = $blue;
+				}
+				elsif ($y &gt; 51 and $y &lt; 77) {
+					$c = $red;
+				}
+
+</p>
+<pre>
+                                elsif ($y &gt; 76 and $y &lt; 79) {
+                                 $c = $other;
+                                }
+                                else {
+                                 $c = $white;
+                                }
+
+</pre>
+<p><a href="#__index__"><small>__top</small></a></p>
+<table border="0" width="100%" cellspacing="0" cellpadding="3">
+<tr><td class="block" valign="middle">
+<big><strong><span class="block">&nbsp;Psy::Graphics::Plot</span></strong></big>
+</td></tr>
+</table>
+
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+
+sub out_gde () {
+	my (
+		$input,
+		$slice
+	) = @_;
+	chdir($rootdir);
+	&io_confirmdir("analyses/gde/$input->{Modelroot}");
+
+	open (GDE, ">$input->{Modelroot}.nex") || die "couldn't open nexus file output too in out_rna_translate - \n";
+	
+	local (*STDOUT) = *GDE;
+
+	print GDE "\@\n";
+
+	foreach my $blk ($slice->loop("Blocks")) {
+		print GDE $nbd[$blk][8];			
+	}
+	print "\n";
+	
+	foreach my $tax ($slice->loop("Taxa")) {
+		print GDE "\#$ters{$tax}\n";
+		foreach my $blk ($slice->loop("Blocks")) {
+			print GDE $mx[$tax][$blk][0];
+		}
+		print "\n";
+	}
+	close GDE;
+}
+
+

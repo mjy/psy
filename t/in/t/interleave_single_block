@@ -1,0 +1,73 @@
+#Nexus
+
+
+[this line should be ignored]
+[ so should this
+[test for Fastoneline]
+
+
+matrix
+
+foo     tgATAGTGCAGCTCTAAGTGGGTGGTAAACTCCATCTAAGGCTAaAtATGACCaCGAGACCGAT
+bar     gtgttgcttgatagtgcagctctaagtgggtggtaaactccatctaaggCTAAATATGACCaCG
+stuff   tgaccAcgagaccgatagcgaacaagtaccgtgagggaaagttgaaaagaactttgaagagaga
+taxon0  gtgttgcttgatagtgcagctctaagtgggtggtaaactccaTCTAAGGCTAaATATGACCaCG
+taxon1  agctctaagtgggtggtaaactccatctaagGCtaaatATGACCaCGAGACCGATAGCGAACAA
+taxon2  atagtgcagctctaagtgggtggtaaAcTCcaTCTaAgGCTaAATATGACCACGAGACCGATAG
+taxon3  ATATGACCACGAGACCGATAGCGAaCAAGTACCGTGAGGGAAAGTTGAAAAGAACTTTGAAGAG
+taxon4  gtgttgcttgatagtgcagctntaagtgggtgGtaaactCCATCTaagGCTaAATATGACCACG
+taxon5  tagtgcagctctaagtgggtggtaagctccatctaagGCtaaATATGACCACGAGACCGATAGC
+taxon6  gcagctctaagtgggtggtaaactccatctaaggCTaAATATGACCaCgagaCCGATAGCGAAC
+taxon7  aCGGCTaAtATGaCCaCGAGACCGaTAGcGaACAAGTaCCGtGAGGGaaaGTTGAAAAgAacTt
+taxon8  ----------------------------------------------------------------
+taxon9  gtgttgcttgatagtgcagctctaagtgggtggtaaactccatctaagGCTaAATAtaACCaCG
+taxon10 tagtgcagctctaagtgggtggtaaactccaTcTaAgGCTaaATATGACCaCGAGAccGATAGC
+
+foo     tgATAGTGCAGCTCTAAGTGGGTGGTAAACTCCATCTAAGGCTAaAtATGACCaCGAGACCGAT
+bar     gtgttgcttgatagtgcagctctaagtgggtggtaaactccatctaaggCTAAATATGACCaCG
+stuff   tgaccAcgagaccgatagcgaacaagtaccgtgagggaaagttgaaaagaactttgaagagaga
+taxon0  gtgttgcttgatagtgcagctctaagtgggtggtaaactccaTCTAAGGCTAaATATGACCaCG
+taxon1  agctctaagtgggtggtaaactccatctaagGCtaaatATGACCaCGAGACCGATAGCGAACAA
+taxon2  atagtgcagctctaagtgggtggtaaAcTCcaTCTaAgGCTaAATATGACCACGAGACCGATAG
+taxon3  ATATGACCACGAGACCGATAGCGAaCAAGTACCGTGAGGGAAAGTTGAAAAGAACTTTGAAGAG
+taxon4  gtgttgcttgatagtgcagctntaagtgggtgGtaaactCCATCTaagGCTaAATATGACCACG
+taxon5  tagtgcagctctaagtgggtggtaagctccatctaagGCtaaATATGACCACGAGACCGATAGC
+taxon6  gcagctctaagtgggtggtaaactccatctaaggCTaAATATGACCaCgagaCCGATAGCGAAC
+taxon7  aCGGCTaAtATGaCCaCGAGACCGaTAGcGaACAAGTaCCGtGAGGGaaaGTTGAAAAgAacTt
+taxon8  ----------------------------------------------------------------
+taxon9  gtgttgcttgatagtgcagctctaagtgggtggtaaactccatctaagGCTaAATAtaACCaCG
+taxon10 tagtgcagctctaagtgggtggtaaactccaTcTaAgGCTaaATATGACCaCGAGAccGATAGC
+
+foo     tgATAGTGCAGCTCTAAGTGGGTGGTAAACTCCATCTAAGGCTAaAtATGACCaCGAGACCGAT
+bar     gtgttgcttgatagtgcagctctaagtgggtggtaaactccatctaaggCTAAATATGACCaCG
+stuff   tgaccAcgagaccgatagcgaacaagtaccgtgagggaaagttgaaaagaactttgaagagaga
+taxon0  gtgttgcttgatagtgcagctctaagtgggtggtaaactccaTCTAAGGCTAaATATGACCaCG
+taxon1  agctctaagtgggtggtaaactccatctaagGCtaaatATGACCaCGAGACCGATAGCGAACAA
+taxon2  atagtgcagctctaagtgggtggtaaAcTCcaTCTaAgGCTaAATATGACCACGAGACCGATAG
+taxon3  ATATGACCACGAGACCGATAGCGAaCAAGTACCGTGAGGGAAAGTTGAAAAGAACTTTGAAGAG
+taxon4  gtgttgcttgatagtgcagctntaagtgggtgGtaaactCCATCTaagGCTaAATATGACCACG
+taxon5  tagtgcagctctaagtgggtggtaagctccatctaagGCtaaATATGACCACGAGACCGATAGC
+taxon6  gcagctctaagtgggtggtaaactccatctaaggCTaAATATGACCaCgagaCCGATAGCGAAC
+taxon7  aCGGCTaAtATGaCCaCGAGACCGaTAGcGaACAAGTaCCGtGAGGGaaaGTTGAAAAgAacTt
+taxon8  ----------------------------------------------------------------
+taxon9  gtgttgcttgatagtgcagctctaagtgggtggtaaactccatctaagGCTaAATAtaACCaCG
+taxon10 tagtgcagctctaagtgggtggtaaactccaTcTaAgGCTaaATATGACCaCGAGAccGATAGC
+
+foo     tgATAGTGCAGCTCTAAGTGGGTGGTAAACTCCATCTAAGGCTAaAtATGACCaCGAGACCGAT
+bar     gtgttgcttgatagtgcagctctaagtgggtggtaaactccatctaaggCTAAATATGACCaCG
+stuff   tgaccAcgagaccgatagcgaacaagtaccgtgagggaaagttgaaaagaactttgaagagaga
+taxon0  gtgttgcttgatagtgcagctctaagtgggtggtaaactccaTCTAAGGCTAaATATGACCaCG
+taxon1  agctctaagtgggtggtaaactccatctaagGCtaaatATGACCaCGAGACCGATAGCGAACAA
+taxon2  atagtgcagctctaagtgggtggtaaAcTCcaTCTaAgGCTaAATATGACCACGAGACCGATAG
+taxon3  ATATGACCACGAGACCGATAGCGAaCAAGTACCGTGAGGGAAAGTTGAAAAGAACTTTGAAGAG
+taxon4  gtgttgcttgatagtgcagctntaagtgggtgGtaaactCCATCTaagGCTaAATATGACCACG
+taxon5  tagtgcagctctaagtgggtggtaagctccatctaagGCtaaATATGACCACGAGACCGATAGC
+taxon6  gcagctctaagtgggtggtaaactccatctaaggCTaAATATGACCaCgagaCCGATAGCGAAC
+taxon7  aCGGCTaAtATGaCCaCGAGACCGaTAGcGaACAAGTaCCGtGAGGGaaaGTTGAAAAgAacTt
+taxon8  ----------------------------------------------------------------
+taxon9  gtgttgcttgatagtgcagctctaagtgggtggtaaactccatctaagGCTaAATAtaACCaCG
+taxon10 tagtgcagctctaagtgggtggtaaactccaTcTaAgGCTaaATATGACCaCGAGAccGATAGC
+
+;
+end;
+

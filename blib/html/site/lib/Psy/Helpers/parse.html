@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Psy::Helpers::parse</title>
+<link rel="stylesheet" href="../../../..//Active.css" type="text/css" />
+<link rev="made" href="mailto:" />
+</head>
+
+<body>
+<table border="0" width="100%" cellspacing="0" cellpadding="3">
+<tr><td class="block" valign="middle">
+<big><strong><span class="block">&nbsp;Psy::Helpers::parse</span></strong></big>
+</td></tr>
+</table>
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#version">VERSION</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<li><a href="#postsp">postsp</a></li>
+	<ul>
+
+		<li><a href="#extracttomx">extractToMx</a></li>
+	</ul>
+
+	<li><a href="#sp">sp</a></li>
+	<ul>
+
+		<li><a href="#loaddir">loadDir</a></li>
+		<li><a href="#readseq">readSeq</a></li>
+		<li><a href="#concensus">concensus</a></li>
+		<li><a href="#concensuscue">concensusCue</a></li>
+		<li><a href="#aestr">aeStr</a></li>
+		<li><a href="#align">align</a></li>
+		<li><a href="#pair">pair</a></li>
+		<li><a href="#____accessor_methods____">### accessor methods ###</a></li>
+		<li><a href="#match">match</a></li>
+		<li><a href="#sample_pair">sample_pair</a></li>
+		<li><a href="#_pair_letter">_pair_letter</a></li>
+		<li><a href="#primer">primer</a></li>
+		<li><a href="#threeprime">threePrime</a></li>
+		<li><a href="#voucher_code">voucher_code</a></li>
+		<li><a href="#seq">seq</a></li>
+	</ul>
+
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>Raw seq parser</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="version">VERSION</a></h1>
+<p>Version 0.02</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<p>Prolly not for public consumption.</p>
+<p>Code to recursively parse a directory of .seq files and return some a file of nicely formatted concensus data that can be manually edited, then extracted.
+Makes *a lot* of assumptions about how the seq files are named, but the general pattern is:
+letter##_code.primer_lane.file_ending (e.g. g02_mjy234.D2_01.seq).</p>
+<p>You must include your primer pairs in DATA (bottom of this file), they are used in matches and can be abused to limit the output generated.</p>
+<p>In its simplest form just do this:</p>
+<pre>
+        use sp;
+        my $foo = sp-&gt;new('-dir' =&gt; '.');
+        $foo-&gt;dumpAll;
+        
+After editing your output this returns a fasta formatted version of the data:
+        
+        use postsp;
+        &amp;postsp::extractToMx('out4.text');</pre>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="postsp">postsp</a></h1>
+<p>Post processing of sp output</p>
+<p>
+</p>
+<h2><a name="extracttomx">extractToMx</a></h2>
+<p>A hack to generate a table that is easily mappable to import to mx.  The primer hash values are gene_ids.</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="sp">sp</a></h1>
+<p>sp (sequence parser), for rapid pre-editing formatting of .seq files</p>
+<p>
+</p>
+<h2><a name="loaddir">loadDir</a></h2>
+<p>Loads (recursively) the seq files.</p>
+<p>
+</p>
+<h2><a name="readseq">readSeq</a></h2>
+<p>Reads an individual sequence</p>
+<p>## change this to the electropherogram once BioPerl-ext installs correctly</p>
+<p>
+</p>
+<h2><a name="concensus">concensus</a></h2>
+<p>Returns a concensus sequence
+- assumes str1 and str2 are equal lenght
+- for columns opposite whitespace concensus returns lower case
+- for non-matching columns ``N'' is entered
+- otherwise the concensus letter is entered
+</p>
+<pre>
+
+=cut</pre>
+<p><table cellspacing="0" cellpadding="0"><tr><td>sub concensus {
+<tr><td><td>my ($str1, $str2) = @_;
+<tr><td><td>(length ($str1) != length $str2) &amp;&amp; return undef; # leave as is
+<tr><td><td>my $str;</table></p>
+<pre>
+        for (my $p=0; $p &lt; length $str1; $p ++) {
+                $str1 =~  /.{$p}(.)/;
+                my $l1 = $1 ;
+                $str2 =~  /.{$p}(.)/;
+                my $l2 = $1;
+                
+                if ($l1 eq $l2) { $str .= uc($l1) }
+                elsif ($l1 eq ' ') {$str .= lc($l2) }
+                elsif ($l2 eq ' ') {$str .= lc($l1) }
+                else {$str .= 'N'};
+        }
+        return $str;
+}</pre>
+<p>
+</p>
+<h2><a name="concensuscue">concensusCue</a></h2>
+<p>Symbolizes a concensus string for easier visual-reference</p>
+<p>
+</p>
+<h2><a name="aestr">aeStr</a></h2>
+<p>Align and equalize string: adds space offset (calc offset with &amp;align) to begining of string 1, then caps then end of the then longer string with space so that both are equal length</p>
+<p>
+</p>
+<h2><a name="align">align</a></h2>
+<p>A simple very rough ``alignment'' algorithm for near identical sequences of large length (e.g. forward and backwards reads). Returns the offest of seq1 to seq2; no gaps are inserted</p>
+<p>
+</p>
+<h2><a name="pair">pair</a></h2>
+<p>Pairs a forward and reverse sequence by elements of their filenames AND the &lt;DATA&gt; that describes primer pairs</p>
+<p>
+</p>
+<h2><a name="____accessor_methods____">### accessor methods ###</a></h2>
+<p>
+</p>
+<h2><a name="match">match</a></h2>
+<p>The match string, like 'MY154'</p>
+<p>
+</p>
+<h2><a name="sample_pair">sample_pair</a></h2>
+<p>like 'A', 'B' etc.</p>
+<p>
+</p>
+<h2><a name="_pair_letter">_pair_letter</a></h2>
+<p>Used to match. NO LONGER USED.</p>
+<p>Assume its all nice ascii- this might not ultimately be the case (A/H wrapping).</p>
+<p>
+</p>
+<h2><a name="primer">primer</a></h2>
+<p>Primer for a seq</p>
+<p>
+</p>
+<h2><a name="threeprime">threePrime</a></h2>
+<p>Accessor for the 3' for a 5'-3' primer pair, as read from &lt;DATA&gt;.</p>
+<p>
+</p>
+<h2><a name="voucher_code">voucher_code</a></h2>
+<p>Voucher code</p>
+<p>
+</p>
+<h2><a name="seq">seq</a></h2>
+<p>Seq (nucleotides)</p>
+<p><a href="#__index__"><small>__top</small></a></p>
+<table border="0" width="100%" cellspacing="0" cellpadding="3">
+<tr><td class="block" valign="middle">
+<big><strong><span class="block">&nbsp;Psy::Helpers::parse</span></strong></big>
+</td></tr>
+</table>
+
+</body>
+
+</html>

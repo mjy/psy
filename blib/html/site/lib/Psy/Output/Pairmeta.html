@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Psy::Output::Pairmeta</title>
+<link rel="stylesheet" href="../../../..//Active.css" type="text/css" />
+<link rev="made" href="mailto:" />
+</head>
+
+<body>
+<table border="0" width="100%" cellspacing="0" cellpadding="3">
+<tr><td class="block" valign="middle">
+<big><strong><span class="block">&nbsp;Psy::Output::Pairmeta</span></strong></big>
+</td></tr>
+</table>
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#version">VERSION</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>Psy::Output::Pairmeta</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="version">VERSION</a></h1>
+<p>Version 0.01</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<p>Output subclass for a Psy object.  
+Referenced externally only.
+Inherited via AUTOLOAD through Psy::Output::Output, see therein for general usage.</p>
+<p><table cellspacing="0" cellpadding="0"><tr><td>Required parameters
+<tr><td><td>-mx</table></p>
+<p><table cellspacing="0" cellpadding="0"><tr><td>Optional parameters
+<tr><td><td>'-out_format' =&gt; &lt; {table} | ccode | nexus_weights &gt;
+<tr><td><td>'-chars' =&gt; &lt; [<td>mi cramersV chi2 chi2Sig ] &gt;
+</table></p>
+<pre>
+
+=cut</pre>
+<p>our $OUT_DIR = ``analyses/pairmeta'';
+our $LEGAL_CHARS =  Psy::Dna::Alphabet-&gt;new(); # defaults to the RNA alphabet</p>
+<p><table cellspacing="0" cellpadding="0"><tr><td>sub process {
+<tr><td><td>my $self = shift;
+<tr><td><td>my %raw_params = @_;
+<tr><td><td>my %default_params = (
+<tr><td><td>'-strip_gaps' =&gt; 1,
+<tr><td><td>'-legal_alphabet' =&gt; $LEGAL_CHARS,
+<tr><td><td>'-u2t' =&gt; 1, <td># translate U to T?
+<tr><td><td>'-clean' =&gt; 1, <td># translate non legal_alphabet chars to N 
+<tr><td><td>'-replace' =&gt; 'N',  <td>## should go with the alphabet object ultimately
+<tr><td><td>'-out_format' =&gt; 'table'
+<tr><td><td>);
+</table></p>
+<pre>
+
+        my %params = (%default_params, %raw_params);</pre>
+<pre>
+        $params{'-slice'} ||= $params{'-mx'}-&gt;origSlice;
+        
+        my $path = $OUT_DIR;
+        $params{'-file_name'} = &quot;pairmeta_$params{'-out_format'}.txt&quot; if not defined $params{'-file_name'};</pre>
+<pre>
+        print &quot;PATH: $path/$params{'-file_name'}\n&quot;;</pre>
+<pre>
+        # simplify 
+        my $mx = $params{'-mx'};
+        
+        # a ordered list (could use an ordered hash module ultimately
+        my @chars = qw/
+                mi
+                cramersV
+                chi2
+                chi2Sig 
+        /;</pre>
+<pre>
+        $params{'-chars'} ||= \@chars;
+                
+        # gather needed data (used sparingly in Blkmeta, but used)
+        my $data;                                          
+        $data = &amp;output::mxData(%params); # get a basic data object</pre>
+<p>#	$data-&gt;{cell} = sub { my ($y, $x) = @_; return $data-&gt;{mx}-&gt;{$y}-&gt;{$x} };</p>
+<pre>
+        my $cols = sub {
+                my ($p, $blk) = @_;
+                my @cols = $mx-&gt;origStructure-&gt;pairPos('-pos' =&gt; $p, '-blk' =&gt; $blk, '-mx' =&gt; $mx);
+                my $l = $mx-&gt;column('-col' =&gt; $cols[0]);
+                my $r = $mx-&gt;column('-col' =&gt; $cols[1]);
+                
+                return ($l, $r);
+        };</pre>
+<pre>
+        # you can loop by character or by block
+        $data-&gt;{char_loop} = $params{'-chars'};</pre>
+<pre>
+        # everything in place, just need to map characters to the function that returns their value
+        # maps characters to subs,  $_[0] is a composition object loaded with the pertinent seq data, &amp;f2d is just sprintf to 2 decimals
+        
+        # kludge but fast
+        my %char_subs;
+        if ( $params{'-out_format'} eq 'ccode' ) { # note that you can't have a weight of zero, you need to deactivate
+                 %char_subs = (
+                        'mi' =&gt; sub { my $s = $_[0]-&gt;mi; $s == 0 ? '] ' : sprintf(&quot;%.0f&quot;, 100 * $s) },  
+                        'chi2' =&gt; sub {   $_[0]-&gt;chi2 },
+                        'chi2Sig' =&gt; sub { my $s = $_[0]-&gt;chi2Sig; $s == 0 ? '] ' : $s }, # need to deactivate zero characters here
+                        'cramersV' =&gt; sub { my $s = $_[0]-&gt;cramersV; $s == 0 ? '] ' : sprintf(&quot;%.0f&quot;, 100 * $s) }
+                );
+        }
+        else {
+                 %char_subs = (
+                        'mi' =&gt; sub { &amp;f2d($_[0]-&gt;mi) },        
+                        'chi2' =&gt; sub { &amp;f2d($_[0]-&gt;chi2) },
+                        'chi2Sig' =&gt; sub { $_[0]-&gt;chi2Sig },
+                        'cramersV' =&gt; sub { &amp;f2d($_[0]-&gt;cramersV) }
+                );
+        }</pre>
+<pre>
+        my $alphabet = Psy::Dna::Alphabet-&gt;new('-type' =&gt; 'rna');
+        $alphabet-&gt;excluded('-');</pre>
+<pre>
+        # add character references to our template data
+        $data-&gt;{'chars'} = sub {
+                my ($chr, $pair, $blk) = @_;
+                my $sp = Psy::Analysis::Seqpair-&gt;new( &amp;{$cols}($pair, $blk)); 
+                return $char_subs{$chr}($sp) # return the composition method specific to the character in question
+        };
+        
+        $data-&gt;{blockmeta_ver} = $VERSION;</pre>
+<p><table cellspacing="0" cellpadding="0"><tr><td>#<td>if (($params{'-out_format'} eq 'mesquite_chr_by_blk') || ($params{'-out_format'} eq 'tnt') ) {
+<tr><td>#<td>$data-&gt;{nchar_meta} = ($#{$data-&gt;{char_loop}} + 1) * ($#t_blks +1); 
+<tr><td>##<td>}<td>
+<tr><td>#<td>elsif ( $params{'-out_format'} eq 'mesquite_blk_by_chr' ) {
+<tr><td>#<td>$data-&gt;{nchar_meta} = $#t_blks +1; 
+<tr><td>#<td>}
+<tr><td><td>#
+<tr><td>#<td>$data-&gt;{nchar_nuc} = 0;
+<tr><td>#<td>map { $data-&gt;{nchar_nuc} += length $data-&gt;{mx}-&gt;{0}-&gt;{$_} } @ut_blks;
+<tr><td>#<td>
+<tr><td>#<td>($params{'-out_format'} eq 'tnt') &amp;&amp; ($data-&gt;{nchar_total} = $data-&gt;{nchar_nuc} + $data-&gt;{nchar_meta});</table></p>
+<pre>
+        my %formats = ( 
+                'table' =&gt; 'pairmeta_table.tt',
+                'ccode' =&gt; 'pairmeta_ccode.tt',
+                'nexus_weights' =&gt; 'pairmeta_nexus_weights.tt' 
+        );</pre>
+<p><table cellspacing="0" cellpadding="0"><tr><td>#$formats{$params{'-out_format'}},<td>
+<tr><td><td>my $tt = Template-&gt;new($self-&gt;ttConfig); 
+<tr><td><td>$tt-&gt;process($formats{$params{'-out_format'}}, $data, ``$path/$params{'-file_name'}'') || die  ``died trying to process a blockmetanex template.'', die $tt-&gt;error(); 
+<tr><td><td>1;
+<tr><td>}</table></p>
+<p># the actual output is not DATA but found in the /template directory, DATA is used as a testbed</p>
+<p>__DATA__
+Pair meta data via Psy.
+columns: [% FOREACH c = char_loop %] [% c %] [% END %]
+
+</p>
+<p>[% FOREACH blk = helices %]
+	block [% blk %]
+	[% FOREACH pair = <code>pairs_in_block(blk)</code> %][% pair %] [% FOREACH c = char_loop %][% chars(c, pair, blk) %] [% END %]
+	[% END %]
+[% END %] 
+	
+
+</p>
+<p><a href="#__index__"><small>__top</small></a></p>
+<table border="0" width="100%" cellspacing="0" cellpadding="3">
+<tr><td class="block" valign="middle">
+<big><strong><span class="block">&nbsp;Psy::Output::Pairmeta</span></strong></big>
+</td></tr>
+</table>
+
+</body>
+
+</html>

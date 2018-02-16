@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Psy::Output::Wrapper</title>
+<link rel="stylesheet" href="../../../..//Active.css" type="text/css" />
+<link rev="made" href="mailto:" />
+</head>
+
+<body>
+<table border="0" width="100%" cellspacing="0" cellpadding="3">
+<tr><td class="block" valign="middle">
+<big><strong><span class="block">&nbsp;Psy::Output::Wrapper</span></strong></big>
+</td></tr>
+</table>
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#version">VERSION</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>Psy::Output::Wrapper</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="version">VERSION</a></h1>
+<p>Version 0.01</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<p>NOT PRESENTLY USED ANYWHERE</p>
+<p>Referenced internaly only. Used to wrap text output with. 
+</p>
+<pre>
+
+=cut</pre>
+<p><table cellspacing="0" cellpadding="0"><tr><td>sub new {
+<tr><td><td>my $type = shift;
+<tr><td><td>my %params = @_;<td>
+<tr><td>  <td>my $self = {};
+</table></p>
+<pre>
+
+        bless $self, $type;</pre>
+<pre>
+        $self-&gt;_init;</pre>
+<pre>
+        #print &quot;\n[&quot;, ref ($self) ,&quot;]\n&quot;;;
+    return $self;                 
+}</pre>
+<p><table cellspacing="0" cellpadding="0"><tr><td>sub _init {
+<tr><td><td>my $self = shift;
+<tr><td><td>$self-&gt;{'row'}-&gt;{'pre'} = ``'';
+<tr><td><td>$self-&gt;{'row'}-&gt;{'post'} = ``'';
+<tr><td><td>$self-&gt;{'taxa'}-&gt;{'pre'} = ``'';
+<tr><td><td>$self-&gt;{'taxa'}-&gt;{'post'} = ``'';
+<tr><td><td>$self-&gt;{'block'}-&gt;{'pre'} = ``'';
+<tr><td><td>$self-&gt;{'block'}-&gt;{'post'} = ``'';
+<tr><td><td>$self-&gt;{'bracketed_block'}-&gt;{'pre'} = ``'';
+<tr><td><td>$self-&gt;{'bracketed_block'}-&gt;{'post'} = ``'';</table></p>
+<pre>
+        return 1;
+}</pre>
+<p><table cellspacing="0" cellpadding="0"><tr><td>sub row {
+<tr><td><td>my $self = shift;
+<tr><td><td>croak 'no position passed' if not (@_);
+<tr><td><td>my $pos = shift;
+<tr><td><td>if (@_) { $self-&gt;{row}-&gt;{$pos} = shift; }</table></p>
+<pre>
+        return $self-&gt;{row}-&gt;{$pos};
+}</pre>
+<p><table cellspacing="0" cellpadding="0"><tr><td>sub taxa {
+<tr><td><td>my $self = shift;
+<tr><td><td>croak 'no position passed' if not (@_);
+<tr><td><td>my $pos = shift;
+<tr><td><td>if (@_) { $self-&gt;{taxa}-&gt;{$pos} = shift; }</table></p>
+<pre>
+        return $self-&gt;{taxa}-&gt;{$pos};
+}</pre>
+<p><table cellspacing="0" cellpadding="0"><tr><td>sub block {
+<tr><td><td>my $self = shift;
+<tr><td><td>croak 'no position passed' if not (@_);
+<tr><td><td>my $pos = shift;
+<tr><td><td>if (@_) { $self-&gt;{block}-&gt;{$pos} = shift; }</table></p>
+<pre>
+        return $self-&gt;{block}-&gt;{$pos};
+}</pre>
+<p><table cellspacing="0" cellpadding="0"><tr><td>sub bracket_block {
+<tr><td><td>my $self = shift;
+<tr><td><td>croak 'no position passed' if not (@_);
+<tr><td><td>my $pos = shift;
+<tr><td><td>if (@_) { $self-&gt;{bracketed_block}-&gt;{$pos} = shift; }</table></p>
+<pre>
+        return $self-&gt;{bracketed_block}-&gt;{$pos};
+}</pre>
+<p>1;
+
+</p>
+<p>__END__
+</p>
+<p><a href="#__index__"><small>__top</small></a></p>
+<table border="0" width="100%" cellspacing="0" cellpadding="3">
+<tr><td class="block" valign="middle">
+<big><strong><span class="block">&nbsp;Psy::Output::Wrapper</span></strong></big>
+</td></tr>
+</table>
+
+</body>
+
+</html>

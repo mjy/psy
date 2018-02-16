@@ -1,0 +1,17 @@
+nstates dna;
+xread
+'
+	some version bit here
+	Generated for blocks:  0  3  4  5  7  8  9 
+'
+43 9
+aus                             CC-G-UU--GCGCGAUGCU-GGCACACCCC-GCUU--CGGCGG
+bus                             AC-G-AU--GAGUGAUGCC-GGCACGCAAC-GCGU--UGUUGU
+long_name_taxon_1               GC-G-AG--GAGCGAUGUU-GGCACGCGGC-GCCU--CGUCGU
+AF379936_Basalys_not_really     GC-G-CG--GCGCGAUGUC-GGCACGCGGC-GCCG--CGUCGU
+Diphoropria_not_really_AF379937 GU-G-CG--GCGGGAUGCC-GACACUCGGU-GCUG--CAUCAU
+taxon1                          GU-G-CG--GCGCGAUGUC-GGCACGCGGU-GCCG--CAUCAU
+taxon2                          GU-A-CG--UCGCGAUGUC--ACGCUCGGU-AACG--CGUCGU
+taxon3                          GU-G-CG--GCGCGAUGUCCGGCACGCGGU-GCCG--UAUUAU
+taxon4                          GU-A-CG--GCGCGAUGUCAGGCACGCGGU-ACCG--UAUUAU
+;

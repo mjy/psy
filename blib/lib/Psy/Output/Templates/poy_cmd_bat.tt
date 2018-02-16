@@ -1,0 +1,64 @@
+
+
+	*STDOUT = *POUTMAIN;
+	# MANDITORY command line flags
+	print POUTMAIN " -terminalsfile data/$fileroot\_terminals";
+	
+	#OPTIONAL command line flags
+	print POUTMAIN " -seed 123"; 
+
+	#OPTIONAL likelihood settings
+	#print POUTMAIN " -likelihood";
+	# -qmatrix filename
+	
+	#OPTIONAL slop commands (15 = .015% > length) - in general "slop" by itself slows down things *alot*, use checkslop or ratchetslop!
+	print POUTMAIN " -checkslop 10";  # Setting -checkslop values high compared to the other slop values increases the relative effort to find shorter trees to final refinement. This is often an efficient search strategy."
+	
+	#OPTIONAL rooting flags
+	print POUTMAIN " -topooutgroup $ters{0}";
+
+	#OPTIONAL search flags
+	print POUTMAIN " -replicates 2 -nooneasis -buildsperreplicate 50 -tbr -spr -maxtrees 10";
+	print POUTMAIN " -drifttbr -numdrifttbr 1 -treefusespr -treefusetbr -fusingrounds 1 -ratchettbr 1";
+	# -fuselimit -fusemaxtrees -fusemingroup -fusingrounds -treefusespr -treefusetbr
+	# -drifttbr -driftspr -driftlengthbase n [2] -driftequallaccept n [50] 
+	
+	#OPTIONAL step flags
+	print POUTMAIN " -molecularmatrix g1tv1ts1.txt"; 
+	# -gap 2 -extensiongap -noleading
+	
+	#OPTIONAL output flags - WARNING - UNDERSCORES IN THESE PARAMETERS ARE NOT GOOD!
+	print POUTMAIN " -characterweights -printtree -plotwidth 100 -poytreefile $input->{Modelroot}.poytreefile.txt -poybintreefile $fileroot.poybintree.txt"; #DEBUG
+	print POUTMAIN " -plotechocommandline -phastwincladfile winclad.out";
+
+	#OPTIONAL topologies (paste from the poy topologie output is easiest)
+	#print POUTMAIN " -topofile";
+	#print POUTMAIN " poytree.txt";
+	#print POUTMAIN ' "(ApismeO000 (((((((CephalO001 LonchoO002) Agrypo003) (((Ateleu004 Lusius1010) Ephial005) (((Ishnoc007 Odonto011) (Labena008 Poecil1012)) Leptob009))) Xantho013) ((((((((BentonB014 PhanerB024) UrosigB029) ((BraunsB015 LysiphB020) MasonaB021)) ((ElasmoB016 RhopalB025) MesostB023)) (JarramB019 SyntomB027)) ThoracB028) (((EphedrB017 XiphozB031) SchizoB026) HomoloB018)) UsurohB030)) MegaloB022) Hybriz006))[3382];"';
+	# ??? redirecting output doesn't work now ??? don't know why
+	#print POUTMAIN " \> $modelroot.txt 2> stderr.error ";
+	
+	print "\n";
+
+	#-quick [quick -noquick]: (steepest descent)
+	
+	#-bremer
+	#-build
+	#-diagnose
+	#-topology
+
+	#-characterweights
+	#-discrepancies
+	#-impliedalignment
+	#-impliedalignment
+	#-indices
+	#-intermediate
+	#-repintermediate
+	#-stats
+	#-time
+	#-verbose
+	
+	# -molecularmatrix g1tv2ts1.txt 
+	# -multibuild 10 -random 100 8 -molecularmatrix g1tv1ts1.txt -tbr -tbrmaxtrees 15 -slop 5 -checkslop 5 -random 2
+	# -molecularmatrix g1tv1ts1.txt -tbr -tbrmaxtrees 15
+	

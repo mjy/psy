@@ -1,0 +1,87 @@
+' Pairmeta data via Psy. '
+' a ccode weighting scheme to be used in conjuntion with pairedparsimony code '
+
+ccode /[+.; 'resets the characters to unweighted'
+
+
+'use only 1 of the following sets!!'
+
+set: mi
+
+ccode /50 0; 
+ccode /59 1; 
+ccode /2 2; 
+ccode /92 3; 
+ccode /54 4; 
+ccode /50 5;  
+ccode /30 6; 
+ccode /]  7; 
+ccode /33 8; 
+ccode /]  9; 
+ccode /]  10; 
+ccode /]  11; 
+ccode /2 12; 
+ccode /4 13;  
+ccode /50 14; 
+ccode /59 15; 
+ccode /2 16;  
+
+set: cramersV
+
+ccode /]  0; 
+ccode /34 1; 
+ccode /]  2; 
+ccode /]  3; 
+ccode /58 4; 
+ccode /58 5;  
+ccode /47 6; 
+ccode /]  7; 
+ccode /10 8; 
+ccode /]  9; 
+ccode /]  10; 
+ccode /]  11; 
+ccode /10 12; 
+ccode /10 13;  
+ccode /]  14; 
+ccode /34 15; 
+ccode /]  16;  
+
+set: chi2
+
+ccode /0 0; 
+ccode /3.2 1; 
+ccode /0 2; 
+ccode /0 3; 
+ccode /6.10714285714286 4; 
+ccode /9 5;  
+ccode /4.04081632653061 6; 
+ccode /0 7; 
+ccode /0.285714285714286 8; 
+ccode /0 9; 
+ccode /0 10; 
+ccode /0 11; 
+ccode /0.25 12; 
+ccode /0.285714285714286 13;  
+ccode /0 14; 
+ccode /3.2 15; 
+ccode /0 16;  
+
+set: chi2Sig
+
+ccode /]  0; 
+ccode /]  1; 
+ccode /]  2; 
+ccode /]  3; 
+ccode /]  4; 
+ccode /]  5;  
+ccode /]  6; 
+ccode /]  7; 
+ccode /]  8; 
+ccode /]  9; 
+ccode /]  10; 
+ccode /]  11; 
+ccode /]  12; 
+ccode /]  13;  
+ccode /]  14; 
+ccode /]  15; 
+ccode /]  16;

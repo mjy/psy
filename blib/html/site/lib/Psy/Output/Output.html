@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Psy::Output::Output</title>
+<link rel="stylesheet" href="../../../..//Active.css" type="text/css" />
+<link rev="made" href="mailto:" />
+</head>
+
+<body>
+<table border="0" width="100%" cellspacing="0" cellpadding="3">
+<tr><td class="block" valign="middle">
+<big><strong><span class="block">&nbsp;Psy::Output::Output</span></strong></big>
+</td></tr>
+</table>
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#version">VERSION</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<ul>
+
+		<li><a href="#_init">_init</a></li>
+		<li><a href="#autoload">AUTOLOAD</a></li>
+		<li><a href="#ttconfig">ttConfig</a></li>
+		<li><a href="#basepath">basePath</a></li>
+		<li><a href="#matrix">matrix</a></li>
+		<li><a href="#mxdata">mxData</a></li>
+	</ul>
+
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>Psy::Output::Phase</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="version">VERSION</a></h1>
+<p>Version 0.01</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<p>Base class for Psy output</p>
+<p>
+</p>
+<h2><a name="_init">_init</a></h2>
+<p>Called internally only.  Does several things, primarily setting paths up and providing default parameters for Template::Toolkit output.</p>
+<p>
+</p>
+<h2><a name="autoload">AUTOLOAD</a></h2>
+<p>Used to allow for different calls on an output object, each of which refers to a seperate module in Output::</p>
+<p>Example</p>
+<pre>
+        my $o = output-&gt;new;
+        $o-&gt;Poy( ... );
+        $o-&gt;Nexus( ... );</pre>
+<p>Since no 'Poy' or 'Nexus' methods exists AUTOLOAD is called, the module is loaded, and the function 'process' in that module is called.</p>
+<p>
+</p>
+<h2><a name="ttconfig">ttConfig</a></h2>
+<p>Accessor for the default Template::Toolkit configuration hash</p>
+<p>
+</p>
+<h2><a name="basepath">basePath</a></h2>
+<p>Accessor for the base path</p>
+<p>
+</p>
+<h2><a name="matrix">matrix</a></h2>
+<p>Base method for rendering a matrix.  Not used at present.</p>
+<p>
+</p>
+<h2><a name="mxdata">mxData</a></h2>
+<p>Collect a large number of references to subs etc. in one place, the returned hash is used in many Output modules, tweak with caution.</p>
+<p><a href="#__index__"><small>__top</small></a></p>
+<table border="0" width="100%" cellspacing="0" cellpadding="3">
+<tr><td class="block" valign="middle">
+<big><strong><span class="block">&nbsp;Psy::Output::Output</span></strong></big>
+</td></tr>
+</table>
+
+</body>
+
+</html>

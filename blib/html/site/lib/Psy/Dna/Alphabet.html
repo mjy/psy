@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Psy::Dna::Alphabet - The great new Psy::Dna::Alphabet!</title>
+<link rel="stylesheet" href="../../../..//Active.css" type="text/css" />
+<link rev="made" href="mailto:" />
+</head>
+
+<body>
+<table border="0" width="100%" cellspacing="0" cellpadding="3">
+<tr><td class="block" valign="middle">
+<big><strong><span class="block">&nbsp;Psy::Dna::Alphabet - The great new Psy::Dna::Alphabet!</span></strong></big>
+</td></tr>
+</table>
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#version">VERSION</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<ul>
+
+		<li><a href="#new">new</a></li>
+		<li><a href="#type">type</a></li>
+		<li><a href="#alphabet">alphabet</a></li>
+		<li><a href="#strok">strOk</a></li>
+		<li><a href="#in">in</a></li>
+		<li><a href="#inex">inEx</a></li>
+		<li><a href="#alphabetlength">alphabetLength</a></li>
+		<li><a href="#excluded">excluded</a></li>
+		<li><a href="#add">add</a></li>
+		<li><a href="#remove">remove</a></li>
+		<li><a href="#addexclude">addExclude</a></li>
+		<li><a href="#removeexclude">removeExclude</a></li>
+		<li><a href="#possiblebps">possibleBPs</a></li>
+		<li><a href="#clean">clean</a></li>
+	</ul>
+
+	<li><a href="#bugs">BUGS</a></li>
+	<li><a href="#acknowledgements">ACKNOWLEDGEMENTS</a></li>
+	<li><a href="#copyright___license">COPYRIGHT &amp; LICENSE</a></li>
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>Psy::Dna::Alphabet - The great new Psy::Dna::Alphabet!</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="version">VERSION</a></h1>
+<p>Version 0.01</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<p>Quick summary of what the module does.</p>
+<p>Perhaps a little code snippet.</p>
+<pre>
+    use Psy::Dna::Alphabet;</pre>
+<pre>
+    my $foo = Psy::Dna::Alphabet-&gt;new(
+                                                                                '-type' =&gt; 'custom',
+                                                                                '-alphabet' =&gt; 'ACGT');</pre>
+<pre>
+        Valid types:    
+        -type  (valid: dna, rna, iupac, custom)
+                                                                                
+        Valid params for type custom:
+        -alphabet (string)
+        -excluded (string)
+        
+=cut</pre>
+<p>
+</p>
+<h2><a name="new">new</a></h2>
+<p>return/reset the alphabet (included)</p>
+<p>
+</p>
+<h2><a name="type">type</a></h2>
+<p>Accessor for alphabet type.</p>
+<p>
+</p>
+<h2><a name="alphabet">alphabet</a></h2>
+<p>return/reset the alphabet (included)</p>
+<p>
+</p>
+<h2><a name="strok">strOk</a></h2>
+<p>Returns true if the string passed in is composed only of 'in' characters</p>
+<p>
+</p>
+<h2><a name="in">in</a></h2>
+<p>Returns true unless $l is not found in alphabet (included).</p>
+<p>
+</p>
+<h2><a name="inex">inEx</a></h2>
+<p>Returns true unless $l is not found in excluded alphabet.</p>
+<p>
+</p>
+<h2><a name="alphabetlength">alphabetLength</a></h2>
+<p>Returns length of alphabet (included)</p>
+<p>
+</p>
+<h2><a name="excluded">excluded</a></h2>
+<p>Return/reset explicitly excluded characters.  Returns a reference to an array.</p>
+<p>
+</p>
+<h2><a name="add">add</a></h2>
+<p>Add a <code>char(class)</code> to the alphabet</p>
+<p>
+</p>
+<h2><a name="remove">remove</a></h2>
+<p>Remove a <code>char(class)</code> from the alphabet</p>
+<p>
+</p>
+<h2><a name="addexclude">addExclude</a></h2>
+<p>Add a <code>char(class)</code> to the explictily excluded characters</p>
+<p>
+</p>
+<h2><a name="removeexclude">removeExclude</a></h2>
+<p>Add a <code>char(class)</code> to the explicitly excluded characters</p>
+<p>
+</p>
+<h2><a name="possiblebps">possibleBPs</a></h2>
+<p>Returns all legal BPs, with -o flag included all BPs including 'o' combinations</p>
+<p>
+</p>
+<h2><a name="clean">clean</a></h2>
+<p>Cleans the string of all characters (case invariant) not in the alphabet, replacing the characters of -str with -replace
+-tu = 1 additionally swaps all Ts to Us if $self-&gt;type = 'rna' ## REDUNDANT??</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="bugs">BUGS</a></h1>
+<p>Please report any bugs or feature requests to
+<code>bug-psy-dna-alphabet@rt.cpan.org</code>, or through the web interface at
+<a href="http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Psy">http://rt.cpan.org/NoAuth/ReportBug.html</a>.
+I will be notified, and then you'll automatically be notified of progress on
+your bug as I make changes.</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="acknowledgements">ACKNOWLEDGEMENTS</a></h1>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="copyright___license">COPYRIGHT &amp; LICENSE</a></h1>
+<p>Copyright 2005 'Matt, all rights reserved.
+
+</p>
+<p>This program is free software; you can redistribute it and/or modify it
+under the same terms as Perl itself.
+
+</p>
+<p><a href="#__index__"><small>__top</small></a></p>
+<table border="0" width="100%" cellspacing="0" cellpadding="3">
+<tr><td class="block" valign="middle">
+<big><strong><span class="block">&nbsp;Psy::Dna::Alphabet - The great new Psy::Dna::Alphabet!</span></strong></big>
+</td></tr>
+</table>
+
+</body>
+
+</html>

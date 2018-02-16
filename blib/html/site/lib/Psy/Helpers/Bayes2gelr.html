@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Psy::Helpers::Bayes2gelr</title>
+<link rel="stylesheet" href="../../../..//Active.css" type="text/css" />
+<link rev="made" href="mailto:" />
+</head>
+
+<body>
+<table border="0" width="100%" cellspacing="0" cellpadding="3">
+<tr><td class="block" valign="middle">
+<big><strong><span class="block">&nbsp;Psy::Helpers::Bayes2gelr</span></strong></big>
+</td></tr>
+</table>
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#bayes2gelr__bayes_to_gelman_s_r">Bayes2gelr - Bayes to Gelman's R</a></li>
+	<li><a href="#version">VERSION</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<ul>
+
+		<li><a href="#bayespfile">bayesPFile</a></li>
+	</ul>
+
+	<li><a href="#author">AUTHOR</a></li>
+	<li><a href="#bugs">BUGS</a></li>
+	<li><a href="#acknowledgements">ACKNOWLEDGEMENTS</a></li>
+	<li><a href="#copyright___license">COPYRIGHT &amp; LICENSE</a></li>
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="bayes2gelr__bayes_to_gelman_s_r">Bayes2gelr - Bayes to Gelman's R</a></h1>
+<p>(Hopefully) as implemented in Miller et al (2004)
+# Bayes to Gelman's R, as implemented in Miller et al. 2004 - code by Matt Yoder 2004
+# 
+# ``when the within-sequence variance is much less than the between-sequence variance, the separate
+# sequences are not sampling from the same distribution and have not converged''
+#
+# root R hat - is a measure of how much better (scale) we could do if we sampled to inifinity.  1 is no better (what's less than 1???), numbers &gt; 1 means we could do much better with &gt; n
+#</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="version">VERSION</a></h1>
+<p># ver 0.02
+# 	- <code>all_stats()</code> function reports all stats for all parameters
+# 	- unsure as to why R est values can go below 1??
+#
+# ver 0.01 
+# 	- basic objects completed, trial runs finished and apparently working
+# 	- this whole thing is simple stats though, probably much more efficiently implemented
+# 	- MrBayes file object might be useful for further manipulations/merging etc.</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<p>use Psy::Helpers::Bayes2gelr;
+</p>
+<pre>
+
+my $foo = converge-&gt;new(&quot;d_151.p&quot;, &quot;d_152.p&quot;);
+$foo-&gt;all_stats();</pre>
+<p>print $foo-&gt;<code>val_B('TL{all}')</code> , ``\n'';
+print $foo-&gt;<code>val_W('TL{all}')</code> , ``\n'';
+print $foo-&gt;<code>varhat('TL{all}')</code> , ``\n'';
+print $foo-&gt;rootRhat('pi(G){1}'), ``\n'';
+print $foo-&gt;psi('Gen');
+print Dumper($foo-&gt;{data});</p>
+<p>
+</p>
+<h2><a name="bayespfile">bayesPFile</a></h2>
+<p>A second package</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="author">AUTHOR</a></h1>
+<p>'Matt, <code>&lt;m{j}yoder@{tee}[aye](em)(you).domain4unis&gt;</code></p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="bugs">BUGS</a></h1>
+<p>Please report any bugs or feature requests to
+<code>bug-psy-helpers-bayes2gelr@rt.cpan.org</code>, or through the web interface at
+<a href="http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Psy">http://rt.cpan.org/NoAuth/ReportBug.html</a>.
+I will be notified, and then you'll automatically be notified of progress on
+your bug as I make changes.
+
+</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="acknowledgements">ACKNOWLEDGEMENTS</a></h1>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="copyright___license">COPYRIGHT &amp; LICENSE</a></h1>
+<p>Copyright 2005 'Matt, all rights reserved.
+
+</p>
+<p>This program is free software; you can redistribute it and/or modify it
+under the same terms as Perl itself.
+
+</p>
+<p><a href="#__index__"><small>__top</small></a></p>
+<table border="0" width="100%" cellspacing="0" cellpadding="3">
+<tr><td class="block" valign="middle">
+<big><strong><span class="block">&nbsp;Psy::Helpers::Bayes2gelr</span></strong></big>
+</td></tr>
+</table>
+
+</body>
+
+</html>

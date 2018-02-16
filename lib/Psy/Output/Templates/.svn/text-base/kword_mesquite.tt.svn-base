@@ -1,0 +1,31 @@
+#Nexus
+
+[ Mesquite/Nexus formatted data by Psy ]
+[ Block order for data: [% FOREACH blk = trans_blk_loop %] [% blk %] [% END %] ]
+[ Word size(s): [% FOREACH w = kword_size %] [% w %] [% END %] ]
+
+BEGIN TAXA;
+	TITLE foo;
+	DIMENSIONS NTAX=[% total_ters %];
+	TAXLABELS
+	[% FOREACH ter = terminals %] [% rowlabel(ter) %] [% END %]
+;
+
+END;
+
+BEGIN CHARACTERS;
+	TITLE  Blockmeta_[% c %];
+	DIMENSIONS NCHAR=[% total_chars %];
+	FORMAT DATATYPE = STANDARD GAP = - MISSING = ? SYMBOLS = "  0 1";
+CHARSTATELABELS [% SET i = 1 %][% FOREACH blk = trans_blk_loop %][% FOREACH c = blk_chrs(blk) %] 
+	[% i %] blk[% blk %]_[% c %][% SET i = (i+1) %],[% END %][% END %]
+	;
+	
+	MATRIX
+[% FOREACH ter = terminals %]
+[% justifiedrowlabel(ter) %][% FOREACH blk = trans_blk_loop %][% FOREACH c = blk_chrs(blk) %][% chars(c, ter, blk) %][% END %]  [% END %][% END %]
+;
+
+END;
+
+

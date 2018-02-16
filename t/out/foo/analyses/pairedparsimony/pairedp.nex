@@ -1,0 +1,28 @@
+#Nexus
+
+Begin data;
+Dimensions
+	ntax = 9 
+	nchar = 17
+;
+Format
+	datatype = standard
+	missing = ?
+	gap = -
+	symbols = "A R N D C Q E G H I L K M F P S T W Y V X"
+;
+
+
+Matrix
+aus                               LLFVVFIFHFTFLYLLF
+bus                               GLSGYFCFYFTFLLGLS
+long_name_taxon_1                 SLFGFFEFLFTFYYSLF
+AF379936_Basalys_not_really       SLFLFFLFLFTFYLSLF
+Diphoropria_not_really_AF379937   STFLSFLFSFTFHLSTF
+taxon1                            STFLFFLFLFTFYLSTF
+taxon2                            SYQLFTLFKFYFTRSYQ
+taxon3                            STSLFFLFLFTFYLSTS
+taxon4                            STGLFFLFLFTFYLSTG
+
+;
+end;

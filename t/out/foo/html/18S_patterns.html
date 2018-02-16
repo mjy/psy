@@ -1,0 +1,599 @@
+<html>
+
+<head>
+	<title> foo </title>
+
+</head>
+
+<body>
+<table>
+		<tr style="font-weight: bolder;"> <td> # </td> <td> label </td> <td> regex </td> <td> reverse compliment regex </td> </tr>
+
+		<tr> <td>0</td> <td>   </td> <td> G[GT] </td> <td> [AC]C </td> </tr>
+
+		<tr> <td>1</td> <td> H9  </td> <td> CCG </td> <td> CGG </td> </tr>
+
+		<tr> <td>2</td> <td>   </td> <td> TCC </td> <td> GGA </td> </tr>
+
+		<tr> <td>3</td> <td>H17</td> <td> GG </td> <td> CC </td> </tr>
+
+		<tr> <td>4</td> <td> </td> <td>  </td> <td>  </td> </tr>
+
+		<tr> <td>5</td> <td> H9' </td> <td> CTGGC </td> <td> GCCAG </td> </tr>
+
+		<tr> <td>6</td> <td> </td> <td>  </td> <td>  </td> </tr>
+
+		<tr> <td>7</td> <td>    H27    </td> <td> GCTTGCT </td> <td> AGCAAGC </td> </tr>
+
+		<tr> <td>8</td> <td> </td> <td>  </td> <td>  </td> </tr>
+
+		<tr> <td>9</td> <td>   H39  </td> <td> TTTGGC </td> <td> GCCAAA </td> </tr>
+
+		<tr> <td>10</td> <td>     H47     </td> <td> GCTGGCTTTC </td> <td> GAAAGCCAGC </td> </tr>
+
+		<tr> <td>11</td> <td>  </td> <td> T </td> <td> A </td> </tr>
+
+		<tr> <td>12</td> <td>      H61      </td> <td> GGC[GT]TG[CT]CTGGC </td> <td> GCCAG[AG]CA[AC]GCC </td> </tr>
+
+		<tr> <td>13</td> <td>       </td> <td> TTG[CT][GT][CT] </td> <td> [AG][AC][AG]CAA </td> </tr>
+
+		<tr> <td>14</td> <td>     H61'   </td> <td> GCGGTTTCCC </td> <td> GGGAAACCGC </td> </tr>
+
+		<tr> <td>15</td> <td>       </td> <td> CCTTCC </td> <td> GGAAGG </td> </tr>
+
+		<tr> <td>16</td> <td>113</td> <td> GG </td> <td> CC </td> </tr>
+
+		<tr> <td>17</td> <td>      </td> <td> TTTT </td> <td> AAAA </td> </tr>
+
+		<tr> <td>18</td> <td>          H122        </td> <td> CGTC[CT][GT]GCCTCTG </td> <td> CAGAGGC[AC][AG]GACG </td> </tr>
+
+		<tr> <td>19</td> <td>14</td> <td> [CT] </td> <td> [AG] </td> </tr>
+
+		<tr> <td>20</td> <td>        </td> <td> T[CT][GT]T[GT][GT][CG] </td> <td> [CG][AC][AC]A[AC][AG]A </td> </tr>
+
+		<tr> <td>21</td> <td>14</td> <td> T </td> <td> A </td> </tr>
+
+		<tr> <td>22</td> <td>     H144      </td> <td> CCCGTTTCCTG </td> <td> CAGGAAACGGG </td> </tr>
+
+		<tr> <td>23</td> <td>     </td> <td> GTT </td> <td> AAC </td> </tr>
+
+		<tr> <td>24</td> <td>       H144'    </td> <td> CTGTTTGCTCTG </td> <td> CAGAGCAAACAG </td> </tr>
+
+		<tr> <td>25</td> <td>          </td> <td> TCTGG?\[GT]TT[CT]G </td> <td> C[AG]AA[AC]\?CCAGA </td> </tr>
+
+		<tr> <td>26</td> <td>  H184a   </td> <td> TGG[GT][CT]GGG[CT] </td> <td> [AG]CCC[AG][AC]CCA </td> </tr>
+
+		<tr> <td>27</td> <td>    </td> <td> TCTC </td> <td> GAGA </td> </tr>
+
+		<tr> <td>28</td> <td>   H184a' </td> <td> GT[CT]CCT[CT]CC </td> <td> GG[AG]AGG[AG]AC </td> </tr>
+
+		<tr> <td>29</td> <td>    </td> <td> GC </td> <td> GC </td> </tr>
+
+		<tr> <td>30</td> <td>H184b</td> <td> T </td> <td> A </td> </tr>
+
+		<tr> <td>31</td> <td>     </td> <td> GTCT </td> <td> AGAC </td> </tr>
+
+		<tr> <td>32</td> <td>  HV2-V4 </td> <td> TTGGTTTT </td> <td> AAAACCAA </td> </tr>
+
+		<tr> <td>33</td> <td>H184b-2</td> <td> CG[CG]CCG </td> <td> CGG[CG]CG </td> </tr>
+
+		<tr> <td>34</td> <td>    REC      </td> <td> ?\[CG]?\[CG]?\[CG]?\[CT]?\[CGT]?\[CT]G </td> <td> C[AG]\?[ACG]\?[AG]\?[CG]\?[CG]\?[CG]\? </td> </tr>
+
+		<tr> <td>35</td> <td>  RAA  </td> <td> ?\[GT]C[GT][GT][CG] </td> <td> [CG][AC][AC]G[AC]\? </td> </tr>
+
+		<tr> <td>36</td> <td>      REC     </td> <td> C?\[CG]?\[CG]?\[CG]?\[CGT]?\[CGT]?\[CGT]?\[GT]C </td> <td> G[AC]\?[ACG]\?[ACG]\?[ACG]\?[CG]\?[CG]\?[CG]\?G </td> </tr>
+
+		<tr> <td>37</td> <td>H184b-2</td> <td> CGG[CGT][CG]GG </td> <td> CC[CG][ACG]CCG </td> </tr>
+
+		<tr> <td>38</td> <td>                  </td> <td> CGGTC[CT]CTG[GT][CT]GT </td> <td> AC[AG][AC]CAG[AG]GACCG </td> </tr>
+
+		<tr> <td>39</td> <td>H184b</td> <td> TT[CT]T </td> <td> A[AG]AA </td> </tr>
+
+		<tr> <td>40</td> <td>           </td> <td> TCGC[CT][CG]TG </td> <td> CA[CG][AG]GCGA </td> </tr>
+
+		<tr> <td>41</td> <td>   H198  </td> <td> GCCGTGCG </td> <td> CGCACGGC </td> </tr>
+
+		<tr> <td>42</td> <td>   RAA    </td> <td> GC?\[GT][CGT][CGT][GT][GT]G </td> <td> C[AC][AC][ACG][ACG][AC]\?GC </td> </tr>
+
+		<tr> <td>43</td> <td>  H198' </td> <td> TCGCCGG[CT] </td> <td> [AG]CCGGCGA </td> </tr>
+
+		<tr> <td>44</td> <td> </td> <td> G </td> <td> C </td> </tr>
+
+		<tr> <td>45</td> <td>        H122'      </td> <td> GCGCTTTGG[CT][CGT][CT] </td> <td> [AG][ACG][AG]CCAAAGCGC </td> </tr>
+
+		<tr> <td>46</td> <td>            H240       </td> <td> GCCTCCTCGCGTTGTG </td> <td> CACAACGCGAGGAGGC </td> </tr>
+
+		<tr> <td>47</td> <td>     </td> <td> GCGG </td> <td> CCGC </td> </tr>
+
+		<tr> <td>48</td> <td>         H240'       </td> <td> CCCGTTCCCTGGTGGC </td> <td> GCCACCAGGGAACGGG </td> </tr>
+
+		<tr> <td>49</td> <td>   </td> <td> TT </td> <td> AA </td> </tr>
+
+		<tr> <td>50</td> <td> H289   </td> <td> TTCCCCG </td> <td> CGGGGAA </td> </tr>
+
+		<tr> <td>51</td> <td>    </td> <td> CCTG </td> <td> CAGG </td> </tr>
+
+		<tr> <td>52</td> <td>   H289'   </td> <td> CGGTCGC </td> <td> GCGACCG </td> </tr>
+
+		<tr> <td>53</td> <td>H11</td> <td> CTC </td> <td> GAG </td> </tr>
+
+		<tr> <td>54</td> <td> </td> <td> T </td> <td> A </td> </tr>
+
+		<tr> <td>55</td> <td> H316  </td> <td> GGCTCCC </td> <td> GGGAGCC </td> </tr>
+
+		<tr> <td>56</td> <td>        </td> <td> GTTTCTC </td> <td> GAGAAAC </td> </tr>
+
+		<tr> <td>57</td> <td>  H316'</td> <td> GGTGC[CT] </td> <td> [AG]GCACC </td> </tr>
+
+		<tr> <td>58</td> <td> </td> <td> T </td> <td> A </td> </tr>
+
+		<tr> <td>59</td> <td>H339</td> <td> GTG </td> <td> CAC </td> </tr>
+
+		<tr> <td>60</td> <td>    </td> <td> CTTG </td> <td> CAAG </td> </tr>
+
+		<tr> <td>61</td> <td>H339</td> <td> CTTC </td> <td> GAAG </td> </tr>
+
+		<tr> <td>62</td> <td>   </td> <td> TGC </td> <td> GCA </td> </tr>
+
+		<tr> <td>63</td> <td>   H47' </td> <td> GCGCCTGC </td> <td> GCAGGCGC </td> </tr>
+
+		<tr> <td>64</td> <td>     </td> <td> TTTGC </td> <td> GCAAA </td> </tr>
+
+		<tr> <td>65</td> <td>    H367     </td> <td> CGGGGTGGGT </td> <td> ACCCACCCCG </td> </tr>
+
+		<tr> <td>66</td> <td>   </td> <td> TGC </td> <td> GCA </td> </tr>
+
+		<tr> <td>67</td> <td>   H367'  </td> <td> TCCTCCCC[GT] </td> <td> [AC]GGGGAGGA </td> </tr>
+
+		<tr> <td>68</td> <td> </td> <td> C </td> <td> G </td> </tr>
+
+		<tr> <td>69</td> <td>   H39'  </td> <td> TTTTCGTC </td> <td> GACGAAAA </td> </tr>
+
+		<tr> <td>70</td> <td>   </td> <td> TT </td> <td> AA </td> </tr>
+
+		<tr> <td>71</td> <td>     H406     </td> <td> GGTCCCG[CT]TCGT </td> <td> ACGA[AG]CGGGACC </td> </tr>
+
+		<tr> <td>72</td> <td>    </td> <td> [GT][GT]T </td> <td> A[AC][AC] </td> </tr>
+
+		<tr> <td>73</td> <td>       H406'    </td> <td> CCGT[CT]GCGGGGCCTC </td> <td> GAGGCCCCGC[AG]ACGG </td> </tr>
+
+		<tr> <td>74</td> <td> H441  </td> <td> TCTCTT </td> <td> AAGAGA </td> </tr>
+
+		<tr> <td>75</td> <td>                 </td> <td> [GT][GT]GGTTT[GT]TGT </td> <td> ACA[AC]AAACC[AC][AC] </td> </tr>
+
+		<tr> <td>76</td> <td>  H441' </td> <td> [CG]TCCT[CT]G[CT] </td> <td> [AG]C[AG]AGGA[CG] </td> </tr>
+
+		<tr> <td>77</td> <td>   </td> <td> T[GT]G </td> <td> C[AC]A </td> </tr>
+
+		<tr> <td>78</td> <td> H500 </td> <td> CTCC </td> <td> GGAG </td> </tr>
+
+		<tr> <td>79</td> <td>505</td> <td> [GT]CC </td> <td> GG[AC] </td> </tr>
+
+		<tr> <td>80</td> <td>    </td> <td> CTT </td> <td> AAG </td> </tr>
+
+		<tr> <td>81</td> <td>511a</td> <td> CCG </td> <td> CGG </td> </tr>
+
+		<tr> <td>82</td> <td>     </td> <td> TGGC </td> <td> GCCA </td> </tr>
+
+		<tr> <td>83</td> <td>51</td> <td> GC </td> <td> GC </td> </tr>
+
+		<tr> <td>84</td> <td> </td> <td> [GT] </td> <td> [AC] </td> </tr>
+
+		<tr> <td>85</td> <td>505</td> <td> GG[CG] </td> <td> [CG]CC </td> </tr>
+
+		<tr> <td>86</td> <td>51</td> <td> [CG][CG] </td> <td> [CG][CG] </td> </tr>
+
+		<tr> <td>87</td> <td>'       </td> <td> GTT[CT][CGT] </td> <td> [ACG][AG]AAC </td> </tr>
+
+		<tr> <td>88</td> <td>H511</td> <td> CTGG </td> <td> CCAG </td> </tr>
+
+		<tr> <td>89</td> <td> H500'</td> <td> TTGGG </td> <td> CCCAA </td> </tr>
+
+		<tr> <td>90</td> <td> </td> <td>  </td> <td>  </td> </tr>
+
+		<tr> <td>91</td> <td>   H27'   </td> <td> TTCGCT </td> <td> AGCGAA </td> </tr>
+
+		<tr> <td>92</td> <td>          </td> <td> CCCCTTT </td> <td> AAAGGGG </td> </tr>
+
+		<tr> <td>93</td> <td>H56</td> <td> CCG </td> <td> CGG </td> </tr>
+
+		<tr> <td>94</td> <td>57</td> <td>  </td> <td>  </td> </tr>
+
+		<tr> <td>95</td> <td>   </td> <td> TTT </td> <td> AAA </td> </tr>
+
+		<tr> <td>96</td> <td>7</td> <td> T </td> <td> A </td> </tr>
+
+		<tr> <td>97</td> <td> </td> <td> T </td> <td> A </td> </tr>
+
+		<tr> <td>98</td> <td>   H577    </td> <td> CT[CT]TC[CG]G[CG]C </td> <td> G[CG]C[CG]GA[AG]AG </td> </tr>
+
+		<tr> <td>99</td> <td>     </td> <td> [CG]T[CT] </td> <td> [AG]A[CG] </td> </tr>
+
+		<tr> <td>100</td> <td>  E23-1   </td> <td> [CGT][GT][CT][GT][CG][CGT]CCC </td> <td> GGG[ACG][CG][AC][AG][AC][ACG] </td> </tr>
+
+		<tr> <td>101</td> <td>RSC</td> <td> [CGT] </td> <td> [ACG] </td> </tr>
+
+		<tr> <td>102</td> <td>E23-2a </td> <td> CC[AG][GT][CT]G </td> <td> C[AG][AC][CT]GG </td> </tr>
+
+		<tr> <td>103</td> <td>RSC</td> <td> [CGT] </td> <td> [ACG] </td> </tr>
+
+		<tr> <td>104</td> <td>E23-2</td> <td> [CT]GG[CT]G </td> <td> C[AG]CC[AG] </td> </tr>
+
+		<tr> <td>105</td> <td>      </td> <td> CGC[GT]TG </td> <td> CA[AC]GCG </td> </tr>
+
+		<tr> <td>106</td> <td>E23-2</td> <td> [CG]G?\[CT]CG </td> <td> CG[AG]\?C[CG] </td> </tr>
+
+		<tr> <td>107</td> <td> RSC   </td> <td> [GT][GT]?\[CG]?\[CG]C </td> <td> G[CG]\?[CG]\?[AC][AC] </td> </tr>
+
+		<tr> <td>108</td> <td>  E23-2a'</td> <td> [CGT]G[CT][CT]GGT </td> <td> ACC[AG][AG]C[ACG] </td> </tr>
+
+		<tr> <td>109</td> <td> RSC  </td> <td> ?\[GT]?\[CGT]?\[CG]?\[GT] </td> <td> [AC]\?[CG]\?[ACG]\?[AC]\? </td> </tr>
+
+		<tr> <td>110</td> <td>   E23-1' </td> <td> CG[CGT][CGT]?\[CT]C?\[CG]C[CG] </td> <td> [CG]G[CG]\?G[AG]\?[ACG][ACG]CG </td> </tr>
+
+		<tr> <td>111</td> <td>  </td> <td> G[GT] </td> <td> [AC]C </td> </tr>
+
+		<tr> <td>112</td> <td> E23-4  </td> <td> GCC[CT]GG[CT] </td> <td> [AG]CC[AG]GGC </td> </tr>
+
+		<tr> <td>113</td> <td>E23-5a </td> <td> GC[CG][ACG][CGT]CC </td> <td> GG[ACG][CGT][CG]GC </td> </tr>
+
+		<tr> <td>114</td> <td>  </td> <td> ?\[CGT]?\[CGT] </td> <td> [ACG]\?[ACG]\? </td> </tr>
+
+		<tr> <td>115</td> <td>23-5</td> <td> ?\[ACGT]?\[CGT]?\[CGT]?\[CGT] </td> <td> [ACG]\?[ACG]\?[ACG]\?[ACGT]\? </td> </tr>
+
+		<tr> <td>116</td> <td>                             REC                             </td> <td> GGGCGCCGGCCGCTGCCCGGGC?\[CG]?\[CG]CCG?\[CG]?\[CG]C?\[CG]G?\[CGT]?\[CT]?\[CG]?\[CG]?\[CG]?\[GT]?\[CGT]?\[CGT]?\[CGT]?\[CGT]?\[CGT]?\[CGT] </td> <td> [ACG]\?[ACG]\?[ACG]\?[ACG]\?[ACG]\?[ACG]\?[AC]\?[CG]\?[CG]\?[CG]\?[AG]\?[ACG]\?C[CG]\?G[CG]\?[CG]\?CGG[CG]\?[CG]\?GCCCGGGCAGCGGCCGGCGCCC </td> </tr>
+
+		<tr> <td>117</td> <td>   RAA     </td> <td> ?\[CT]?\[GT]T?\[CGT]?\[CGT]?\[CGT][CGT][CGT][CGT] </td> <td> [ACG][ACG][ACG][ACG]\?[ACG]\?[ACG]\?A[AC]\?[AG]\? </td> </tr>
+
+		<tr> <td>118</td> <td>                             REC                             </td> <td> ?\[CGT]?\[CGT]?\[CGT]?\[CGT]?\[CGT]?\[CGT]?\[CG]?\[CGT]?\[CGT]?\[CG]?\[CG]?\[CT]?\[CG]?\[CGT]?\[CG]?\[CG]?\[CGT]CC?\[CG]C?\[CG]G?\[CG]CTTCCCCGCCCGCGCCCGCGCGCCTCC </td> <td> GGAGGCGCGCGGGCGCGGGCGGGGAAG[CG]\?C[CG]\?G[CG]\?GG[ACG]\?[CG]\?[CG]\?[ACG]\?[CG]\?[AG]\?[CG]\?[CG]\?[ACG]\?[ACG]\?[CG]\?[ACG]\?[ACG]\?[ACG]\?[ACG]\?[ACG]\?[ACG]\? </td> </tr>
+
+		<tr> <td>119</td> <td>23-5</td> <td> ?\[CGT]?\[CGT]?\[CGT]?\[CGT] </td> <td> [ACG]\?[ACG]\?[ACG]\?[ACG]\? </td> </tr>
+
+		<tr> <td>120</td> <td>   </td> <td> GCT </td> <td> AGC </td> </tr>
+
+		<tr> <td>121</td> <td> E23-5a</td> <td> [GT]G[CGT][CGT][CGT]GC </td> <td> GC[ACG][ACG][ACG]C[AC] </td> </tr>
+
+		<tr> <td>122</td> <td> </td> <td> ?\[CT] </td> <td> [AG]\? </td> </tr>
+
+		<tr> <td>123</td> <td>3</td> <td> ?\[CT] </td> <td> [AG]\? </td> </tr>
+
+		<tr> <td>124</td> <td>   </td> <td> [CT]?\[CGT]?\[GT] </td> <td> [AC]\?[ACG]\?[AG] </td> </tr>
+
+		<tr> <td>125</td> <td> RAA  </td> <td> T?\[GT]?\[CGT]?\[CGT] </td> <td> [ACG]\?[ACG]\?[AC]\?A </td> </tr>
+
+		<tr> <td>126</td> <td>3</td> <td> T </td> <td> A </td> </tr>
+
+		<tr> <td>127</td> <td>  </td> <td> GT </td> <td> AC </td> </tr>
+
+		<tr> <td>128</td> <td>     E23-7    </td> <td> G[GT]GC[CT][CG]G[CGT]G[CT]GG </td> <td> CC[AG]C[ACG]C[CG][AG]GC[AC]C </td> </tr>
+
+		<tr> <td>129</td> <td>      </td> <td> [AG][ACGT][CT][CGT] </td> <td> [ACG][AG][ACGT][CT] </td> </tr>
+
+		<tr> <td>130</td> <td>      E23-7'   </td> <td> C[CT]G[ACT][CT][ACGT][CT][CGT][GT]CC[CGT][CT] </td> <td> [AG][ACG]GG[AC][ACG][AG][ACGT][AG][AGT]C[AG]G </td> </tr>
+
+		<tr> <td>131</td> <td> E23-4'</td> <td> [CT]G[CT][CT][CG]G[CT] </td> <td> [AG]C[CG][AG][AG]C[AG] </td> </tr>
+
+		<tr> <td>132</td> <td>   </td> <td> T[CT][CGT] </td> <td> [ACG][AG]A </td> </tr>
+
+		<tr> <td>133</td> <td>23-</td> <td> T </td> <td> A </td> </tr>
+
+		<tr> <td>134</td> <td>             </td> <td> TTT[GT]TTCGG </td> <td> CCGAA[AC]AAA </td> </tr>
+
+		<tr> <td>135</td> <td>3-</td> <td> T </td> <td> A </td> </tr>
+
+		<tr> <td>136</td> <td>  </td> <td> T[CT] </td> <td> [AG]A </td> </tr>
+
+		<tr> <td>137</td> <td>3-</td> <td> C </td> <td> G </td> </tr>
+
+		<tr> <td>138</td> <td> </td> <td> C </td> <td> G </td> </tr>
+
+		<tr> <td>139</td> <td>23-1</td> <td> TGG </td> <td> CCA </td> </tr>
+
+		<tr> <td>140</td> <td> E</td> <td> TT </td> <td> AA </td> </tr>
+
+		<tr> <td>141</td> <td>-1</td> <td> GC </td> <td> GC </td> </tr>
+
+		<tr> <td>142</td> <td>E23-</td> <td> GCCT </td> <td> AGGC </td> </tr>
+
+		<tr> <td>143</td> <td> REC </td> <td> ?\[CT]?\[CG] </td> <td> [CG]\?[AG]\? </td> </tr>
+
+		<tr> <td>144</td> <td>   RAA    </td> <td> G?\[GT]?\[GT]?\[CGT]?\[CGT][CGT][CGT][CGT] </td> <td> [ACG][ACG][ACG][ACG]\?[ACG]\?[AC]\?[AC]\?C </td> </tr>
+
+		<tr> <td>145</td> <td> REC </td> <td> ?\[GT]TT </td> <td> AA[AC]\? </td> </tr>
+
+		<tr> <td>146</td> <td>23-1</td> <td> GGGC </td> <td> GCCC </td> </tr>
+
+		<tr> <td>147</td> <td>    </td> <td> TTC </td> <td> GAA </td> </tr>
+
+		<tr> <td>148</td> <td>23</td> <td> TT </td> <td> AA </td> </tr>
+
+		<tr> <td>149</td> <td>'        </td> <td> TGC[CT]?\[GT][CGT]T?\[GT] </td> <td> [AC]\?A[ACG][AC]\?[AG]GCA </td> </tr>
+
+		<tr> <td>150</td> <td>23-1</td> <td> TCC </td> <td> GGA </td> </tr>
+
+		<tr> <td>151</td> <td> </td> <td> T </td> <td> A </td> </tr>
+
+		<tr> <td>152</td> <td>23-</td> <td> TT </td> <td> AA </td> </tr>
+
+		<tr> <td>153</td> <td> </td> <td>  </td> <td>  </td> </tr>
+
+		<tr> <td>154</td> <td>23-13</td> <td> T[CT][CT][CT] </td> <td> [AG][AG][AG]A </td> </tr>
+
+		<tr> <td>155</td> <td>   </td> <td> CCT </td> <td> AGG </td> </tr>
+
+		<tr> <td>156</td> <td>E23-14a</td> <td> CG[CG]GT </td> <td> AC[CG]CG </td> </tr>
+
+		<tr> <td>157</td> <td>23-14</td> <td> GC </td> <td> GC </td> </tr>
+
+		<tr> <td>158</td> <td>E23-1</td> <td> [AT]T </td> <td> A[AT] </td> </tr>
+
+		<tr> <td>159</td> <td> </td> <td> C </td> <td> G </td> </tr>
+
+		<tr> <td>160</td> <td> HV2-V4' </td> <td> [GT]GCC[CT] </td> <td> [AG]GGC[AC] </td> </tr>
+
+		<tr> <td>161</td> <td> </td> <td> [GT] </td> <td> [AC] </td> </tr>
+
+		<tr> <td>162</td> <td>23-14</td> <td> [GT][CT][CT]C[CT] </td> <td> [AG]G[AG][AG][AC] </td> </tr>
+
+		<tr> <td>163</td> <td>   </td> <td> ?\[GT]G?\[GT] </td> <td> [AC]\?C[AC]\? </td> </tr>
+
+		<tr> <td>164</td> <td>23-14a</td> <td> [CT][CGT]T[CT]G </td> <td> C[AG]A[ACG][AG] </td> </tr>
+
+		<tr> <td>165</td> <td>           </td> <td> TG[CT]TTTCTT </td> <td> AAGAAA[AG]CA </td> </tr>
+
+		<tr> <td>166</td> <td>       H655       </td> <td> T[GT][CG]CCCC[CG]GTC[CT]GT[CT][CT][CT] </td> <td> [AG][AG][AG]AC[AG]GAC[CG]GGGG[CG][AC]A </td> </tr>
+
+		<tr> <td>167</td> <td>       H673       </td> <td> CTCTCG[CT]CGCTTC[CT][AG] </td> <td> [CT][AG]GAAGCG[AG]CGAGAG </td> </tr>
+
+		<tr> <td>168</td> <td>      </td> <td> TTTCGC </td> <td> GCGAAA </td> </tr>
+
+		<tr> <td>169</td> <td>         H673'       </td> <td> CGTCTTGCGGCGTCCG </td> <td> CGGACGCCGCAAGACG </td> </tr>
+
+		<tr> <td>170</td> <td>     </td> <td> [CGT]GG[CT][CT] </td> <td> [AG][AG]CC[ACG] </td> </tr>
+
+		<tr> <td>171</td> <td>H722 </td> <td> GCTT[CT] </td> <td> [AG]AAGC </td> </tr>
+
+		<tr> <td>172</td> <td>    </td> <td> [GT]TTC </td> <td> GAA[AC] </td> </tr>
+
+		<tr> <td>173</td> <td>H72</td> <td> TGC </td> <td> GCA </td> </tr>
+
+		<tr> <td>174</td> <td>       H655b      </td> <td> GCTT[CT]TTGG[CT] </td> <td> [AG]CCAA[AG]AAGC </td> </tr>
+
+		<tr> <td>175</td> <td>  </td> <td> T </td> <td> A </td> </tr>
+
+		<tr> <td>176</td> <td>    H577'  </td> <td> GTTCTTGTT </td> <td> AACAAGAAC </td> </tr>
+
+		<tr> <td>177</td> <td>    </td> <td> TTT[CT] </td> <td> [AG]AAA </td> </tr>
+
+		<tr> <td>178</td> <td>      H769        </td> <td> CG[CT]CTTCGCCTC[CT]GC </td> <td> GC[AG]GAGGCGAAG[AG]CG </td> </tr>
+
+		<tr> <td>179</td> <td>         </td> <td> GTTCTGT </td> <td> ACAGAAC </td> </tr>
+
+		<tr> <td>180</td> <td>      H769'    </td> <td> GT[CT]GGCT[CG]GGCG </td> <td> CGCC[CG]AGCC[AG]AC </td> </tr>
+
+		<tr> <td>181</td> <td>          </td> <td> T[CG]GTTTTG </td> <td> CAAAAC[CG]A </td> </tr>
+
+		<tr> <td>182</td> <td> H821  </td> <td> GG[CT][CGT]GGC </td> <td> GCC[ACG][AG]CC </td> </tr>
+
+		<tr> <td>183</td> <td>      H829       </td> <td> [CT][GT][CGT]CG[CG][CGT]G?\[CG]TCG[CT][CT] </td> <td> [AG][AG]CGA[CG]\?C[ACG][CG]CG[ACG][AC][AG] </td> </tr>
+
+		<tr> <td>184</td> <td>         </td> <td> [GT][CGT][CGT][GT][GT]G[GT] </td> <td> [AC]C[AC][AC][ACG][ACG][AC] </td> </tr>
+
+		<tr> <td>185</td> <td>      H829'     </td> <td> GGCTGCCCG[CGT]CGG[GT]T[CT] </td> <td> [AG]A[AC]CCG[ACG]CGGGCAGCC </td> </tr>
+
+		<tr> <td>186</td> <td>   </td> <td> [CG][GT] </td> <td> [AC][CG] </td> </tr>
+
+		<tr> <td>187</td> <td>86</td> <td> CC </td> <td> GG </td> </tr>
+
+		<tr> <td>188</td> <td>T TT</td> <td> TT[CT]C </td> <td> G[AG]AA </td> </tr>
+
+		<tr> <td>189</td> <td>86</td> <td> GG </td> <td> CC </td> </tr>
+
+		<tr> <td>190</td> <td>  </td> <td> TT </td> <td> AA </td> </tr>
+
+		<tr> <td>191</td> <td>    H821'  </td> <td> CCCGG[CGT]T </td> <td> A[ACG]CCGGG </td> </tr>
+
+		<tr> <td>192</td> <td>T</td> <td>  </td> <td>  </td> </tr>
+
+		<tr> <td>193</td> <td>H56</td> <td> [CG][CG]G </td> <td> C[CG][CG] </td> </tr>
+
+		<tr> <td>194</td> <td> </td> <td> C </td> <td> G </td> </tr>
+
+		<tr> <td>195</td> <td>     H885     </td> <td> CCTCT[CT]T[CT]CC </td> <td> GG[AG]A[AG]AGAGG </td> </tr>
+
+		<tr> <td>196</td> <td>    </td> <td> TTGC </td> <td> GCAA </td> </tr>
+
+		<tr> <td>197</td> <td>    H885'  </td> <td> GTTTCGCT </td> <td> AGCGAAAC </td> </tr>
+
+		<tr> <td>198</td> <td>   </td> <td> TTT </td> <td> AAA </td> </tr>
+
+		<tr> <td>199</td> <td>H17</td> <td> TCC </td> <td> GGA </td> </tr>
+
+		<tr> <td>200</td> <td>  </td> <td> T </td> <td> A </td> </tr>
+
+		<tr> <td>201</td> <td>      H921  T    </td> <td> GTGGTGCCCTTCCGTC </td> <td> GACGGAAGGGCACCAC </td> </tr>
+
+		<tr> <td>202</td> <td>  </td> <td> TG </td> <td> CA </td> </tr>
+
+		<tr> <td>203</td> <td>H939 </td> <td> [CG]TCC </td> <td> GGA[CG] </td> </tr>
+
+		<tr> <td>204</td> <td>    H944    </td> <td> GCCGCGGCTCC </td> <td> GGAGCCGCGGC </td> </tr>
+
+		<tr> <td>205</td> <td>    </td> <td> TT </td> <td> AA </td> </tr>
+
+		<tr> <td>206</td> <td>H960</td> <td> C </td> <td> G </td> </tr>
+
+		<tr> <td>207</td> <td>        </td> <td> TGTTGGT </td> <td> ACCAACA </td> </tr>
+
+		<tr> <td>208</td> <td>H960</td> <td> CCCG </td> <td> CGGG </td> </tr>
+
+		<tr> <td>209</td> <td>        </td> <td> TGGGTTT </td> <td> AAACCCA </td> </tr>
+
+		<tr> <td>210</td> <td>  H984 </td> <td> GGCC[GT]GG </td> <td> CC[AC]GGCC </td> </tr>
+
+		<tr> <td>211</td> <td>    </td> <td> TC[CT]G </td> <td> C[AG]GA </td> </tr>
+
+		<tr> <td>212</td> <td>       H996         </td> <td> TCTGTCTCCTGTC[CT]GGTG </td> <td> CACC[AG]GACAGGAGACAGA </td> </tr>
+
+		<tr> <td>213</td> <td>        </td> <td> GCT[ACG]TC </td> <td> GA[CGT]AGC </td> </tr>
+
+		<tr> <td>214</td> <td>       H996'     </td> <td> CC[CG]GTCGGG </td> <td> CCCGAC[CG]GG </td> </tr>
+
+		<tr> <td>215</td> <td>   </td> <td> CC </td> <td> GG </td> </tr>
+
+		<tr> <td>216</td> <td>       H1047      </td> <td> GCGGCCTGCCCCC </td> <td> GGGGGCAGGCCGC </td> </tr>
+
+		<tr> <td>217</td> <td>   </td> <td> T </td> <td> A </td> </tr>
+
+		<tr> <td>218</td> <td>H1068 </td> <td> CCC </td> <td> GGG </td> </tr>
+
+		<tr> <td>219</td> <td>107</td> <td> TCC </td> <td> GGA </td> </tr>
+
+		<tr> <td>220</td> <td>    </td> <td> TCGC </td> <td> GCGA </td> </tr>
+
+		<tr> <td>221</td> <td>107</td> <td>  </td> <td>  </td> </tr>
+
+		<tr> <td>222</td> <td>  </td> <td> C </td> <td> G </td> </tr>
+
+		<tr> <td>223</td> <td>1086</td> <td> CC[CG] </td> <td> [CG]GG </td> </tr>
+
+		<tr> <td>224</td> <td>      </td> <td> TT </td> <td> AA </td> </tr>
+
+		<tr> <td>225</td> <td>H108</td> <td> TCGG </td> <td> CCGA </td> </tr>
+
+		<tr> <td>226</td> <td>  </td> <td> T </td> <td> A </td> </tr>
+
+		<tr> <td>227</td> <td>H1068'</td> <td> GTTCGT </td> <td> ACGAAC </td> </tr>
+
+		<tr> <td>228</td> <td>   T  </td> <td> TCTGCT </td> <td> AGCAGA </td> </tr>
+
+		<tr> <td>229</td> <td>H1113</td> <td> [CT][CG]G </td> <td> C[CG][AG] </td> </tr>
+
+		<tr> <td>230</td> <td> </td> <td> C </td> <td> G </td> </tr>
+
+		<tr> <td>231</td> <td>     H1118   </td> <td> [CT]CT[GT]TT[CGT][CT][GT]G </td> <td> C[AC][AG][ACG]AA[AC]AG[AG] </td> </tr>
+
+		<tr> <td>232</td> <td>    </td> <td> ?\[CT]CG </td> <td> CG[AG]\? </td> </tr>
+
+		<tr> <td>233</td> <td> RAA   </td> <td> ?\[GT]?\[GT]?\[GT][CGT][AGT] </td> <td> [ACT][ACG][AC]\?[AC]\?[AC]\? </td> </tr>
+
+		<tr> <td>234</td> <td>V7-1 </td> <td> [GT]G[CT]CG </td> <td> CG[AG]C[AC] </td> </tr>
+
+		<tr> <td>235</td> <td>    </td> <td> G?\[CT]G </td> <td> C[AG]\?C </td> </tr>
+
+		<tr> <td>236</td> <td>  V7-2  </td> <td> ?\[AGT]G?\[CT]?\[CT]TTT?\[CT] </td> <td> [AG]\?AAA[AG]\?[AG]\?C[ACT]\? </td> </tr>
+
+		<tr> <td>237</td> <td>       RSC         </td> <td> GTGTGG?\[CG]?\[CG]?\[ACGT]?\[CGT]?\[CGT]?\[CGT]?\[CGT]?\[CGT] </td> <td> [ACG]\?[ACG]\?[ACG]\?[ACG]\?[ACG]\?[ACGT]\?[CG]\?[CG]\?CCACAC </td> </tr>
+
+		<tr> <td>238</td> <td> RAA   </td> <td> ?\[CGT]?\[CGT]?\[CGT]?\[GT]G </td> <td> C[AC]\?[ACG]\?[ACG]\?[ACG]\? </td> </tr>
+
+		<tr> <td>239</td> <td>        RSC        </td> <td> ?\[CGT]?\[ACGT]?\[ACGT]?\[CGT]?\[CG]?\[ACGT]?\[CT]?\[CGT]?\[CT]C?\[CT]CC </td> <td> GG[AG]\?G[AG]\?[ACG]\?[AG]\?[ACGT]\?[CG]\?[ACG]\?[ACGT]\?[ACGT]\?[ACG]\? </td> </tr>
+
+		<tr> <td>240</td> <td> V7-2' </td> <td> ?\[GT]G?\[CT]?\[CT] </td> <td> [AG]\?[AG]\?C[AC]\? </td> </tr>
+
+		<tr> <td>241</td> <td>  </td> <td> G?\[CT] </td> <td> [AG]\?C </td> </tr>
+
+		<tr> <td>242</td> <td> V7-1</td> <td> ?\[CT]GG?\[CT]C </td> <td> G[AG]\?CC[AG]\? </td> </tr>
+
+		<tr> <td>243</td> <td>     </td> <td> ?\[GT]TCG?\[CT] </td> <td> [AG]\?CGA[AC]\? </td> </tr>
+
+		<tr> <td>244</td> <td>  RAA  </td> <td> ?\[GT]?\[GT]?\[GT]?\[GT]?\[GT] </td> <td> [AC]\?[AC]\?[AC]\?[AC]\?[AC]\? </td> </tr>
+
+		<tr> <td>245</td> <td>   </td> <td> TT?\[GT] </td> <td> [AC]\?AA </td> </tr>
+
+		<tr> <td>246</td> <td>    H1118'   </td> <td> CCTCTGGGT </td> <td> ACCCAGAGG </td> </tr>
+
+		<tr> <td>247</td> <td>  </td> <td> T?\[CT] </td> <td> [AG]\?A </td> </tr>
+
+		<tr> <td>248</td> <td>  H1158  </td> <td> CGCCGCCTG </td> <td> CAGGCGGCG </td> </tr>
+
+		<tr> <td>249</td> <td>    </td> <td> G </td> <td> C </td> </tr>
+
+		<tr> <td>250</td> <td>   H1158'</td> <td> CGTGCGGCT </td> <td> AGCCGCACG </td> </tr>
+
+		<tr> <td>251</td> <td>   </td> <td> TCT </td> <td> AGA </td> </tr>
+
+		<tr> <td>252</td> <td>H1113</td> <td> CTC </td> <td> GAG </td> </tr>
+
+		<tr> <td>253</td> <td>   </td> <td> TTG </td> <td> CAA </td> </tr>
+
+		<tr> <td>254</td> <td>       H1047'       </td> <td> GGGCTCCGCCTGTT </td> <td> AACAGGCGGAGCCC </td> </tr>
+
+		<tr> <td>255</td> <td>     </td> <td> TCT </td> <td> AGA </td> </tr>
+
+		<tr> <td>256</td> <td> H984' </td> <td> CCGC </td> <td> GCGG </td> </tr>
+
+		<tr> <td>257</td> <td>   </td> <td> GGC </td> <td> GCC </td> </tr>
+
+		<tr> <td>258</td> <td>    H944'    </td> <td> GTGCGCGCGTGC </td> <td> GCACGCGCGCAC </td> </tr>
+
+		<tr> <td>259</td> <td>   </td> <td> GT </td> <td> AC </td> </tr>
+
+		<tr> <td>260</td> <td>H1241a </td> <td> TT[CT]CTTC </td> <td> GAAG[AG]AA </td> </tr>
+
+		<tr> <td>261</td> <td>     </td> <td> G[CT]TG </td> <td> CA[AG]C </td> </tr>
+
+		<tr> <td>262</td> <td>241</td> <td> CC </td> <td> GG </td> </tr>
+
+		<tr> <td>263</td> <td>     </td> <td> GG[CGT] </td> <td> [ACG]CC </td> </tr>
+
+		<tr> <td>264</td> <td> H1241c</td> <td> GG[CT]CGG </td> <td> CCG[AG]CC </td> </tr>
+
+		<tr> <td>265</td> <td>    </td> <td> T[CT]TC </td> <td> GA[AG]A </td> </tr>
+
+		<tr> <td>266</td> <td> H1241c'</td> <td> CCCGGGC[CT] </td> <td> [AG]GCCCGGG </td> </tr>
+
+		<tr> <td>267</td> <td>     </td> <td> GGTTT </td> <td> AAACC </td> </tr>
+
+		<tr> <td>268</td> <td>124</td> <td> GCG </td> <td> CGC </td> </tr>
+
+		<tr> <td>269</td> <td>'    </td> <td> GTTC </td> <td> GAAC </td> </tr>
+
+		<tr> <td>270</td> <td> H1241a</td> <td> GGGG </td> <td> CCCC </td> </tr>
+
+		<tr> <td>271</td> <td>      </td> <td> TGCC </td> <td> GGCA </td> </tr>
+
+		<tr> <td>272</td> <td>    H1303     </td> <td> C[GT]CCCCTCCC </td> <td> GGGAGGGG[AC]G </td> </tr>
+
+		<tr> <td>273</td> <td>    </td> <td> TT[GT] </td> <td> [AC]AA </td> </tr>
+
+		<tr> <td>274</td> <td>    H1303'    </td> <td> GTTCTG[GT]GG[CT] </td> <td> [AG]CC[AC]CAGAAC </td> </tr>
+
+		<tr> <td>275</td> <td>     </td> <td> TCCTC </td> <td> GAGGA </td> </tr>
+
+		<tr> <td>276</td> <td>H939'</td> <td> GGT </td> <td> ACC </td> </tr>
+
+		<tr> <td>277</td> <td>      </td> <td> TTCTG </td> <td> CAGAA </td> </tr>
+
+		<tr> <td>278</td> <td> H1350  </td> <td> CT[CT]GCG[CT]T </td> <td> A[AG]CGC[AG]AG </td> </tr>
+
+		<tr> <td>279</td> <td>        </td> <td> C[CT]TTTG </td> <td> CAAA[AG]G </td> </tr>
+
+		<tr> <td>280</td> <td>  H1350' </td> <td> CGCGG </td> <td> CCGCG </td> </tr>
+
+		<tr> <td>281</td> <td>      </td> <td> GTTC </td> <td> GAAC </td> </tr>
+
+		<tr> <td>282</td> <td>     T  H921'     </td> <td> TG[CT]CGGGCGGGC </td> <td> GCCCGCCCG[AG]CA </td> </tr>
+
+		<tr> <td>283</td> <td>   </td> <td> GTG </td> <td> CAC </td> </tr>
+
+		<tr> <td>284</td> <td>                            H1399                                </td> <td> ?\[CT]GCG?\[CT]?\[CT]?\[CGT]G?\[CT]?\[CT]G?\[CGT]G?\[CGT]T?\[CT][CT]GGTCCGGCCTCCTTCT[CT]CTCGGTGTGCGCGGGCGG </td> <td> CCGCCCGCGCACACCGAG[AG]AGAAGGAGGCCGGACC[AG][AG]\?A[ACG]\?C[ACG]\?C[AG]\?[AG]\?C[ACG]\?[AG]\?[AG]\?CGC[AG]\? </td> </tr>
+
+		<tr> <td>285</td> <td>     </td> <td> G?\[CGT][GT][CGT]?\[CGT] </td> <td> [ACG]\?[ACG][AC][ACG]\?C </td> </tr>
+
+		<tr> <td>286</td> <td>                                 H1399'                              </td> <td> CTTGTTCGCTTTTCTTCCTCTTGTCGTTTGGTCTCTT[CT]CCGG[CGT]GC[CT]CGTCGG[CG]GG[CT]G[CGT]T </td> <td> A[ACG]C[AG]CC[CG]CCGACG[AG]GC[ACG]CCGG[AG]AAGAGACCAAACGACAAGAGGAAGAAAAGCGAACAAG </td> </tr>
+
+		<tr> <td>287</td> <td> </td> <td> C </td> <td> G </td> </tr>
+
+		<tr> <td>288</td> <td>  H1506   </td> <td> CCTCGGC </td> <td> GCCGAGG </td> </tr>
+
+		<tr> <td>289</td> <td>    </td> <td> TTC </td> <td> GAA </td> </tr>
+
+		<tr> <td>290</td> <td>   H1506' </td> <td> CTTC[CT]GCGG </td> <td> CCGC[AG]GAAG </td> </tr>
+
+		<tr> <td>291</td> <td>        </td> <td> TTGTC </td> <td> GACAA </td> </tr>
+
+</table>
+
+</body>
+</html>

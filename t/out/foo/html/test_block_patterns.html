@@ -1,0 +1,37 @@
+<html>
+
+<head>
+	<title> foo </title>
+
+</head>
+
+<body>
+<table>
+		<tr style="font-weight: bolder;"> <td> # </td> <td> label </td> <td> regex <br/> reverse compliment regex </td> </tr>
+
+		<tr> <td>0</td> <td>    2c    </td> <td> [ACG]C[AG][AC]GG <br/> CC[GT][CT]G[CGT] </td></tr>
+
+		<tr> <td>1</td> <td> REC1</td> <td> [CG]CG <br/> CG[CG] </td></tr>
+
+		<tr> <td>2</td> <td>   </td> <td> [ACGT]\? <br/> ?\[ACGT] </td></tr>
+
+		<tr> <td>3</td> <td>    2d   </td> <td> [AC]G[CG]GAGCC <br/> GGCTC[CG]C[GT] </td></tr>
+
+		<tr> <td>4</td> <td> </td> <td> [AC]\? <br/> ?\[GT] </td></tr>
+
+		<tr> <td>5</td> <td>  2d'   </td> <td> G[AG]C[AG]C[AG]C[ACG] <br/> [CGT]G[CT]G[CT]G[CT]C </td></tr>
+
+		<tr> <td>6</td> <td>REC2</td> <td> [AG]\?C <br/> G?\[CT] </td></tr>
+
+		<tr> <td>7</td> <td>   3</td> <td> [ACG]C[AG] <br/> [CT]G[CGT] </td></tr>
+
+		<tr> <td>8</td> <td>    2c' </td> <td> [AC][CG]GC[AG]G <br/> C[CT]GC[CG][GT] </td></tr>
+
+		<tr> <td>9</td> <td> 3'</td> <td> C[AG]G <br/> C[CT]G </td></tr>
+
+		<tr> <td>10</td> <td>     RAA      </td> <td> CG[CG]\?[AG]\?C[ACG]\?[ACG]\?[AC]\?[AC]\?[ACG]\? <br/> ?\[CGT]?\[GT]?\[GT]?\[CGT]?\[CGT]G?\[CT]?\[CG]CG </td></tr>
+
+</table>
+
+</body>
+</html>

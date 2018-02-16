@@ -1,0 +1,234 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Psy::Helpers::Gbname</title>
+<link rel="stylesheet" href="../../../..//Active.css" type="text/css" />
+<link rev="made" href="mailto:" />
+</head>
+
+<body>
+<table border="0" width="100%" cellspacing="0" cellpadding="3">
+<tr><td class="block" valign="middle">
+<big><strong><span class="block">&nbsp;Psy::Helpers::Gbname</span></strong></big>
+</td></tr>
+</table>
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#version">VERSION</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<li><a href="#object">OBJECT</a></li>
+	<ul>
+
+		<li><a href="#new">new</a></li>
+		<li><a href="#nameset">nameSet</a></li>
+		<li><a href="#nameintersect">nameIntersect</a></li>
+		<li><a href="#seqobjlookup">seqObjLookup</a></li>
+		<li><a href="#seqfamilygroupnames">seqFamilyGroupNames</a></li>
+		<li><a href="#summaryhigher">summaryHigher</a></li>
+		<li><a href="#summarynohigher">summaryNoHigher</a></li>
+		<li><a href="#name">name</a></li>
+		<li><a href="#higher">higher</a></li>
+	</ul>
+
+	<li><a href="#author">AUTHOR</a></li>
+	<li><a href="#bugs">BUGS</a></li>
+	<li><a href="#acknowledgements">ACKNOWLEDGEMENTS</a></li>
+	<li><a href="#copyright___license">COPYRIGHT &amp; LICENSE</a></li>
+	<ul>
+
+		<li><a href="#data_section">DATA section</a></li>
+	</ul>
+
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>Psy::Helpers::Gbname</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="version">VERSION</a></h1>
+<p># version 0.02 - Matt Yoder
+# requires Scalar::Util, hopefully a common package</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<p>Object for generating taxon labels for genbank sequence objects or strings containing a genbank accession number.
+Can call genbank directly or generate from passed object.</p>
+<p>#my $foo = gbname-&gt;new;
+#print $foo-&gt;name('-in' =&gt; 'AY764386_foogurt');</p>
+<p>A seq obj looks like this:</p>
+<pre>
+        $seq-&gt;{species}-&gt;{_classification} ...</pre>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="object">OBJECT</a></h1>
+<p>
+</p>
+<h2><a name="new">new</a></h2>
+<p>Make a new gbname object.</p>
+<p>
+</p>
+<h2><a name="nameset">nameSet</a></h2>
+<p>Returns an array given the set name (sets found in __DATA__)</p>
+<p>
+</p>
+<h2><a name="nameintersect">nameIntersect</a></h2>
+<p>Returns the FIRST (may produce undesired results, be careful) intersection of a namset array and a supplied array (e.g. Genbank classification)
+</p>
+<pre>
+
+=cut</pre>
+<p><table cellspacing="0" cellpadding="0"><tr><td>sub nameIntersect { # 
+<tr><td><td>my $self = shift;
+<tr><td><td>my %params = @_;
+<tr><td><td># -names is an array reference
+<tr><td><td>my @ns = $self-&gt;nameSet($params{'-higher_name_set'});</table></p>
+<pre>
+        foreach my $n ( @{$params{'-names'}} ) { 
+                if (grep $_ eq $n, @ns) { return $n };
+        }
+        return ''
+}</pre>
+<p><table cellspacing="0" cellpadding="0"><tr><td>sub _seqClassification { # returns the _classification array for a seq object ## bioperl redundant? 
+<tr><td><td>my $seq = shift;</table></p>
+<pre>
+        (not defined $seq) &amp;&amp; return ();
+        return @{$seq-&gt;{species}-&gt;{_classification}};
+}</pre>
+<p>sub _seqCommonName { # returns the _classification array for a seq object ## bioperl redundant?
+	my $seq = shift;
+	return $seq-&gt;{species}-&gt;{_common_name} || ``'';
+}</p>
+<p>sub _seqDisplayId { # returns the _classification array for a seq object ## bioperl redundant?
+	my $seq = shift;
+	return $seq-&gt;{primary_seq}-&gt;{display_id};
+}</p>
+<p>
+</p>
+<h2><a name="seqobjlookup">seqObjLookup</a></h2>
+<p>Returns a seq object for a given name, legal formats are ( accession || accession_foo_barBlort)
+</p>
+<pre>
+
+=cut</pre>
+<p>sub seqObjLookup { 
+	my $self=shift;
+	my $id = shift;
+	$id eq '' and return 0;
+	($id =~ /_/) &amp;&amp; ( $id = substr($id,0,$+[0]-1)); # grab the accessor
+	# print ``finding: $id\n'';
+	return $self-&gt;{gb}-&gt;<code>get_Seq_by_id($id)</code> || croak ``no such genbankID $id\n'';	
+}</p>
+<p>
+</p>
+<h2><a name="seqfamilygroupnames">seqFamilyGroupNames</a></h2>
+<p>Returns (subfamily, family) names given a seq object
+</p>
+<pre>
+
+=cut</pre>
+<p>sub seqFamilyGroupNames { 
+	my $self = shift;
+	my $seq = shift;	# bioperl seq object OR object from fastgenbank
+	my @cl = &amp;_seqClassification($seq); 
+	#print @{$seq-&gt;{species}-&gt;{_classification}};
+	my %names;
+	my @foo;
+	push @foo, grep $_ =~ m/idae$/gi, @cl;
+		$names{family} = shift @foo || 'undef';
+	push @foo, grep $_ =~ m/inae$/gi, @cl;
+		$names{subfamily} = shift @foo || 'undef';
+	push @foo, grep $_ =~ m/oidea$/gi, @cl;
+		$names{superfamily} = shift @foo || 'undef';
+	return %names; 
+}</p>
+<p>
+</p>
+<h2><a name="summaryhigher">summaryHigher</a></h2>
+<pre>
+
+=cut</pre>
+<p>sub summaryHigher {
+	my $self = shift;
+	my @names = sort (keys %{$self-&gt;{summary}-&gt;{higher}});
+	print ``\n\n'';
+	foreach my $h (@names) {
+		print ``$h -&gt;'', $self-&gt;{summary}-&gt;{higher}-&gt;{$h}, ``\n''
+	}
+	return 1;
+}</p>
+<p>
+</p>
+<h2><a name="summarynohigher">summaryNoHigher</a></h2>
+<p>
+</p>
+<h2><a name="name">name</a></h2>
+<p>Return a formated name, lots of options here</p>
+<p>
+</p>
+<h2><a name="higher">higher</a></h2>
+<p>Split from name so it can be accessed alone</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="author">AUTHOR</a></h1>
+<p>'Matt, <code>&lt;m{j}yoder@{tee}[aye](em)(you).domain4unis&gt;</code></p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="bugs">BUGS</a></h1>
+<p>Please report any bugs or feature requests to
+<code>bug-psy-helpers-gbname@rt.cpan.org</code>, or through the web interface at
+<a href="http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Psy">http://rt.cpan.org/NoAuth/ReportBug.html</a>.
+I will be notified, and then you'll automatically be notified of progress on
+your bug as I make changes.</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="acknowledgements">ACKNOWLEDGEMENTS</a></h1>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="copyright___license">COPYRIGHT &amp; LICENSE</a></h1>
+<p>Copyright 2005 'Matt, all rights reserved.</p>
+<p>This program is free software; you can redistribute it and/or modify it
+under the same terms as Perl itself.
+
+</p>
+<p>
+</p>
+<h2><a name="data_section">DATA section</a></h2>
+<p>Data contains name-sets, first value is key, remaining are set values, add as you want.  
+
+</p>
+<p>No lines below the namesets!
+
+</p>
+<p><a href="#__index__"><small>__top</small></a></p>
+<table border="0" width="100%" cellspacing="0" cellpadding="3">
+<tr><td class="block" valign="middle">
+<big><strong><span class="block">&nbsp;Psy::Helpers::Gbname</span></strong></big>
+</td></tr>
+</table>
+
+</body>
+
+</html>

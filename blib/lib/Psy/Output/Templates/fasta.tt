@@ -1,0 +1,6 @@
+[% mask %]
+[% FOREACH ter = terminals %]>[% rowlabel(ter) %]
+[% multi_row_seq.$ter %]
+
+[% END %]
+

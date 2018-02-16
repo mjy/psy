@@ -1,0 +1,16 @@
+[ Weighting schemes to be used in conjuntion with pairedparsimony characters ]
+[ to use a given set of weights 'assume wtset = <insert setname here>'       ]
+
+BEGIN ASSUMPTIONS;
+
+
+wtset mi (vector) = 0.50 0.59 0.02 0.92 0.54 0.50 0.30 0.00 0.33 0.00 0.00 0.00 0.02 0.04 0.50 0.59 0.02 ;
+
+wtset cramersV (vector) = 0.00 0.34 0.00 0.00 0.58 0.58 0.47 0.00 0.10 0.00 0.00 0.00 0.10 0.10 0.00 0.34 0.00 ;
+
+wtset chi2 (vector) = 0.00 3.20 0.00 0.00 6.11 9.00 4.04 0.00 0.29 0.00 0.00 0.00 0.25 0.29 0.00 3.20 0.00 ;
+
+wtset chi2Sig (vector) = 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ;
+
+
+END;

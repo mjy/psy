@@ -1,0 +1,14 @@
+_build
+^Build$
+^blib
+~$
+\.bak$
+^MANIFEST\.SKIP$
+SVN
+svn
+t\/out/
+t\/in\/
+todo
+Jrna2Psy
+\.swp$
+cvsignore

@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Psy::Matrix::Structure</title>
+<link rel="stylesheet" href="../../../..//Active.css" type="text/css" />
+<link rev="made" href="mailto:" />
+</head>
+
+<body>
+<table border="0" width="100%" cellspacing="0" cellpadding="3">
+<tr><td class="block" valign="middle">
+<big><strong><span class="block">&nbsp;Psy::Matrix::Structure</span></strong></big>
+</td></tr>
+</table>
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#version">VERSION</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<ul>
+
+		<li><a href="#new">new</a></li>
+		<li><a href="#helix">helix</a></li>
+		<li><a href="#stockholm1rfline">stockholm1RFLine</a></li>
+		<li><a href="#phase2mask">phase2Mask</a></li>
+		<li><a href="#phase2class">phase2Class</a></li>
+		<li><a href="#phansymaskchars">phansyMaskChars</a></li>
+		<li><a href="#slicemask">sliceMask</a></li>
+		<li><a href="#mask">mask</a></li>
+		<li><a href="#maskpair">maskPair</a></li>
+		<li><a href="#bracketsinmask">bracketsInMask</a></li>
+		<li><a href="#nucpairs">nucPairs</a></li>
+		<li><a href="#basepairs">basePairs</a></li>
+		<li><a href="#alignedhelices">alignedHelices</a></li>
+		<li><a href="#block_helix_label">block_helix_label</a></li>
+		<li><a href="#deletehelix">deleteHelix</a></li>
+		<li><a href="#threeprimepair">threePrimePair</a></li>
+		<li><a href="#loophelices">loopHelices</a></li>
+		<li><a href="#loopstems">loopStems</a></li>
+		<li><a href="#loopbasepairs">loopBasePairs</a></li>
+		<li><a href="#loopnonbasepairs">loopNonBasePairs</a></li>
+		<li><a href="#pseudoknotpairs">pseudoKnotPairs</a></li>
+		<li><a href="#pairpos">pairPos</a></li>
+	</ul>
+
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>Psy::Matrix::Matrix</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="version">VERSION</a></h1>
+<p>Version 0.01</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<p>Builds a structure object, at present based on a helix-index file (but see also Psy::Matrix::_load_PHASE_simulate).</p>
+<pre>
+    use Psy::Matrix:Structure;  
+        my $fs = structure-&gt;new(
+                                                '-helix_index' =&gt; 'Evaniodea.index.0.02.txt',
+                                                '-path' =&gt; '../../data/evan/',          
+                                        );</pre>
+<pre>
+        print Dumper($s);
+        print $s-&gt;{blocks}-&gt;version();</pre>
+<p>
+</p>
+<h2><a name="new">new</a></h2>
+<p>Create a new object, not for direct reference/use.</p>
+<p>
+</p>
+<h2><a name="helix">helix</a></h2>
+<p>An accessor, if two blocks passed makes a helix with block 1 = 5', block 2 = 3'; with one block passed returns 3'.</p>
+<p>
+</p>
+<h2><a name="stockholm1rfline">stockholm1RFLine</a></h2>
+<p>Returns a stockholm legal RF line</p>
+<p>
+</p>
+<h2><a name="phase2mask">phase2Mask</a></h2>
+<p>Return a formated, PHASE 2.0 legal mask in one full string.</p>
+<p>
+</p>
+<h2><a name="phase2class">phase2Class</a></h2>
+<p>Returns a semi-complete class line for use in PHASE 2.0 analyses</p>
+<p>
+</p>
+<h2><a name="phansymaskchars">phansyMaskChars</a></h2>
+<p>Returns a hash of block-&gt;mask-letter. Used for translating () masks to &lt;&gt; or aA masks.</p>
+<p>Algorithm could be very likely be greatly simplified by recursion, but it *appears* to work as is (its ugly!).</p>
+<p>
+</p>
+<h2><a name="slicemask">sliceMask</a></h2>
+<p>Returns the mask for a slice as a string, substitutes {bracket_chars} if passed.</p>
+<p>
+</p>
+<h2><a name="mask">mask</a></h2>
+<p>Returns the mask for a block.</p>
+<p>
+</p>
+<h2><a name="maskpair">maskPair</a></h2>
+<p>Returns hash with paired masks under '5prime' and '3prime' indicies.</p>
+<p>
+</p>
+<h2><a name="bracketsinmask">bracketsInMask</a></h2>
+<p>Returns a count of the number of parens for a given block.</p>
+<p>
+</p>
+<h2><a name="nucpairs">nucPairs</a></h2>
+<p>Returns a hash with keys {pairs) pointing to 5':3' pair positions (MrBayes 'pairs') and {nucs} a list of all positions (column indicies).</p>
+<p>To count from 0 set zero_beers = 1</p>
+<p>
+</p>
+<h2><a name="basepairs">basePairs</a></h2>
+<p>Returns a hash of basepairs encountered, strictly adhering to $alphabet;</p>
+<p>Not done.</p>
+<p>
+</p>
+<h2><a name="alignedhelices">alignedHelices</a></h2>
+<p>Returns a hash of keys (mask1, mask2, stem1, stem2) with the stems/masks aligned</p>
+<p>
+</p>
+<h2><a name="block_helix_label">block_helix_label</a></h2>
+<p>A label accessor.</p>
+<p>
+</p>
+<h2><a name="deletehelix">deleteHelix</a></h2>
+<pre>
+
+Deletes a helix.  Unproven.</pre>
+<p>
+</p>
+<h2><a name="threeprimepair">threePrimePair</a></h2>
+<pre>
+
+Given a 3' helix index return the 5' complement (missing the faster way to reverse hashes- fix).</pre>
+<p>
+</p>
+<h2><a name="loophelices">loopHelices</a></h2>
+<pre>
+
+Returns an array of 5' helix sides within a slice</pre>
+<p>!! needs to limit those to fully (3'/5') bound by slice only !!  
+## reduntant with mx-&gt;loopblocks (keep this one) ##</p>
+<p># slice dependant, its not a helix unless the passed slice has both blocks?</p>
+<p>
+</p>
+<h2><a name="loopstems">loopStems</a></h2>
+<pre>
+
+Returns an array of all block indices involved in pairing given the particular -slice</pre>
+<p>
+</p>
+<h2><a name="loopbasepairs">loopBasePairs</a></h2>
+<pre>
+
+Returns an array of basepairs for a given 5' block index, assumes mask is made of '()'</pre>
+<p>Requires -mx, -blk, -ter</p>
+<p>
+</p>
+<h2><a name="loopnonbasepairs">loopNonBasePairs</a></h2>
+<p>Returns an array of the positions</p>
+<p>
+</p>
+<h2><a name="pseudoknotpairs">pseudoKnotPairs</a></h2>
+<p>A hack.</p>
+<p>Takes an array representing a hash of indices represent helix pairs.</p>
+<p>Returns an array pointing to the 5' blocks which, when removed along with their 3' pair, will leave remain blocks psuedoknot free.</p>
+<p>Note that there are multiple solutions possible, and that the result returned here is very inefficient (i.e removes the fewest number of helices making the overall structure pseudoknot free).
+Someone with more experience will need to solve the most efficient problem.</p>
+<p>Use with caution, and possibly in combination with manually selected helicies.</p>
+<p>
+</p>
+<h2><a name="pairpos">pairPos</a></h2>
+<p>Returns a two value array of column indices (unbracketed position) for the -pos position of the helix defined by the 5' -blk.
+Requires -blk, -mx, -pos.
+Similar to nucPairs but notably counts from ZERO.  Primarily for internal use.
+
+</p>
+<p><a href="#__index__"><small>__top</small></a></p>
+<table border="0" width="100%" cellspacing="0" cellpadding="3">
+<tr><td class="block" valign="middle">
+<big><strong><span class="block">&nbsp;Psy::Matrix::Structure</span></strong></big>
+</td></tr>
+</table>
+
+</body>
+
+</html>

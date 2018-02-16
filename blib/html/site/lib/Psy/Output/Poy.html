@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Psy::Output::Poy</title>
+<link rel="stylesheet" href="../../../..//Active.css" type="text/css" />
+<link rev="made" href="mailto:" />
+</head>
+
+<body>
+<table border="0" width="100%" cellspacing="0" cellpadding="3">
+<tr><td class="block" valign="middle">
+<big><strong><span class="block">&nbsp;Psy::Output::Poy</span></strong></big>
+</td></tr>
+</table>
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#version">VERSION</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<li><a href="#options">OPTIONS</a></li>
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>Psy::Output::Poy</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="version">VERSION</a></h1>
+<p>Version 0.01</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<p>use Psy::Psy;</p>
+<p>Returns the the total number of blocks exported when successfull.</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="options">OPTIONS</a></h1>
+<p>Defaults are in (), valid options are in [ ]</p>
+<pre>
+        -mode (do_all) [do_all fso_all do_unbrack_fso_brack do_brack_fso_unbrack fso_unbrack do_unbrack do_brack fso_brack]
+                legal values are:
+                'do_all'        -       DO on all blocks
+                'fso_all'       -       FSO on all blocks
+        
+                'do_unbrack_fso_brack'  - DO on unbracketed, FSO on bracketed
+                'do_brack_fso_unbrack'  - DO on bracketed, FSO on unbracketed
+        
+                'fso_unbrack'   -       FSO on unbracketed, bracketed excluded
+                'do_unbrack'    -       DO on unbracketed blocks, bracketed excluded
+        
+                'do_brack'      -       DO on bracketed, unbracketed excluded
+                'fso_brack'     -       FSO on bracketed, unbracketed excluded
+        
+        -min_terminals (80) [0 to 100]
+                see POY manual
+                
+        -use_prealigned (0) [0 1]
+                detect blocks that are prealigable and indicate them as such
+                
+        -strip_bracketed_gaps [0 1]
+        
+        -use_deletegapsfrominput (0) [0 1]
+        
+        -legal_alphabet (IUPAC + '#*? ') [any POY legal character]
+                the legal POY alphabet, is set by default and shouldn't likely be used
+                
+        -u2t (0) [0 1]
+                translates U to T when set to 1
+                
+        -clean (1) [0 1]
+                
+        -replace ('N') 
+        
+        -heuristics (contents of &lt;DATA&gt; ) [any legal POY options, as a string]
+                overwrites the heuristics in &lt;DATA&gt;, included in the .cmd file</pre>
+<p>Note on usage of ?, -, and N, we assume:
+  ? is missing data (positions are stripped)
+  N is ambiguous/missing data whose positions should NOT be stripped (however paritions of only N will be stripped)
+  - is true gap (always stripped for POY).</p>
+<p><a href="#__index__"><small>__top</small></a></p>
+<table border="0" width="100%" cellspacing="0" cellpadding="3">
+<tr><td class="block" valign="middle">
+<big><strong><span class="block">&nbsp;Psy::Output::Poy</span></strong></big>
+</td></tr>
+</table>
+
+</body>
+
+</html>

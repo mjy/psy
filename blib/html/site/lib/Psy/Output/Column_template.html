@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Psy::Output::Column_template</title>
+<link rel="stylesheet" href="../../../..//Active.css" type="text/css" />
+<link rev="made" href="mailto:" />
+</head>
+
+<body>
+<table border="0" width="100%" cellspacing="0" cellpadding="3">
+<tr><td class="block" valign="middle">
+<big><strong><span class="block">&nbsp;Psy::Output::Column_template</span></strong></big>
+</td></tr>
+</table>
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#version">VERSION</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>Psy::Output::Column_template ## broken naming convention?</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="version">VERSION</a></h1>
+<p>Version 0.01</p>
+<p>
+<a href="#__index__"><small>__top</small></a>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<p>Output subclass for a Psy object.  
+Referenced externally only.
+Inherited via AUTOLOAD through Psy::Output::Output, see therein for general usage.
+</p>
+<pre>
+
+=cut</pre>
+<p>our $OUT_DIR = ``analyses/stats/column'';
+our $LEGAL_CHARS = Psy::Dna::Alphabet-&gt;new(); # defaults to the RNA alphabet</p>
+<p><table cellspacing="0" cellpadding="0"><tr><td>sub process {
+<tr><td><td>my $self = shift;
+<tr><td><td>my %raw_params = @_;
+<tr><td><td>my %default_params = (
+<tr><td><td>'-max_seq_length' =&gt; 100,
+<tr><td><td>'-include_structure_line' =&gt; 0, # doesn't make sense in all combinations
+<tr><td><td>'-strip_gaps' =&gt; 1,
+<tr><td><td>'-legal_alphabet' =&gt; $LEGAL_CHARS,
+<tr><td><td>'-u2t' =&gt; 1, <td># translate U to T?
+<tr><td><td>'-clean' =&gt; 1, <td># translate non legal_alphabet chars to N 
+<tr><td><td>'-replace' =&gt; 'N'  <td>## should go with the alphabet object ultimately
+<tr><td><td>);
+<tr><td><td># requires -mx</table></p>
+<pre>
+        $default_params{'-slice'} ||= $raw_params{'-mx'}-&gt;origSlice;    
+        my %params = (%default_params, %raw_params);</pre>
+<pre>
+        my $path = $OUT_DIR;
+    if (defined $params{'-sub_path'}) {$path = $params{'-sub_path'}};
+        $params{'-file_name'} ||= 'out.txt';</pre>
+<pre>
+        print &quot;PATH: $path/$params{'-file_name'}\n&quot;;</pre>
+<pre>
+        # doesn't use template toolkit (yet)
+        
+        ## fix
+        my $data;</pre>
+<pre>
+        my $tt = Template-&gt;new($params{'-config'}); 
+        $tt-&gt;process(\*DATA, $data, &quot;$path/$params{'-file_name'}&quot;) || die 'died trying to process Column template'; 
+        1;
+}</pre>
+<p>1;</p>
+<p>__DATA__
+
+</p>
+<p><a href="#__index__"><small>__top</small></a></p>
+<table border="0" width="100%" cellspacing="0" cellpadding="3">
+<tr><td class="block" valign="middle">
+<big><strong><span class="block">&nbsp;Psy::Output::Column_template</span></strong></big>
+</td></tr>
+</table>
+
+</body>
+
+</html>

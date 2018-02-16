@@ -1,0 +1,17 @@
+nstates dna;
+xread
+'
+	some version bit here
+	Generated for blocks:  1  2  6  10 
+'
+18 9
+aus                             GUG-AC----CUCGAAUG
+bus                             GCG-GC--------GCAA
+long_name_taxon_1               GUGUAU-------GUCAC
+AF379936_Basalys_not_really     UU-G-U------------
+Diphoropria_not_really_AF379937 UU-C-U---GUUUAUUAU
+taxon1                          UU-A-U---GUUUUUUAU
+taxon2                          UU--AU-UCGUAUGGUUU
+taxon3                          UUU--U----CGUUUUAG
+taxon4                          CU---U----GUUCCUCG
+;
