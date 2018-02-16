@@ -1,8 +1,0 @@
-nstates 32;
-xread
-'generated with Psy'
-[% total_chars %] [% total_ters %]
-[% FOREACH ter = terminals %][% justifiedrowlabel(ter) %]  [% rowdata.$ter %]
-[% END %]
-;
-

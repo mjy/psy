@@ -1,9 +1,0 @@
-Pair meta data via Psy.
-columns: [% FOREACH c = char_loop %] [% c %] [% END %]
-
-[% FOREACH blk = helices %]
-	block [% blk %]
-	[% FOREACH pair = pairs_in_block(blk) %][% pair %] [% FOREACH c = char_loop %][% chars(c, pair, blk) %] [% END %]
-	[% END %]
-[% END %]	
-

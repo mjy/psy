@@ -1,2 +1,0 @@
-[% FOREACH ter = terminals %]
-[% FOREACH blk = trans_blk_loop %][% FOREACH c = blk_chrs(blk) %][% chars(c, ter, blk) %][% END %][% END %][% END %]
