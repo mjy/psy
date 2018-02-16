@@ -1,5 +1,0 @@
-Tests with .t function as expected.
-To run them individually run do so like this (i.e. from outside /t):
-'prove t/psy.t'
-
-Tests ending in .pl should be run in their present folder.  They are working only.

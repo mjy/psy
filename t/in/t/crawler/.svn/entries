@@ -1,61 +1,0 @@
-8
-
-dir
-76
-svn+ssh://matt@hymenoptera.tamu.edu/Volumes/data/svn/Psy/trunk/t/in/t/crawler
-svn+ssh://matt@hymenoptera.tamu.edu/Volumes/data/svn/Psy
-
-
-
-2007-04-26T14:51:29.714293Z
-67
-matt
-
-
-svn:special svn:externals svn:needs-lock
-
-
-
-
-
-
-
-
-
-
-
-fc668c92-7104-0410-965a-99deaa3ec30d
-
-001
-dir
-
-002
-dir
-
-003
-dir
-
-meta.txt
-file
-
-
-
-
-2007-04-23T17:11:50.000000Z
-923f4efe2b8ee07f6fe5bcb21078fb02
-2007-04-23T23:46:06.032745Z
-66
-matt
-
-analyses.txt
-file
-
-
-
-
-2007-04-26T00:50:02.000000Z
-386818f7d163078973600b609364e22c
-2007-04-26T14:51:29.714293Z
-67
-matt
-
